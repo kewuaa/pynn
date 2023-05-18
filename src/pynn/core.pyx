@@ -132,6 +132,12 @@ cdef class GraphNode:
         buffer.readonly = 0
         buffer.suboffsets = NULL
 
+    def __getattr__(self, name: str):
+        return self._tensor.__getattribute__(name)
+
+    def __getitem__(self, index: int):
+        return self._tensor[index]
+
     def __pos__(self) -> GraphNode:
         """正号。"""
 
