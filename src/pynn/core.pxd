@@ -53,9 +53,5 @@ cdef class GraphNode:
 
 
 cpdef GraphNode zeros(shape)
-
-
 cpdef GraphNode ones(shape)
-
-
 cpdef GraphNode empty(shape)
