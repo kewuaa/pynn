@@ -11,10 +11,11 @@ class build(build_ext):
         if isinstance(self.compiler, UnixCCompiler):
             if 'zig' in self.compiler.cc:
                 self.compiler.dll_libraries = []
-                # self.compiler.set_executable(
-                #     'compiler_so',
-                #     f'{self.compiler.cc} -O3 -Wall -lc++'
-                # )
+                self.compiler.set_executables
+                self.compiler.set_executable(
+                    'compiler_so',
+                    f'{self.compiler.cc} -O3 -Wall'
+                )
             for ext in self.extensions:
                 ext.undef_macros = ['_DEBUG']
         super().build_extensions()
@@ -35,6 +36,11 @@ exts = (
     Extension(
         name='pynn.math',
         sources=['src\\pynn\\math.pyx'],
+        include_dirs=include_dirs,
+    ),
+    Extension(
+        name='pynn.loss',
+        sources=['src\\pynn\\loss.pyx'],
         include_dirs=include_dirs,
     )
 )

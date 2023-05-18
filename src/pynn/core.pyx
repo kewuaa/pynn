@@ -5,7 +5,6 @@
 # distutils: language=c
 # distutils: define_macros=NPY_NO_DEPRECATED_API=NPY_1_7_API_VERSION
 from cpython.mem cimport Py_buffer, PyMem_Malloc
-from numbers import Number
 from numpy.math cimport logf
 cimport numpy as cnp
 import numpy as np
@@ -61,21 +60,10 @@ cdef class GraphNode:
         :param requires_grad: 是否需要计算梯度
         """
 
-        self.__actual_init(
-            tensor,
-            requires_grad=requires_grad
-        )
-
-    def __actual_init(
-        self,
-        Array tensor,
-        *,
-        bint requires_grad=0
-    ) -> None:
         cdef cnp.ndarray _tensor
-        if Array is cnp.ndarray:
+        if isinstance(tensor, cnp.ndarray):
             _tensor = tensor
-        elif Array is GraphNode:
+        elif isinstance(tensor, GraphNode):
             _tensor = tensor._tensor
         else:
             _tensor = np.asarray(tensor)
@@ -166,7 +154,7 @@ cdef class GraphNode:
     def __add__(self, other) -> GraphNode:
         """加法。"""
 
-        if isinstance(other, Number):
+        if isinstance(other, (int, float, long)):
             self._tensor = self._tensor + other
             return self
         cdef GraphNode _other, new_node
@@ -191,7 +179,7 @@ cdef class GraphNode:
     def __sub__(self, other) -> GraphNode:
         """减法。"""
 
-        if isinstance(other, Number):
+        if isinstance(other, (int, float, long)):
             self._tensor = self._tensor - other
             return self
         cdef GraphNode _other, new_node
@@ -211,9 +199,6 @@ cdef class GraphNode:
     def __rsub__(self, other) -> GraphNode:
         """右减。"""
 
-        if isinstance(other, Number):
-            self._tensor = other - self._tensor
-            return self
         cdef GraphNode _other, new_node
         _other = _to_graph_node(other)
         new_node = GraphNode(
@@ -459,3 +444,6 @@ cdef class GraphNode:
         """将该节点作为整体，其子节点全部脱离节点图。"""
 
         self._as_unique = 1
+
+
+# cpdef GraphNode zeros()

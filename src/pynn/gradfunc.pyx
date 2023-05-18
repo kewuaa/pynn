@@ -3,6 +3,7 @@
 # cython: boundscheck=False
 # cython: language_level=3
 # distutils: language=c
+# distutils: define_macros=NPY_NO_DEPRECATED_API=NPY_1_7_API_VERSION
 from numpy.math cimport logf
 from cpython.mem cimport PyMem_Malloc
 cimport numpy as cnp
@@ -222,6 +223,17 @@ cdef cnp.ndarray relufunc(
     return grad * _grad
 
 
+cdef cnp.ndarray mselossfunc(
+    cnp.ndarray grad,
+    GraphNode left,
+    GraphNode right,
+    bint flags,
+) noexcept:
+    """mse loss 求导函数。"""
+
+    return grad * right._tensor
+
+
 cdef cnp.ndarray softmaxlossfunc(
     cnp.ndarray grad,
     GraphNode left,
@@ -230,4 +242,4 @@ cdef cnp.ndarray softmaxlossfunc(
 ) noexcept:
     """softmax loss 求导函数。"""
 
-    return right._tensor
+    return grad * right._tensor

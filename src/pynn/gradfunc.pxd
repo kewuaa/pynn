@@ -115,6 +115,14 @@ cdef cnp.ndarray relufunc(
 ) noexcept
 
 
+cdef cnp.ndarray mselossfunc(
+    cnp.ndarray grad,
+    GraphNode left,
+    GraphNode right,
+    bint flags,
+) noexcept
+
+
 cdef cnp.ndarray softmaxlossfunc(
     cnp.ndarray grad,
     GraphNode left,

@@ -1,9 +1,15 @@
+# cython: language_level=3
+# cython: boundscheck=False
+# cython: wraparound=False
+# cython: cdivision=True
+# distutils: language=c
+# distutils: define_macros=NPY_NO_DEPRECATED_API=NPY_1_7_API_VERSION
 from numpy.math cimport logf
 cimport numpy as cnp
 import numpy as np
 
-from .core cimport GraphNode, Array
-from .gradfunc cimport expfunc, logfunc, softmaxlossfunc
+from .core cimport GraphNode
+from .gradfunc cimport expfunc, logfunc
 
 
 cpdef GraphNode transpose(GraphNode node):
@@ -69,33 +75,3 @@ cpdef GraphNode relu(GraphNode node):
     """relu 函数。"""
 
     return node.relu()
-
-
-cpdef GraphNode softmaxloss(GraphNode X, Y):
-    """softmax loss 函数。
-
-    :param X: 预测值，为列向量
-    :param Y: onehot 标签， 为列向量
-    """
-
-    cdef cnp.ndarray _Y
-    if isinstance(Y, cnp.ndarray):
-        _Y = Y
-    elif isinstance(Y, GraphNode):
-        _Y = Y._tensor
-    else:
-        _Y = np.asarray(Y)
-    cdef cnp.ndarray expx = np.exp(X._tensor)
-    cdef cnp.ndarray softmaxx = expx / expx.sum()
-    cdef GraphNode new_node = GraphNode(
-        _Y.T @ (logf(expx.sum()) - X._tensor),
-        requires_grad=X.requires_grad
-    )
-    new_node._gradfunc = softmaxlossfunc
-    new_node._is_leaf = 0
-    new_node._subnode_l = X
-    new_node._subnode_r = GraphNode.__new__(GraphNode)
-    new_node._subnode_r._tensor = softmaxx - _Y
-    new_node._opera_type = 'softmaxloss'
-    X._parent = new_node
-    return new_node

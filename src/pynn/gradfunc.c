@@ -3,6 +3,12 @@
 /* BEGIN: Cython Metadata
 {
     "distutils": {
+        "define_macros": [
+            [
+                "NPY_NO_DEPRECATED_API",
+                "NPY_1_7_API_VERSION"
+            ]
+        ],
         "depends": [
             "D:\\Softwares\\Program_Files\\Python\\venvs\\default\\Lib\\site-packages\\numpy\\core\\include\\numpy\\arrayobject.h",
             "D:\\Softwares\\Program_Files\\Python\\venvs\\default\\Lib\\site-packages\\numpy\\core\\include\\numpy\\arrayscalars.h",
@@ -1761,13 +1767,13 @@ struct __pyx_opt_args_4pynn_4core_9GraphNode__backward;
  * 
  * 
  * ctypedef char* Operation             # <<<<<<<<<<<<<<
- * ctypedef fused Array:
- *     list
+ * 
+ * 
  */
 typedef char *__pyx_t_4pynn_4core_Operation;
 
-/* "core.pxd":58
- *     cpdef GraphNode matmul(self, Array other) noexcept
+/* "core.pxd":49
+ *     cpdef GraphNode matmul(self, other) noexcept
  *     cpdef GraphNode transpose(self) noexcept
  *     cpdef GraphNode sum(self, int axis=*) noexcept             # <<<<<<<<<<<<<<
  *     cpdef GraphNode relu(self) noexcept
@@ -1778,7 +1784,7 @@ struct __pyx_opt_args_4pynn_4core_9GraphNode_sum {
   int axis;
 };
 
-/* "core.pxd":61
+/* "core.pxd":52
  *     cpdef GraphNode relu(self) noexcept
  *     cdef bint _same_shape(self, cnp.ndarray other) noexcept
  *     cdef int _backward(self, cnp.ndarray grad=*) except 1             # <<<<<<<<<<<<<<
@@ -1865,7 +1871,7 @@ struct __pyx_array_obj {
 };
 
 
-/* "core.pxd":16
+/* "core.pxd":7
  * 
  * 
  * cdef class GraphNode:             # <<<<<<<<<<<<<<
@@ -1944,7 +1950,7 @@ struct __pyx_vtabstruct__memoryviewslice {
 static struct __pyx_vtabstruct__memoryviewslice *__pyx_vtabptr__memoryviewslice;
 
 
-/* "core.pxd":16
+/* "core.pxd":7
  * 
  * 
  * cdef class GraphNode:             # <<<<<<<<<<<<<<
@@ -1955,19 +1961,12 @@ static struct __pyx_vtabstruct__memoryviewslice *__pyx_vtabptr__memoryviewslice;
 struct __pyx_vtabstruct_4pynn_4core_GraphNode {
   struct __pyx_obj_4pynn_4core_GraphNode *(*_simple_value_node)(float);
   int (*_update_grad)(struct __pyx_obj_4pynn_4core_GraphNode *);
+  struct __pyx_obj_4pynn_4core_GraphNode *(*matmul)(struct __pyx_obj_4pynn_4core_GraphNode *, PyObject *, int __pyx_skip_dispatch);
   struct __pyx_obj_4pynn_4core_GraphNode *(*transpose)(struct __pyx_obj_4pynn_4core_GraphNode *, int __pyx_skip_dispatch);
   struct __pyx_obj_4pynn_4core_GraphNode *(*sum)(struct __pyx_obj_4pynn_4core_GraphNode *, int __pyx_skip_dispatch, struct __pyx_opt_args_4pynn_4core_9GraphNode_sum *__pyx_optional_args);
   struct __pyx_obj_4pynn_4core_GraphNode *(*relu)(struct __pyx_obj_4pynn_4core_GraphNode *, int __pyx_skip_dispatch);
   int (*_same_shape)(struct __pyx_obj_4pynn_4core_GraphNode *, PyArrayObject *);
   int (*_backward)(struct __pyx_obj_4pynn_4core_GraphNode *, struct __pyx_opt_args_4pynn_4core_9GraphNode__backward *__pyx_optional_args);
-  struct __pyx_obj_4pynn_4core_GraphNode *(*__pyx_fuse_0matmul)(struct __pyx_obj_4pynn_4core_GraphNode *, PyObject *, int __pyx_skip_dispatch);
-  struct __pyx_obj_4pynn_4core_GraphNode *(*__pyx_fuse_1matmul)(struct __pyx_obj_4pynn_4core_GraphNode *, PyObject *, int __pyx_skip_dispatch);
-  struct __pyx_obj_4pynn_4core_GraphNode *(*__pyx_fuse_2matmul)(struct __pyx_obj_4pynn_4core_GraphNode *, PyArrayObject *, int __pyx_skip_dispatch);
-  struct __pyx_obj_4pynn_4core_GraphNode *(*__pyx_fuse_3matmul)(struct __pyx_obj_4pynn_4core_GraphNode *, struct __pyx_obj_4pynn_4core_GraphNode *, int __pyx_skip_dispatch);
-  struct __pyx_obj_4pynn_4core_GraphNode *(*__pyx_fuse_4matmul)(struct __pyx_obj_4pynn_4core_GraphNode *, int, int __pyx_skip_dispatch);
-  struct __pyx_obj_4pynn_4core_GraphNode *(*__pyx_fuse_5matmul)(struct __pyx_obj_4pynn_4core_GraphNode *, long, int __pyx_skip_dispatch);
-  struct __pyx_obj_4pynn_4core_GraphNode *(*__pyx_fuse_6matmul)(struct __pyx_obj_4pynn_4core_GraphNode *, float, int __pyx_skip_dispatch);
-  struct __pyx_obj_4pynn_4core_GraphNode *(*__pyx_fuse_7matmul)(struct __pyx_obj_4pynn_4core_GraphNode *, double, int __pyx_skip_dispatch);
 };
 static struct __pyx_vtabstruct_4pynn_4core_GraphNode *__pyx_vtabptr_4pynn_4core_GraphNode;
 /* #### Code section: utility_code_proto ### */
@@ -19055,7 +19054,7 @@ static CYTHON_INLINE NPY_DATETIMEUNIT __pyx_f_5numpy_get_datetime64_unit(PyObjec
   return __pyx_r;
 }
 
-/* "pynn/gradfunc.pyx":13
+/* "pynn/gradfunc.pyx":14
  * 
  * 
  * cdef cnp.ndarray negfunc(             # <<<<<<<<<<<<<<
@@ -19072,7 +19071,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_negfunc(PyArrayObject *__pyx_v_gra
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("negfunc", 0);
 
-  /* "pynn/gradfunc.pyx":21
+  /* "pynn/gradfunc.pyx":22
  *     """"""
  * 
  *     return -grad             # <<<<<<<<<<<<<<
@@ -19080,14 +19079,14 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_negfunc(PyArrayObject *__pyx_v_gra
  * 
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_1 = PyNumber_Negative(((PyObject *)__pyx_v_grad)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 21, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Negative(((PyObject *)__pyx_v_grad)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 22, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 21, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 22, __pyx_L1_error)
   __pyx_r = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pynn/gradfunc.pyx":13
+  /* "pynn/gradfunc.pyx":14
  * 
  * 
  * cdef cnp.ndarray negfunc(             # <<<<<<<<<<<<<<
@@ -19106,7 +19105,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_negfunc(PyArrayObject *__pyx_v_gra
   return __pyx_r;
 }
 
-/* "pynn/gradfunc.pyx":24
+/* "pynn/gradfunc.pyx":25
  * 
  * 
  * cdef cnp.ndarray addfunc(             # <<<<<<<<<<<<<<
@@ -19119,7 +19118,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_addfunc(PyArrayObject *__pyx_v_gra
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("addfunc", 0);
 
-  /* "pynn/gradfunc.pyx":32
+  /* "pynn/gradfunc.pyx":33
  *     """"""
  * 
  *     return grad             # <<<<<<<<<<<<<<
@@ -19131,7 +19130,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_addfunc(PyArrayObject *__pyx_v_gra
   __pyx_r = __pyx_v_grad;
   goto __pyx_L0;
 
-  /* "pynn/gradfunc.pyx":24
+  /* "pynn/gradfunc.pyx":25
  * 
  * 
  * cdef cnp.ndarray addfunc(             # <<<<<<<<<<<<<<
@@ -19146,7 +19145,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_addfunc(PyArrayObject *__pyx_v_gra
   return __pyx_r;
 }
 
-/* "pynn/gradfunc.pyx":35
+/* "pynn/gradfunc.pyx":36
  * 
  * 
  * cdef cnp.ndarray subfunc(             # <<<<<<<<<<<<<<
@@ -19163,7 +19162,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_subfunc(PyArrayObject *__pyx_v_gra
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("subfunc", 0);
 
-  /* "pynn/gradfunc.pyx":43
+  /* "pynn/gradfunc.pyx":44
  *     """"""
  * 
  *     if flags:             # <<<<<<<<<<<<<<
@@ -19172,7 +19171,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_subfunc(PyArrayObject *__pyx_v_gra
  */
   if (__pyx_v_flags) {
 
-    /* "pynn/gradfunc.pyx":44
+    /* "pynn/gradfunc.pyx":45
  * 
  *     if flags:
  *         return -grad             # <<<<<<<<<<<<<<
@@ -19180,14 +19179,14 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_subfunc(PyArrayObject *__pyx_v_gra
  *         return grad
  */
     __Pyx_XDECREF((PyObject *)__pyx_r);
-    __pyx_t_1 = PyNumber_Negative(((PyObject *)__pyx_v_grad)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 44, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Negative(((PyObject *)__pyx_v_grad)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 45, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 44, __pyx_L1_error)
+    if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 45, __pyx_L1_error)
     __pyx_r = ((PyArrayObject *)__pyx_t_1);
     __pyx_t_1 = 0;
     goto __pyx_L0;
 
-    /* "pynn/gradfunc.pyx":43
+    /* "pynn/gradfunc.pyx":44
  *     """"""
  * 
  *     if flags:             # <<<<<<<<<<<<<<
@@ -19196,7 +19195,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_subfunc(PyArrayObject *__pyx_v_gra
  */
   }
 
-  /* "pynn/gradfunc.pyx":46
+  /* "pynn/gradfunc.pyx":47
  *         return -grad
  *     else:
  *         return grad             # <<<<<<<<<<<<<<
@@ -19210,7 +19209,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_subfunc(PyArrayObject *__pyx_v_gra
     goto __pyx_L0;
   }
 
-  /* "pynn/gradfunc.pyx":35
+  /* "pynn/gradfunc.pyx":36
  * 
  * 
  * cdef cnp.ndarray subfunc(             # <<<<<<<<<<<<<<
@@ -19229,7 +19228,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_subfunc(PyArrayObject *__pyx_v_gra
   return __pyx_r;
 }
 
-/* "pynn/gradfunc.pyx":49
+/* "pynn/gradfunc.pyx":50
  * 
  * 
  * cdef cnp.ndarray matmulfunc(             # <<<<<<<<<<<<<<
@@ -19247,7 +19246,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_matmulfunc(PyArrayObject *__pyx_v_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("matmulfunc", 0);
 
-  /* "pynn/gradfunc.pyx":57
+  /* "pynn/gradfunc.pyx":58
  *     """"""
  * 
  *     if flags:             # <<<<<<<<<<<<<<
@@ -19256,7 +19255,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_matmulfunc(PyArrayObject *__pyx_v_
  */
   if (__pyx_v_flags) {
 
-    /* "pynn/gradfunc.pyx":58
+    /* "pynn/gradfunc.pyx":59
  * 
  *     if flags:
  *         return left._tensor.T @ grad             # <<<<<<<<<<<<<<
@@ -19264,17 +19263,17 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_matmulfunc(PyArrayObject *__pyx_v_
  *         return grad @ right._tensor.T
  */
     __Pyx_XDECREF((PyObject *)__pyx_r);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_left->_tensor), __pyx_n_s_T_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 58, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_left->_tensor), __pyx_n_s_T_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 59, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = __Pyx_PyNumber_MatrixMultiply(__pyx_t_1, ((PyObject *)__pyx_v_grad)); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 58, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyNumber_MatrixMultiply(__pyx_t_1, ((PyObject *)__pyx_v_grad)); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 59, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 58, __pyx_L1_error)
+    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 59, __pyx_L1_error)
     __pyx_r = ((PyArrayObject *)__pyx_t_2);
     __pyx_t_2 = 0;
     goto __pyx_L0;
 
-    /* "pynn/gradfunc.pyx":57
+    /* "pynn/gradfunc.pyx":58
  *     """"""
  * 
  *     if flags:             # <<<<<<<<<<<<<<
@@ -19283,7 +19282,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_matmulfunc(PyArrayObject *__pyx_v_
  */
   }
 
-  /* "pynn/gradfunc.pyx":60
+  /* "pynn/gradfunc.pyx":61
  *         return left._tensor.T @ grad
  *     else:
  *         return grad @ right._tensor.T             # <<<<<<<<<<<<<<
@@ -19292,18 +19291,18 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_matmulfunc(PyArrayObject *__pyx_v_
  */
   /*else*/ {
     __Pyx_XDECREF((PyObject *)__pyx_r);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_right->_tensor), __pyx_n_s_T_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 60, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_right->_tensor), __pyx_n_s_T_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 61, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyNumber_MatrixMultiply(((PyObject *)__pyx_v_grad), __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 60, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyNumber_MatrixMultiply(((PyObject *)__pyx_v_grad), __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 61, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 60, __pyx_L1_error)
+    if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 61, __pyx_L1_error)
     __pyx_r = ((PyArrayObject *)__pyx_t_1);
     __pyx_t_1 = 0;
     goto __pyx_L0;
   }
 
-  /* "pynn/gradfunc.pyx":49
+  /* "pynn/gradfunc.pyx":50
  * 
  * 
  * cdef cnp.ndarray matmulfunc(             # <<<<<<<<<<<<<<
@@ -19323,7 +19322,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_matmulfunc(PyArrayObject *__pyx_v_
   return __pyx_r;
 }
 
-/* "pynn/gradfunc.pyx":63
+/* "pynn/gradfunc.pyx":64
  * 
  * 
  * cdef cnp.ndarray mulfunc(             # <<<<<<<<<<<<<<
@@ -19340,7 +19339,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_mulfunc(PyArrayObject *__pyx_v_gra
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("mulfunc", 0);
 
-  /* "pynn/gradfunc.pyx":71
+  /* "pynn/gradfunc.pyx":72
  *     """"""
  * 
  *     if flags:             # <<<<<<<<<<<<<<
@@ -19349,7 +19348,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_mulfunc(PyArrayObject *__pyx_v_gra
  */
   if (__pyx_v_flags) {
 
-    /* "pynn/gradfunc.pyx":72
+    /* "pynn/gradfunc.pyx":73
  * 
  *     if flags:
  *         return grad * left._tensor             # <<<<<<<<<<<<<<
@@ -19357,14 +19356,14 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_mulfunc(PyArrayObject *__pyx_v_gra
  *         return grad * right._tensor
  */
     __Pyx_XDECREF((PyObject *)__pyx_r);
-    __pyx_t_1 = PyNumber_Multiply(((PyObject *)__pyx_v_grad), ((PyObject *)__pyx_v_left->_tensor)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 72, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Multiply(((PyObject *)__pyx_v_grad), ((PyObject *)__pyx_v_left->_tensor)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 73, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 72, __pyx_L1_error)
+    if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 73, __pyx_L1_error)
     __pyx_r = ((PyArrayObject *)__pyx_t_1);
     __pyx_t_1 = 0;
     goto __pyx_L0;
 
-    /* "pynn/gradfunc.pyx":71
+    /* "pynn/gradfunc.pyx":72
  *     """"""
  * 
  *     if flags:             # <<<<<<<<<<<<<<
@@ -19373,7 +19372,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_mulfunc(PyArrayObject *__pyx_v_gra
  */
   }
 
-  /* "pynn/gradfunc.pyx":74
+  /* "pynn/gradfunc.pyx":75
  *         return grad * left._tensor
  *     else:
  *         return grad * right._tensor             # <<<<<<<<<<<<<<
@@ -19382,15 +19381,15 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_mulfunc(PyArrayObject *__pyx_v_gra
  */
   /*else*/ {
     __Pyx_XDECREF((PyObject *)__pyx_r);
-    __pyx_t_1 = PyNumber_Multiply(((PyObject *)__pyx_v_grad), ((PyObject *)__pyx_v_right->_tensor)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 74, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Multiply(((PyObject *)__pyx_v_grad), ((PyObject *)__pyx_v_right->_tensor)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 75, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 74, __pyx_L1_error)
+    if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 75, __pyx_L1_error)
     __pyx_r = ((PyArrayObject *)__pyx_t_1);
     __pyx_t_1 = 0;
     goto __pyx_L0;
   }
 
-  /* "pynn/gradfunc.pyx":63
+  /* "pynn/gradfunc.pyx":64
  * 
  * 
  * cdef cnp.ndarray mulfunc(             # <<<<<<<<<<<<<<
@@ -19409,7 +19408,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_mulfunc(PyArrayObject *__pyx_v_gra
   return __pyx_r;
 }
 
-/* "pynn/gradfunc.pyx":77
+/* "pynn/gradfunc.pyx":78
  * 
  * 
  * cdef cnp.ndarray divfunc(             # <<<<<<<<<<<<<<
@@ -19428,7 +19427,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_divfunc(PyArrayObject *__pyx_v_gra
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("divfunc", 0);
 
-  /* "pynn/gradfunc.pyx":85
+  /* "pynn/gradfunc.pyx":86
  *     """"""
  * 
  *     if flags:             # <<<<<<<<<<<<<<
@@ -19437,7 +19436,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_divfunc(PyArrayObject *__pyx_v_gra
  */
   if (__pyx_v_flags) {
 
-    /* "pynn/gradfunc.pyx":86
+    /* "pynn/gradfunc.pyx":87
  * 
  *     if flags:
  *         return -left._tensor / (right._tensor ** 2) * grad             # <<<<<<<<<<<<<<
@@ -19445,23 +19444,23 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_divfunc(PyArrayObject *__pyx_v_gra
  *         return grad / right._tensor
  */
     __Pyx_XDECREF((PyObject *)__pyx_r);
-    __pyx_t_1 = PyNumber_Negative(((PyObject *)__pyx_v_left->_tensor)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 86, __pyx_L1_error)
+    __pyx_t_1 = PyNumber_Negative(((PyObject *)__pyx_v_left->_tensor)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 87, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_2 = PyNumber_Power(((PyObject *)__pyx_v_right->_tensor), __pyx_int_2, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 86, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Power(((PyObject *)__pyx_v_right->_tensor), __pyx_int_2, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 87, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = __Pyx_PyNumber_Divide(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 86, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyNumber_Divide(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 87, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyNumber_Multiply(__pyx_t_3, ((PyObject *)__pyx_v_grad)); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 86, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_Multiply(__pyx_t_3, ((PyObject *)__pyx_v_grad)); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 87, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 86, __pyx_L1_error)
+    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 87, __pyx_L1_error)
     __pyx_r = ((PyArrayObject *)__pyx_t_2);
     __pyx_t_2 = 0;
     goto __pyx_L0;
 
-    /* "pynn/gradfunc.pyx":85
+    /* "pynn/gradfunc.pyx":86
  *     """"""
  * 
  *     if flags:             # <<<<<<<<<<<<<<
@@ -19470,7 +19469,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_divfunc(PyArrayObject *__pyx_v_gra
  */
   }
 
-  /* "pynn/gradfunc.pyx":88
+  /* "pynn/gradfunc.pyx":89
  *         return -left._tensor / (right._tensor ** 2) * grad
  *     else:
  *         return grad / right._tensor             # <<<<<<<<<<<<<<
@@ -19479,15 +19478,15 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_divfunc(PyArrayObject *__pyx_v_gra
  */
   /*else*/ {
     __Pyx_XDECREF((PyObject *)__pyx_r);
-    __pyx_t_2 = __Pyx_PyNumber_Divide(((PyObject *)__pyx_v_grad), ((PyObject *)__pyx_v_right->_tensor)); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 88, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyNumber_Divide(((PyObject *)__pyx_v_grad), ((PyObject *)__pyx_v_right->_tensor)); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 89, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 88, __pyx_L1_error)
+    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 89, __pyx_L1_error)
     __pyx_r = ((PyArrayObject *)__pyx_t_2);
     __pyx_t_2 = 0;
     goto __pyx_L0;
   }
 
-  /* "pynn/gradfunc.pyx":77
+  /* "pynn/gradfunc.pyx":78
  * 
  * 
  * cdef cnp.ndarray divfunc(             # <<<<<<<<<<<<<<
@@ -19508,7 +19507,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_divfunc(PyArrayObject *__pyx_v_gra
   return __pyx_r;
 }
 
-/* "pynn/gradfunc.pyx":91
+/* "pynn/gradfunc.pyx":92
  * 
  * 
  * cdef cnp.ndarray powfunc(             # <<<<<<<<<<<<<<
@@ -19529,7 +19528,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_powfunc(PyArrayObject *__pyx_v_gra
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("powfunc", 0);
 
-  /* "pynn/gradfunc.pyx":99
+  /* "pynn/gradfunc.pyx":100
  *     """"""
  * 
  *     cdef float power = right._value             # <<<<<<<<<<<<<<
@@ -19539,7 +19538,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_powfunc(PyArrayObject *__pyx_v_gra
   __pyx_t_1 = __pyx_v_right->_value;
   __pyx_v_power = __pyx_t_1;
 
-  /* "pynn/gradfunc.pyx":100
+  /* "pynn/gradfunc.pyx":101
  * 
  *     cdef float power = right._value
  *     return grad * power * (left._tensor ** (power - 1))             # <<<<<<<<<<<<<<
@@ -19547,26 +19546,26 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_powfunc(PyArrayObject *__pyx_v_gra
  * 
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_power); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 100, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_power); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyNumber_Multiply(((PyObject *)__pyx_v_grad), __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 100, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Multiply(((PyObject *)__pyx_v_grad), __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_power - 1.0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 100, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((__pyx_v_power - 1.0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_4 = PyNumber_Power(((PyObject *)__pyx_v_left->_tensor), __pyx_t_2, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(2, 100, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Power(((PyObject *)__pyx_v_left->_tensor), __pyx_t_2, Py_None); if (unlikely(!__pyx_t_4)) __PYX_ERR(2, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyNumber_Multiply(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 100, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(__pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 101, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 100, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 101, __pyx_L1_error)
   __pyx_r = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "pynn/gradfunc.pyx":91
+  /* "pynn/gradfunc.pyx":92
  * 
  * 
  * cdef cnp.ndarray powfunc(             # <<<<<<<<<<<<<<
@@ -19587,7 +19586,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_powfunc(PyArrayObject *__pyx_v_gra
   return __pyx_r;
 }
 
-/* "pynn/gradfunc.pyx":103
+/* "pynn/gradfunc.pyx":104
  * 
  * 
  * cdef cnp.ndarray Tfunc(             # <<<<<<<<<<<<<<
@@ -19604,7 +19603,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_Tfunc(PyArrayObject *__pyx_v_grad,
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("Tfunc", 0);
 
-  /* "pynn/gradfunc.pyx":111
+  /* "pynn/gradfunc.pyx":112
  *     """"""
  * 
  *     return grad.T             # <<<<<<<<<<<<<<
@@ -19612,14 +19611,14 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_Tfunc(PyArrayObject *__pyx_v_grad,
  * 
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_grad), __pyx_n_s_T_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 111, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_grad), __pyx_n_s_T_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 112, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 111, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 112, __pyx_L1_error)
   __pyx_r = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pynn/gradfunc.pyx":103
+  /* "pynn/gradfunc.pyx":104
  * 
  * 
  * cdef cnp.ndarray Tfunc(             # <<<<<<<<<<<<<<
@@ -19638,7 +19637,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_Tfunc(PyArrayObject *__pyx_v_grad,
   return __pyx_r;
 }
 
-/* "pynn/gradfunc.pyx":114
+/* "pynn/gradfunc.pyx":115
  * 
  * 
  * cdef cnp.ndarray sumfunc(             # <<<<<<<<<<<<<<
@@ -19661,7 +19660,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc(PyArrayObject *__pyx_v_gra
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("sumfunc", 0);
 
-  /* "pynn/gradfunc.pyx":122
+  /* "pynn/gradfunc.pyx":123
  *     """"""
  * 
  *     cdef float* arr = <float*>PyMem_Malloc(sizeof(float) * left._size)             # <<<<<<<<<<<<<<
@@ -19670,7 +19669,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc(PyArrayObject *__pyx_v_gra
  */
   __pyx_v_arr = ((float *)PyMem_Malloc(((sizeof(float)) * __pyx_v_left->_size)));
 
-  /* "pynn/gradfunc.pyx":123
+  /* "pynn/gradfunc.pyx":124
  * 
  *     cdef float* arr = <float*>PyMem_Malloc(sizeof(float) * left._size)
  *     cdef float[::1] view = <float[:left._size]>arr             # <<<<<<<<<<<<<<
@@ -19679,23 +19678,23 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc(PyArrayObject *__pyx_v_gra
  */
   if (!__pyx_v_arr) {
     PyErr_SetString(PyExc_ValueError,"Cannot create cython.array from NULL pointer");
-    __PYX_ERR(2, 123, __pyx_L1_error)
+    __PYX_ERR(2, 124, __pyx_L1_error)
   }
-  __pyx_t_3 = __pyx_format_from_typeinfo(&__Pyx_TypeInfo_float); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 123, __pyx_L1_error)
+  __pyx_t_3 = __pyx_format_from_typeinfo(&__Pyx_TypeInfo_float); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = Py_BuildValue((char*) "("  __PYX_BUILD_PY_SSIZE_T  ")", ((Py_ssize_t)__pyx_v_left->_size)); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 123, __pyx_L1_error)
+  __pyx_t_2 = Py_BuildValue((char*) "("  __PYX_BUILD_PY_SSIZE_T  ")", ((Py_ssize_t)__pyx_v_left->_size)); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __pyx_array_new(__pyx_t_2, sizeof(float), PyBytes_AS_STRING(__pyx_t_3), (char *) "c", (char *) __pyx_v_arr); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 123, __pyx_L1_error)
+  __pyx_t_1 = __pyx_array_new(__pyx_t_2, sizeof(float), PyBytes_AS_STRING(__pyx_t_3), (char *) "c", (char *) __pyx_v_arr); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 124, __pyx_L1_error)
   __Pyx_GOTREF((PyObject *)__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_4 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(((PyObject *)__pyx_t_1), PyBUF_WRITABLE); if (unlikely(!__pyx_t_4.memview)) __PYX_ERR(2, 123, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(((PyObject *)__pyx_t_1), PyBUF_WRITABLE); if (unlikely(!__pyx_t_4.memview)) __PYX_ERR(2, 124, __pyx_L1_error)
   __Pyx_DECREF((PyObject *)__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_view = __pyx_t_4;
   __pyx_t_4.memview = NULL;
   __pyx_t_4.data = NULL;
 
-  /* "pynn/gradfunc.pyx":124
+  /* "pynn/gradfunc.pyx":125
  *     cdef float* arr = <float*>PyMem_Malloc(sizeof(float) * left._size)
  *     cdef float[::1] view = <float[:left._size]>arr
  *     view[:] = 1.             # <<<<<<<<<<<<<<
@@ -19715,14 +19714,14 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc(PyArrayObject *__pyx_v_gra
       }
   }
 
-  /* "pynn/gradfunc.pyx":125
+  /* "pynn/gradfunc.pyx":126
  *     cdef float[::1] view = <float[:left._size]>arr
  *     view[:] = 1.
  *     cdef cnp.ndarray _grad = <cnp.ndarray>cnp.PyArray_SimpleNewFromData(             # <<<<<<<<<<<<<<
  *         left._ndim,
  *         left._shape,
  */
-  __pyx_t_3 = PyArray_SimpleNewFromData(__pyx_v_left->_ndim, __pyx_v_left->_shape, NPY_FLOAT32, ((void *)__pyx_v_arr)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 125, __pyx_L1_error)
+  __pyx_t_3 = PyArray_SimpleNewFromData(__pyx_v_left->_ndim, __pyx_v_left->_shape, NPY_FLOAT32, ((void *)__pyx_v_arr)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 126, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_2 = __pyx_t_3;
   __Pyx_INCREF(__pyx_t_2);
@@ -19730,7 +19729,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc(PyArrayObject *__pyx_v_gra
   __pyx_v__grad = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "pynn/gradfunc.pyx":131
+  /* "pynn/gradfunc.pyx":132
  *         <void*>arr
  *     )
  *     cnp.PyArray_ENABLEFLAGS(_grad, cnp.NPY_ARRAY_OWNDATA)             # <<<<<<<<<<<<<<
@@ -19739,7 +19738,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc(PyArrayObject *__pyx_v_gra
  */
   PyArray_ENABLEFLAGS(__pyx_v__grad, NPY_ARRAY_OWNDATA);
 
-  /* "pynn/gradfunc.pyx":132
+  /* "pynn/gradfunc.pyx":133
  *     )
  *     cnp.PyArray_ENABLEFLAGS(_grad, cnp.NPY_ARRAY_OWNDATA)
  *     return _grad * grad             # <<<<<<<<<<<<<<
@@ -19747,14 +19746,14 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc(PyArrayObject *__pyx_v_gra
  * 
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_2 = PyNumber_Multiply(((PyObject *)__pyx_v__grad), ((PyObject *)__pyx_v_grad)); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 132, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(((PyObject *)__pyx_v__grad), ((PyObject *)__pyx_v_grad)); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 132, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 133, __pyx_L1_error)
   __pyx_r = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "pynn/gradfunc.pyx":114
+  /* "pynn/gradfunc.pyx":115
  * 
  * 
  * cdef cnp.ndarray sumfunc(             # <<<<<<<<<<<<<<
@@ -19778,7 +19777,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc(PyArrayObject *__pyx_v_gra
   return __pyx_r;
 }
 
-/* "pynn/gradfunc.pyx":135
+/* "pynn/gradfunc.pyx":136
  * 
  * 
  * cdef cnp.ndarray sumfunc0(             # <<<<<<<<<<<<<<
@@ -19802,7 +19801,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc0(PyArrayObject *__pyx_v_gr
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("sumfunc0", 0);
 
-  /* "pynn/gradfunc.pyx":143
+  /* "pynn/gradfunc.pyx":144
  *     """0"""
  * 
  *     cdef float* arr = <float*>PyMem_Malloc(sizeof(float) * left._shape[0])             # <<<<<<<<<<<<<<
@@ -19811,7 +19810,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc0(PyArrayObject *__pyx_v_gr
  */
   __pyx_v_arr = ((float *)PyMem_Malloc(((sizeof(float)) * (__pyx_v_left->_shape[0]))));
 
-  /* "pynn/gradfunc.pyx":144
+  /* "pynn/gradfunc.pyx":145
  * 
  *     cdef float* arr = <float*>PyMem_Malloc(sizeof(float) * left._shape[0])
  *     cdef float[::1] view = <float[:left._shape[0]]>arr             # <<<<<<<<<<<<<<
@@ -19820,23 +19819,23 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc0(PyArrayObject *__pyx_v_gr
  */
   if (!__pyx_v_arr) {
     PyErr_SetString(PyExc_ValueError,"Cannot create cython.array from NULL pointer");
-    __PYX_ERR(2, 144, __pyx_L1_error)
+    __PYX_ERR(2, 145, __pyx_L1_error)
   }
-  __pyx_t_3 = __pyx_format_from_typeinfo(&__Pyx_TypeInfo_float); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 144, __pyx_L1_error)
+  __pyx_t_3 = __pyx_format_from_typeinfo(&__Pyx_TypeInfo_float); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = Py_BuildValue((char*) "("  __PYX_BUILD_PY_SSIZE_T  ")", ((Py_ssize_t)(__pyx_v_left->_shape[0]))); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 144, __pyx_L1_error)
+  __pyx_t_2 = Py_BuildValue((char*) "("  __PYX_BUILD_PY_SSIZE_T  ")", ((Py_ssize_t)(__pyx_v_left->_shape[0]))); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __pyx_array_new(__pyx_t_2, sizeof(float), PyBytes_AS_STRING(__pyx_t_3), (char *) "c", (char *) __pyx_v_arr); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 144, __pyx_L1_error)
+  __pyx_t_1 = __pyx_array_new(__pyx_t_2, sizeof(float), PyBytes_AS_STRING(__pyx_t_3), (char *) "c", (char *) __pyx_v_arr); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 145, __pyx_L1_error)
   __Pyx_GOTREF((PyObject *)__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_4 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(((PyObject *)__pyx_t_1), PyBUF_WRITABLE); if (unlikely(!__pyx_t_4.memview)) __PYX_ERR(2, 144, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(((PyObject *)__pyx_t_1), PyBUF_WRITABLE); if (unlikely(!__pyx_t_4.memview)) __PYX_ERR(2, 145, __pyx_L1_error)
   __Pyx_DECREF((PyObject *)__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_view = __pyx_t_4;
   __pyx_t_4.memview = NULL;
   __pyx_t_4.data = NULL;
 
-  /* "pynn/gradfunc.pyx":146
+  /* "pynn/gradfunc.pyx":147
  *     cdef float[::1] view = <float[:left._shape[0]]>arr
  *     cdef Py_ssize_t shape[2]
  *     shape[0] = left._shape[0]             # <<<<<<<<<<<<<<
@@ -19845,7 +19844,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc0(PyArrayObject *__pyx_v_gr
  */
   (__pyx_v_shape[0]) = (__pyx_v_left->_shape[0]);
 
-  /* "pynn/gradfunc.pyx":147
+  /* "pynn/gradfunc.pyx":148
  *     cdef Py_ssize_t shape[2]
  *     shape[0] = left._shape[0]
  *     shape[1] = 1             # <<<<<<<<<<<<<<
@@ -19854,7 +19853,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc0(PyArrayObject *__pyx_v_gr
  */
   (__pyx_v_shape[1]) = 1;
 
-  /* "pynn/gradfunc.pyx":148
+  /* "pynn/gradfunc.pyx":149
  *     shape[0] = left._shape[0]
  *     shape[1] = 1
  *     view[:] = 1.             # <<<<<<<<<<<<<<
@@ -19874,14 +19873,14 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc0(PyArrayObject *__pyx_v_gr
       }
   }
 
-  /* "pynn/gradfunc.pyx":149
+  /* "pynn/gradfunc.pyx":150
  *     shape[1] = 1
  *     view[:] = 1.
  *     cdef cnp.ndarray _grad = <cnp.ndarray>cnp.PyArray_SimpleNewFromData(             # <<<<<<<<<<<<<<
  *         2, shape, cnp.NPY_FLOAT32, <void*>arr
  *     )
  */
-  __pyx_t_3 = PyArray_SimpleNewFromData(2, __pyx_v_shape, NPY_FLOAT32, ((void *)__pyx_v_arr)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 149, __pyx_L1_error)
+  __pyx_t_3 = PyArray_SimpleNewFromData(2, __pyx_v_shape, NPY_FLOAT32, ((void *)__pyx_v_arr)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 150, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_2 = __pyx_t_3;
   __Pyx_INCREF(__pyx_t_2);
@@ -19889,7 +19888,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc0(PyArrayObject *__pyx_v_gr
   __pyx_v__grad = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "pynn/gradfunc.pyx":152
+  /* "pynn/gradfunc.pyx":153
  *         2, shape, cnp.NPY_FLOAT32, <void*>arr
  *     )
  *     cnp.PyArray_ENABLEFLAGS(_grad, cnp.NPY_ARRAY_OWNDATA)             # <<<<<<<<<<<<<<
@@ -19898,7 +19897,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc0(PyArrayObject *__pyx_v_gr
  */
   PyArray_ENABLEFLAGS(__pyx_v__grad, NPY_ARRAY_OWNDATA);
 
-  /* "pynn/gradfunc.pyx":153
+  /* "pynn/gradfunc.pyx":154
  *     )
  *     cnp.PyArray_ENABLEFLAGS(_grad, cnp.NPY_ARRAY_OWNDATA)
  *     return _grad @ grad             # <<<<<<<<<<<<<<
@@ -19906,14 +19905,14 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc0(PyArrayObject *__pyx_v_gr
  * 
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_2 = __Pyx_PyNumber_MatrixMultiply(((PyObject *)__pyx_v__grad), ((PyObject *)__pyx_v_grad)); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 153, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyNumber_MatrixMultiply(((PyObject *)__pyx_v__grad), ((PyObject *)__pyx_v_grad)); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 154, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 153, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 154, __pyx_L1_error)
   __pyx_r = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "pynn/gradfunc.pyx":135
+  /* "pynn/gradfunc.pyx":136
  * 
  * 
  * cdef cnp.ndarray sumfunc0(             # <<<<<<<<<<<<<<
@@ -19937,7 +19936,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc0(PyArrayObject *__pyx_v_gr
   return __pyx_r;
 }
 
-/* "pynn/gradfunc.pyx":156
+/* "pynn/gradfunc.pyx":157
  * 
  * 
  * cdef cnp.ndarray sumfunc1(             # <<<<<<<<<<<<<<
@@ -19961,7 +19960,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc1(PyArrayObject *__pyx_v_gr
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("sumfunc1", 0);
 
-  /* "pynn/gradfunc.pyx":164
+  /* "pynn/gradfunc.pyx":165
  *     """1"""
  * 
  *     cdef float* arr = <float*>PyMem_Malloc(sizeof(float) * left._shape[1])             # <<<<<<<<<<<<<<
@@ -19970,7 +19969,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc1(PyArrayObject *__pyx_v_gr
  */
   __pyx_v_arr = ((float *)PyMem_Malloc(((sizeof(float)) * (__pyx_v_left->_shape[1]))));
 
-  /* "pynn/gradfunc.pyx":165
+  /* "pynn/gradfunc.pyx":166
  * 
  *     cdef float* arr = <float*>PyMem_Malloc(sizeof(float) * left._shape[1])
  *     cdef float[::1] view = <float[:left._shape[1]]>arr             # <<<<<<<<<<<<<<
@@ -19979,23 +19978,23 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc1(PyArrayObject *__pyx_v_gr
  */
   if (!__pyx_v_arr) {
     PyErr_SetString(PyExc_ValueError,"Cannot create cython.array from NULL pointer");
-    __PYX_ERR(2, 165, __pyx_L1_error)
+    __PYX_ERR(2, 166, __pyx_L1_error)
   }
-  __pyx_t_3 = __pyx_format_from_typeinfo(&__Pyx_TypeInfo_float); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 165, __pyx_L1_error)
+  __pyx_t_3 = __pyx_format_from_typeinfo(&__Pyx_TypeInfo_float); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 166, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = Py_BuildValue((char*) "("  __PYX_BUILD_PY_SSIZE_T  ")", ((Py_ssize_t)(__pyx_v_left->_shape[1]))); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 165, __pyx_L1_error)
+  __pyx_t_2 = Py_BuildValue((char*) "("  __PYX_BUILD_PY_SSIZE_T  ")", ((Py_ssize_t)(__pyx_v_left->_shape[1]))); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 166, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = __pyx_array_new(__pyx_t_2, sizeof(float), PyBytes_AS_STRING(__pyx_t_3), (char *) "c", (char *) __pyx_v_arr); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 165, __pyx_L1_error)
+  __pyx_t_1 = __pyx_array_new(__pyx_t_2, sizeof(float), PyBytes_AS_STRING(__pyx_t_3), (char *) "c", (char *) __pyx_v_arr); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 166, __pyx_L1_error)
   __Pyx_GOTREF((PyObject *)__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_4 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(((PyObject *)__pyx_t_1), PyBUF_WRITABLE); if (unlikely(!__pyx_t_4.memview)) __PYX_ERR(2, 165, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_to_MemoryviewSlice_dc_float(((PyObject *)__pyx_t_1), PyBUF_WRITABLE); if (unlikely(!__pyx_t_4.memview)) __PYX_ERR(2, 166, __pyx_L1_error)
   __Pyx_DECREF((PyObject *)__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_view = __pyx_t_4;
   __pyx_t_4.memview = NULL;
   __pyx_t_4.data = NULL;
 
-  /* "pynn/gradfunc.pyx":167
+  /* "pynn/gradfunc.pyx":168
  *     cdef float[::1] view = <float[:left._shape[1]]>arr
  *     cdef Py_ssize_t shape[2]
  *     view[:] = 1.             # <<<<<<<<<<<<<<
@@ -20015,7 +20014,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc1(PyArrayObject *__pyx_v_gr
       }
   }
 
-  /* "pynn/gradfunc.pyx":168
+  /* "pynn/gradfunc.pyx":169
  *     cdef Py_ssize_t shape[2]
  *     view[:] = 1.
  *     shape[0] = 1             # <<<<<<<<<<<<<<
@@ -20024,7 +20023,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc1(PyArrayObject *__pyx_v_gr
  */
   (__pyx_v_shape[0]) = 1;
 
-  /* "pynn/gradfunc.pyx":169
+  /* "pynn/gradfunc.pyx":170
  *     view[:] = 1.
  *     shape[0] = 1
  *     shape[1] = left._shape[1]             # <<<<<<<<<<<<<<
@@ -20033,14 +20032,14 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc1(PyArrayObject *__pyx_v_gr
  */
   (__pyx_v_shape[1]) = (__pyx_v_left->_shape[1]);
 
-  /* "pynn/gradfunc.pyx":170
+  /* "pynn/gradfunc.pyx":171
  *     shape[0] = 1
  *     shape[1] = left._shape[1]
  *     cdef cnp.ndarray _grad = <cnp.ndarray>cnp.PyArray_SimpleNewFromData(             # <<<<<<<<<<<<<<
  *         2, shape, cnp.NPY_FLOAT32, <void*>arr
  *     )
  */
-  __pyx_t_3 = PyArray_SimpleNewFromData(2, __pyx_v_shape, NPY_FLOAT32, ((void *)__pyx_v_arr)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 170, __pyx_L1_error)
+  __pyx_t_3 = PyArray_SimpleNewFromData(2, __pyx_v_shape, NPY_FLOAT32, ((void *)__pyx_v_arr)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 171, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_2 = __pyx_t_3;
   __Pyx_INCREF(__pyx_t_2);
@@ -20048,7 +20047,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc1(PyArrayObject *__pyx_v_gr
   __pyx_v__grad = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "pynn/gradfunc.pyx":173
+  /* "pynn/gradfunc.pyx":174
  *         2, shape, cnp.NPY_FLOAT32, <void*>arr
  *     )
  *     cnp.PyArray_ENABLEFLAGS(_grad, cnp.NPY_ARRAY_OWNDATA)             # <<<<<<<<<<<<<<
@@ -20057,7 +20056,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc1(PyArrayObject *__pyx_v_gr
  */
   PyArray_ENABLEFLAGS(__pyx_v__grad, NPY_ARRAY_OWNDATA);
 
-  /* "pynn/gradfunc.pyx":174
+  /* "pynn/gradfunc.pyx":175
  *     )
  *     cnp.PyArray_ENABLEFLAGS(_grad, cnp.NPY_ARRAY_OWNDATA)
  *     return grad @ _grad             # <<<<<<<<<<<<<<
@@ -20065,14 +20064,14 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc1(PyArrayObject *__pyx_v_gr
  * 
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_2 = __Pyx_PyNumber_MatrixMultiply(((PyObject *)__pyx_v_grad), ((PyObject *)__pyx_v__grad)); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 174, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyNumber_MatrixMultiply(((PyObject *)__pyx_v_grad), ((PyObject *)__pyx_v__grad)); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 175, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 174, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 175, __pyx_L1_error)
   __pyx_r = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "pynn/gradfunc.pyx":156
+  /* "pynn/gradfunc.pyx":157
  * 
  * 
  * cdef cnp.ndarray sumfunc1(             # <<<<<<<<<<<<<<
@@ -20096,7 +20095,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_sumfunc1(PyArrayObject *__pyx_v_gr
   return __pyx_r;
 }
 
-/* "pynn/gradfunc.pyx":177
+/* "pynn/gradfunc.pyx":178
  * 
  * 
  * cdef cnp.ndarray expfunc(             # <<<<<<<<<<<<<<
@@ -20116,20 +20115,20 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_expfunc(PyArrayObject *__pyx_v_gra
   __Pyx_RefNannySetupContext("expfunc", 0);
   __Pyx_INCREF((PyObject *)__pyx_v_grad);
 
-  /* "pynn/gradfunc.pyx":185
+  /* "pynn/gradfunc.pyx":186
  *     """"""
  * 
  *     grad = grad * left._tensor             # <<<<<<<<<<<<<<
  *     if right._value == 0.:
  *         return grad
  */
-  __pyx_t_1 = PyNumber_Multiply(((PyObject *)__pyx_v_grad), ((PyObject *)__pyx_v_left->_tensor)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 185, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(((PyObject *)__pyx_v_grad), ((PyObject *)__pyx_v_left->_tensor)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 186, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 185, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 186, __pyx_L1_error)
   __Pyx_DECREF_SET(__pyx_v_grad, ((PyArrayObject *)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "pynn/gradfunc.pyx":186
+  /* "pynn/gradfunc.pyx":187
  * 
  *     grad = grad * left._tensor
  *     if right._value == 0.:             # <<<<<<<<<<<<<<
@@ -20139,7 +20138,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_expfunc(PyArrayObject *__pyx_v_gra
   __pyx_t_2 = (__pyx_v_right->_value == 0.);
   if (__pyx_t_2) {
 
-    /* "pynn/gradfunc.pyx":187
+    /* "pynn/gradfunc.pyx":188
  *     grad = grad * left._tensor
  *     if right._value == 0.:
  *         return grad             # <<<<<<<<<<<<<<
@@ -20151,7 +20150,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_expfunc(PyArrayObject *__pyx_v_gra
     __pyx_r = __pyx_v_grad;
     goto __pyx_L0;
 
-    /* "pynn/gradfunc.pyx":186
+    /* "pynn/gradfunc.pyx":187
  * 
  *     grad = grad * left._tensor
  *     if right._value == 0.:             # <<<<<<<<<<<<<<
@@ -20160,7 +20159,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_expfunc(PyArrayObject *__pyx_v_gra
  */
   }
 
-  /* "pynn/gradfunc.pyx":189
+  /* "pynn/gradfunc.pyx":190
  *         return grad
  *     else:
  *         return grad * logf(right._value)             # <<<<<<<<<<<<<<
@@ -20169,18 +20168,18 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_expfunc(PyArrayObject *__pyx_v_gra
  */
   /*else*/ {
     __Pyx_XDECREF((PyObject *)__pyx_r);
-    __pyx_t_1 = PyFloat_FromDouble(npy_logf(__pyx_v_right->_value)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 189, __pyx_L1_error)
+    __pyx_t_1 = PyFloat_FromDouble(npy_logf(__pyx_v_right->_value)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 190, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = PyNumber_Multiply(((PyObject *)__pyx_v_grad), __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 189, __pyx_L1_error)
+    __pyx_t_3 = PyNumber_Multiply(((PyObject *)__pyx_v_grad), __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 190, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 189, __pyx_L1_error)
+    if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 190, __pyx_L1_error)
     __pyx_r = ((PyArrayObject *)__pyx_t_3);
     __pyx_t_3 = 0;
     goto __pyx_L0;
   }
 
-  /* "pynn/gradfunc.pyx":177
+  /* "pynn/gradfunc.pyx":178
  * 
  * 
  * cdef cnp.ndarray expfunc(             # <<<<<<<<<<<<<<
@@ -20201,7 +20200,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_expfunc(PyArrayObject *__pyx_v_gra
   return __pyx_r;
 }
 
-/* "pynn/gradfunc.pyx":192
+/* "pynn/gradfunc.pyx":193
  * 
  * 
  * cdef cnp.ndarray logfunc(             # <<<<<<<<<<<<<<
@@ -20221,20 +20220,20 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_logfunc(PyArrayObject *__pyx_v_gra
   __Pyx_RefNannySetupContext("logfunc", 0);
   __Pyx_INCREF((PyObject *)__pyx_v_grad);
 
-  /* "pynn/gradfunc.pyx":200
+  /* "pynn/gradfunc.pyx":201
  *     """log """
  * 
  *     grad = grad / left._tensor             # <<<<<<<<<<<<<<
  *     if right._value == 0.:
  *         return grad
  */
-  __pyx_t_1 = __Pyx_PyNumber_Divide(((PyObject *)__pyx_v_grad), ((PyObject *)__pyx_v_left->_tensor)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 200, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyNumber_Divide(((PyObject *)__pyx_v_grad), ((PyObject *)__pyx_v_left->_tensor)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 201, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 200, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 201, __pyx_L1_error)
   __Pyx_DECREF_SET(__pyx_v_grad, ((PyArrayObject *)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "pynn/gradfunc.pyx":201
+  /* "pynn/gradfunc.pyx":202
  * 
  *     grad = grad / left._tensor
  *     if right._value == 0.:             # <<<<<<<<<<<<<<
@@ -20244,7 +20243,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_logfunc(PyArrayObject *__pyx_v_gra
   __pyx_t_2 = (__pyx_v_right->_value == 0.);
   if (__pyx_t_2) {
 
-    /* "pynn/gradfunc.pyx":202
+    /* "pynn/gradfunc.pyx":203
  *     grad = grad / left._tensor
  *     if right._value == 0.:
  *         return grad             # <<<<<<<<<<<<<<
@@ -20256,7 +20255,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_logfunc(PyArrayObject *__pyx_v_gra
     __pyx_r = __pyx_v_grad;
     goto __pyx_L0;
 
-    /* "pynn/gradfunc.pyx":201
+    /* "pynn/gradfunc.pyx":202
  * 
  *     grad = grad / left._tensor
  *     if right._value == 0.:             # <<<<<<<<<<<<<<
@@ -20265,7 +20264,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_logfunc(PyArrayObject *__pyx_v_gra
  */
   }
 
-  /* "pynn/gradfunc.pyx":204
+  /* "pynn/gradfunc.pyx":205
  *         return grad
  *     else:
  *         return grad / logf(right._value)             # <<<<<<<<<<<<<<
@@ -20274,18 +20273,18 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_logfunc(PyArrayObject *__pyx_v_gra
  */
   /*else*/ {
     __Pyx_XDECREF((PyObject *)__pyx_r);
-    __pyx_t_1 = PyFloat_FromDouble(npy_logf(__pyx_v_right->_value)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 204, __pyx_L1_error)
+    __pyx_t_1 = PyFloat_FromDouble(npy_logf(__pyx_v_right->_value)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 205, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = __Pyx_PyNumber_Divide(((PyObject *)__pyx_v_grad), __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 204, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyNumber_Divide(((PyObject *)__pyx_v_grad), __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 205, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 204, __pyx_L1_error)
+    if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 205, __pyx_L1_error)
     __pyx_r = ((PyArrayObject *)__pyx_t_3);
     __pyx_t_3 = 0;
     goto __pyx_L0;
   }
 
-  /* "pynn/gradfunc.pyx":192
+  /* "pynn/gradfunc.pyx":193
  * 
  * 
  * cdef cnp.ndarray logfunc(             # <<<<<<<<<<<<<<
@@ -20306,7 +20305,7 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_logfunc(PyArrayObject *__pyx_v_gra
   return __pyx_r;
 }
 
-/* "pynn/gradfunc.pyx":207
+/* "pynn/gradfunc.pyx":208
  * 
  * 
  * cdef cnp.ndarray relufunc(             # <<<<<<<<<<<<<<
@@ -20324,31 +20323,31 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_relufunc(PyArrayObject *__pyx_v_gr
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("relufunc", 0);
 
-  /* "pynn/gradfunc.pyx":215
+  /* "pynn/gradfunc.pyx":216
  *     """relu """
  * 
  *     cdef cnp.ndarray _grad = cnp.PyArray_ZEROS(             # <<<<<<<<<<<<<<
  *         left._ndim,
  *         left._shape,
  */
-  __pyx_t_1 = PyArray_ZEROS(__pyx_v_left->_ndim, __pyx_v_left->_shape, NPY_INT8, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 215, __pyx_L1_error)
+  __pyx_t_1 = PyArray_ZEROS(__pyx_v_left->_ndim, __pyx_v_left->_shape, NPY_INT8, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 216, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 215, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 216, __pyx_L1_error)
   __pyx_v__grad = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "pynn/gradfunc.pyx":221
+  /* "pynn/gradfunc.pyx":222
  *         0
  *     )
  *     _grad[left._tensor > 0] = 1             # <<<<<<<<<<<<<<
  *     return grad * _grad
  * 
  */
-  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_left->_tensor), __pyx_int_0, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 221, __pyx_L1_error)
-  if (unlikely((PyObject_SetItem(((PyObject *)__pyx_v__grad), __pyx_t_1, __pyx_int_1) < 0))) __PYX_ERR(2, 221, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_left->_tensor), __pyx_int_0, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 222, __pyx_L1_error)
+  if (unlikely((PyObject_SetItem(((PyObject *)__pyx_v__grad), __pyx_t_1, __pyx_int_1) < 0))) __PYX_ERR(2, 222, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "pynn/gradfunc.pyx":222
+  /* "pynn/gradfunc.pyx":223
  *     )
  *     _grad[left._tensor > 0] = 1
  *     return grad * _grad             # <<<<<<<<<<<<<<
@@ -20356,14 +20355,14 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_relufunc(PyArrayObject *__pyx_v_gr
  * 
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_1 = PyNumber_Multiply(((PyObject *)__pyx_v_grad), ((PyObject *)__pyx_v__grad)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 222, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(((PyObject *)__pyx_v_grad), ((PyObject *)__pyx_v__grad)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 223, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 222, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 223, __pyx_L1_error)
   __pyx_r = ((PyArrayObject *)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pynn/gradfunc.pyx":207
+  /* "pynn/gradfunc.pyx":208
  * 
  * 
  * cdef cnp.ndarray relufunc(             # <<<<<<<<<<<<<<
@@ -20383,7 +20382,58 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_relufunc(PyArrayObject *__pyx_v_gr
   return __pyx_r;
 }
 
-/* "pynn/gradfunc.pyx":225
+/* "pynn/gradfunc.pyx":226
+ * 
+ * 
+ * cdef cnp.ndarray mselossfunc(             # <<<<<<<<<<<<<<
+ *     cnp.ndarray grad,
+ *     GraphNode left,
+ */
+
+static PyArrayObject *__pyx_f_4pynn_8gradfunc_mselossfunc(PyArrayObject *__pyx_v_grad, CYTHON_UNUSED struct __pyx_obj_4pynn_4core_GraphNode *__pyx_v_left, struct __pyx_obj_4pynn_4core_GraphNode *__pyx_v_right, CYTHON_UNUSED int __pyx_v_flags) {
+  PyArrayObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("mselossfunc", 0);
+
+  /* "pynn/gradfunc.pyx":234
+ *     """mse loss """
+ * 
+ *     return grad * right._tensor             # <<<<<<<<<<<<<<
+ * 
+ * 
+ */
+  __Pyx_XDECREF((PyObject *)__pyx_r);
+  __pyx_t_1 = PyNumber_Multiply(((PyObject *)__pyx_v_grad), ((PyObject *)__pyx_v_right->_tensor)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 234, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 234, __pyx_L1_error)
+  __pyx_r = ((PyArrayObject *)__pyx_t_1);
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* "pynn/gradfunc.pyx":226
+ * 
+ * 
+ * cdef cnp.ndarray mselossfunc(             # <<<<<<<<<<<<<<
+ *     cnp.ndarray grad,
+ *     GraphNode left,
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("pynn.gradfunc.mselossfunc", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XGIVEREF((PyObject *)__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "pynn/gradfunc.pyx":237
  * 
  * 
  * cdef cnp.ndarray softmaxlossfunc(             # <<<<<<<<<<<<<<
@@ -20391,22 +20441,29 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_relufunc(PyArrayObject *__pyx_v_gr
  *     GraphNode left,
  */
 
-static PyArrayObject *__pyx_f_4pynn_8gradfunc_softmaxlossfunc(CYTHON_UNUSED PyArrayObject *__pyx_v_grad, CYTHON_UNUSED struct __pyx_obj_4pynn_4core_GraphNode *__pyx_v_left, struct __pyx_obj_4pynn_4core_GraphNode *__pyx_v_right, CYTHON_UNUSED int __pyx_v_flags) {
+static PyArrayObject *__pyx_f_4pynn_8gradfunc_softmaxlossfunc(PyArrayObject *__pyx_v_grad, CYTHON_UNUSED struct __pyx_obj_4pynn_4core_GraphNode *__pyx_v_left, struct __pyx_obj_4pynn_4core_GraphNode *__pyx_v_right, CYTHON_UNUSED int __pyx_v_flags) {
   PyArrayObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("softmaxlossfunc", 0);
 
-  /* "pynn/gradfunc.pyx":233
+  /* "pynn/gradfunc.pyx":245
  *     """softmax loss """
  * 
- *     return right._tensor             # <<<<<<<<<<<<<<
+ *     return grad * right._tensor             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __Pyx_INCREF((PyObject *)__pyx_v_right->_tensor);
-  __pyx_r = __pyx_v_right->_tensor;
+  __pyx_t_1 = PyNumber_Multiply(((PyObject *)__pyx_v_grad), ((PyObject *)__pyx_v_right->_tensor)); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 245, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(2, 245, __pyx_L1_error)
+  __pyx_r = ((PyArrayObject *)__pyx_t_1);
+  __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pynn/gradfunc.pyx":225
+  /* "pynn/gradfunc.pyx":237
  * 
  * 
  * cdef cnp.ndarray softmaxlossfunc(             # <<<<<<<<<<<<<<
@@ -20415,6 +20472,10 @@ static PyArrayObject *__pyx_f_4pynn_8gradfunc_softmaxlossfunc(CYTHON_UNUSED PyAr
  */
 
   /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("pynn.gradfunc.softmaxlossfunc", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XGIVEREF((PyObject *)__pyx_r);
   __Pyx_RefNannyFinishContext();
@@ -21772,6 +21833,7 @@ static int __Pyx_modinit_function_export_code(void) {
   if (__Pyx_ExportFunction("expfunc", (void (*)(void))__pyx_f_4pynn_8gradfunc_expfunc, "PyArrayObject *(PyArrayObject *, struct __pyx_obj_4pynn_4core_GraphNode *, struct __pyx_obj_4pynn_4core_GraphNode *, int)") < 0) __PYX_ERR(2, 1, __pyx_L1_error)
   if (__Pyx_ExportFunction("logfunc", (void (*)(void))__pyx_f_4pynn_8gradfunc_logfunc, "PyArrayObject *(PyArrayObject *, struct __pyx_obj_4pynn_4core_GraphNode *, struct __pyx_obj_4pynn_4core_GraphNode *, int)") < 0) __PYX_ERR(2, 1, __pyx_L1_error)
   if (__Pyx_ExportFunction("relufunc", (void (*)(void))__pyx_f_4pynn_8gradfunc_relufunc, "PyArrayObject *(PyArrayObject *, struct __pyx_obj_4pynn_4core_GraphNode *, struct __pyx_obj_4pynn_4core_GraphNode *, int)") < 0) __PYX_ERR(2, 1, __pyx_L1_error)
+  if (__Pyx_ExportFunction("mselossfunc", (void (*)(void))__pyx_f_4pynn_8gradfunc_mselossfunc, "PyArrayObject *(PyArrayObject *, struct __pyx_obj_4pynn_4core_GraphNode *, struct __pyx_obj_4pynn_4core_GraphNode *, int)") < 0) __PYX_ERR(2, 1, __pyx_L1_error)
   if (__Pyx_ExportFunction("softmaxlossfunc", (void (*)(void))__pyx_f_4pynn_8gradfunc_softmaxlossfunc, "PyArrayObject *(PyArrayObject *, struct __pyx_obj_4pynn_4core_GraphNode *, struct __pyx_obj_4pynn_4core_GraphNode *, int)") < 0) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -22001,12 +22063,12 @@ static int __Pyx_modinit_type_import_code(void) {
   __Pyx_ImportType_CheckSize_Ignore);
    if (!__pyx_ptype_5numpy_ufunc) __PYX_ERR(1, 868, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyImport_ImportModule("pynn.core"); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 16, __pyx_L1_error)
+  __pyx_t_1 = PyImport_ImportModule("pynn.core"); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 7, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_ptype_4pynn_4core_GraphNode = __Pyx_ImportType(__pyx_t_1, "pynn.core", "GraphNode", sizeof(struct __pyx_obj_4pynn_4core_GraphNode), __PYX_GET_STRUCT_ALIGNMENT(struct __pyx_obj_4pynn_4core_GraphNode),
   __Pyx_ImportType_CheckSize_Warn);
-   if (!__pyx_ptype_4pynn_4core_GraphNode) __PYX_ERR(4, 16, __pyx_L1_error)
-  __pyx_vtabptr_4pynn_4core_GraphNode = (struct __pyx_vtabstruct_4pynn_4core_GraphNode*)__Pyx_GetVtable(__pyx_ptype_4pynn_4core_GraphNode); if (unlikely(!__pyx_vtabptr_4pynn_4core_GraphNode)) __PYX_ERR(4, 16, __pyx_L1_error)
+   if (!__pyx_ptype_4pynn_4core_GraphNode) __PYX_ERR(4, 7, __pyx_L1_error)
+  __pyx_vtabptr_4pynn_4core_GraphNode = (struct __pyx_vtabstruct_4pynn_4core_GraphNode*)__Pyx_GetVtable(__pyx_ptype_4pynn_4core_GraphNode); if (unlikely(!__pyx_vtabptr_4pynn_4core_GraphNode)) __PYX_ERR(4, 7, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_RefNannyFinishContext();
   return 0;

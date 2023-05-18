@@ -2,15 +2,6 @@ cimport numpy as cnp
 
 
 ctypedef char* Operation
-ctypedef fused Array:
-    list
-    tuple
-    cnp.ndarray
-    GraphNode
-    int
-    long
-    float
-    double
 
 
 cdef class GraphNode:
