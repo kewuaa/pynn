@@ -446,6 +446,11 @@ cdef class GraphNode:
             self._update_grad()
         return grad
 
+    def enable_grad(self) -> None:
+        """允许计算梯度。"""
+
+        self.requires_grad = 1
+
     def detach(self) -> None:
         """将该节点作为整体，其子节点全部脱离节点图。"""
 
