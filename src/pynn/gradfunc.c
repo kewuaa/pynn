@@ -1760,6 +1760,7 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
  * cdef inline object PyArray_MultiIterNew1(a):
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
+struct __pyx_opt_args_4pynn_4core_9GraphNode_matmul;
 struct __pyx_opt_args_4pynn_4core_9GraphNode_sum;
 struct __pyx_opt_args_4pynn_4core_9GraphNode__backward;
 
@@ -1772,8 +1773,20 @@ struct __pyx_opt_args_4pynn_4core_9GraphNode__backward;
  */
 typedef char *__pyx_t_4pynn_4core_Operation;
 
+/* "core.pxd":47
+ *     cdef GraphNode _simple_value_node(float value) noexcept
+ *     cdef int _update_grad(self) noexcept
+ *     cpdef GraphNode matmul(self, other, bint reverse=*) noexcept             # <<<<<<<<<<<<<<
+ *     cpdef GraphNode transpose(self) noexcept
+ *     cpdef GraphNode sum(self, int axis=*) noexcept
+ */
+struct __pyx_opt_args_4pynn_4core_9GraphNode_matmul {
+  int __pyx_n;
+  int reverse;
+};
+
 /* "core.pxd":49
- *     cpdef GraphNode matmul(self, other) noexcept
+ *     cpdef GraphNode matmul(self, other, bint reverse=*) noexcept
  *     cpdef GraphNode transpose(self) noexcept
  *     cpdef GraphNode sum(self, int axis=*) noexcept             # <<<<<<<<<<<<<<
  *     cpdef GraphNode relu(self) noexcept
@@ -1963,7 +1976,7 @@ static struct __pyx_vtabstruct__memoryviewslice *__pyx_vtabptr__memoryviewslice;
 struct __pyx_vtabstruct_4pynn_4core_GraphNode {
   struct __pyx_obj_4pynn_4core_GraphNode *(*_simple_value_node)(float);
   int (*_update_grad)(struct __pyx_obj_4pynn_4core_GraphNode *);
-  struct __pyx_obj_4pynn_4core_GraphNode *(*matmul)(struct __pyx_obj_4pynn_4core_GraphNode *, PyObject *, int __pyx_skip_dispatch);
+  struct __pyx_obj_4pynn_4core_GraphNode *(*matmul)(struct __pyx_obj_4pynn_4core_GraphNode *, PyObject *, int __pyx_skip_dispatch, struct __pyx_opt_args_4pynn_4core_9GraphNode_matmul *__pyx_optional_args);
   struct __pyx_obj_4pynn_4core_GraphNode *(*transpose)(struct __pyx_obj_4pynn_4core_GraphNode *, int __pyx_skip_dispatch);
   struct __pyx_obj_4pynn_4core_GraphNode *(*sum)(struct __pyx_obj_4pynn_4core_GraphNode *, int __pyx_skip_dispatch, struct __pyx_opt_args_4pynn_4core_9GraphNode_sum *__pyx_optional_args);
   struct __pyx_obj_4pynn_4core_GraphNode *(*relu)(struct __pyx_obj_4pynn_4core_GraphNode *, int __pyx_skip_dispatch);
