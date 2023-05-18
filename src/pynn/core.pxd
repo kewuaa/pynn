@@ -44,7 +44,7 @@ cdef class GraphNode:
     @staticmethod
     cdef GraphNode _simple_value_node(float value) noexcept
     cdef int _update_grad(self) noexcept
-    cpdef GraphNode matmul(self, other) noexcept
+    cpdef GraphNode matmul(self, other, bint reverse=*) noexcept
     cpdef GraphNode transpose(self) noexcept
     cpdef GraphNode sum(self, int axis=*) noexcept
     cpdef GraphNode relu(self) noexcept

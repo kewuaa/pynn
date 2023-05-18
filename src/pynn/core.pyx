@@ -219,19 +219,27 @@ cdef class GraphNode:
         self._parent = _other._parent = new_node
         return new_node
 
-    cpdef GraphNode matmul(self, other) noexcept:
+    cpdef GraphNode matmul(self, other, bint reverse=0) noexcept:
         """矩阵乘法。"""
 
         cdef GraphNode _other, new_node
         _other = _to_graph_node(other)
-        new_node = GraphNode(
-            self._tensor @ _other._tensor,
-            requires_grad=self.requires_grad or _other.requires_grad
-        )
+        if reverse:
+            new_node = GraphNode(
+                _other._tensor @ self._tensor,
+                requires_grad=self.requires_grad or _other.requires_grad
+            )
+            new_node._subnode_l = _other
+            new_node._subnode_r = self
+        else:
+            new_node = GraphNode(
+                self._tensor @ _other._tensor,
+                requires_grad=self.requires_grad or _other.requires_grad
+            )
+            new_node._subnode_l = self
+            new_node._subnode_r = _other
         new_node._gradfunc = matmulfunc
         new_node._is_leaf = 0
-        new_node._subnode_l = self
-        new_node._subnode_r = _other
         new_node._opera_type = 'matrix multiply'
         self._parent = _other._parent = new_node
         return new_node
