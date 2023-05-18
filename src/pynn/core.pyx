@@ -456,5 +456,8 @@ cdef class GraphNode:
 
         self._as_unique = 1
 
+    def reshape(self, *shape):
+        cdef cnp.ndarray tensor = self._tensor.reshape(*shape)
+        return GraphNode(tensor)
 
 # cpdef GraphNode zeros()
