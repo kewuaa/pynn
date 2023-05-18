@@ -4,7 +4,7 @@
 # cython: language_level=3
 # distutils: language=c
 # distutils: define_macros=NPY_NO_DEPRECATED_API=NPY_1_7_API_VERSION
-from cpython.mem cimport Py_buffer, PyMem_Malloc
+from cpython.mem cimport Py_buffer, PyMem_Malloc, PyMem_Free
 from numpy.math cimport logf
 cimport numpy as cnp
 import numpy as np
@@ -460,4 +460,50 @@ cdef class GraphNode:
         cdef cnp.ndarray tensor = self._tensor.reshape(*shape)
         return GraphNode(tensor)
 
-# cpdef GraphNode zeros()
+
+cpdef GraphNode zeros(shape):
+    cdef Py_ssize_t ndim = len(shape)
+    cdef Py_ssize_t* _shape = <Py_ssize_t*>PyMem_Malloc(sizeof(Py_ssize_t) * ndim)
+    cdef unsigned int i
+    for i in range(ndim):
+        _shape[i] = shape[i]
+    cdef cnp.ndarray tensor = <cnp.ndarray>cnp.PyArray_ZEROS(
+        ndim, _shape,
+        cnp.NPY_INT8, 0
+    )
+    PyMem_Free(_shape)
+    return GraphNode(tensor)
+
+
+cpdef GraphNode ones(shape):
+    cdef Py_ssize_t ndim = len(shape)
+    cdef Py_ssize_t* _shape = <Py_ssize_t*>PyMem_Malloc(sizeof(Py_ssize_t) * ndim)
+    cdef Py_ssize_t size = 1
+    cdef unsigned int i
+    for i in range(ndim):
+        _shape[i] = shape[i]
+        size *= _shape[i]
+    cdef int* data = <int*>PyMem_Malloc(sizeof(int) * size)
+    cdef int[::1] view = <int[:size]>data
+    view[:] = 1
+    cdef cnp.ndarray tensor = <cnp.ndarray>cnp.PyArray_SimpleNewFromData(
+        ndim, _shape,
+        cnp.NPY_INT32, <void*>data
+    )
+    cnp.PyArray_ENABLEFLAGS(tensor, cnp.NPY_ARRAY_OWNDATA)
+    PyMem_Free(_shape)
+    return GraphNode(tensor)
+
+
+cpdef GraphNode empty(shape):
+    cdef Py_ssize_t ndim = len(shape)
+    cdef Py_ssize_t* _shape = <Py_ssize_t*>PyMem_Malloc(sizeof(Py_ssize_t) * ndim)
+    cdef unsigned int i
+    for i in range(ndim):
+        _shape[i] = shape[i]
+    cdef cnp.ndarray tensor = <cnp.ndarray>cnp.PyArray_EMPTY(
+        ndim, _shape,
+        cnp.NPY_FLOAT32, 0
+    )
+    PyMem_Free(_shape)
+    return GraphNode(tensor)

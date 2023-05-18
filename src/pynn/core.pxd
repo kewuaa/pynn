@@ -50,3 +50,8 @@ cdef class GraphNode:
     cpdef GraphNode relu(self) noexcept
     cdef bint _same_shape(self, cnp.ndarray other) noexcept
     cdef int _backward(self, cnp.ndarray grad=*) except 1
+
+
+cpdef GraphNode zeros(shape)
+cpdef GraphNode ones(shape)
+cpdef GraphNode empty(shape)
