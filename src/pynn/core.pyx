@@ -412,8 +412,7 @@ cdef class GraphNode:
         """
 
         cdef cnp.ndarray _grad
-        print(self.opera_type)
-        print(grad)
+        # print(self.opera_type)
         if self._as_unique or self._is_leaf:
             if not self._same_shape(grad):
                 raise RuntimeError(
