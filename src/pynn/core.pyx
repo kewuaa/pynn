@@ -91,6 +91,14 @@ cdef class GraphNode:
         self._grad[...] = 0.
         return 0
 
+    cdef cnp.ndarray _get_grad(self) noexcept:
+        """获取梯度值。"""
+
+        cdef cnp.ndarray grad = cnp.PyArray_Copy(self._grad)
+        if not self._save_grad:
+            self._reset_grad()
+        return grad
+
     @staticmethod
     cdef GraphNode _simple_value_node(float value) noexcept:
         """生成幂指数节点。"""
@@ -447,10 +455,7 @@ cdef class GraphNode:
     def grad(self) -> np.ndarray:
         """获取梯度值。"""
 
-        cdef cnp.ndarray grad = self._grad
-        if not self._save_grad:
-            self._update_grad()
-        return grad
+        return self._get_grad()
 
     def enable_grad(self) -> None:
         """允许计算梯度。"""
