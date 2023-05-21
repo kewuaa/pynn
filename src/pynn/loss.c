@@ -1618,9 +1618,9 @@ struct __pyx_opt_args_4pynn_4core_9GraphNode__backward;
  */
 typedef char *__pyx_t_4pynn_4core_Operation;
 
-/* "core.pxd":47
- *     cdef GraphNode _simple_value_node(float value) noexcept
- *     cdef int _update_grad(self) noexcept
+/* "core.pxd":40
+ *     cdef cnp.ndarray _get_grad(self) noexcept
+ *     cdef int _reset_grad(self) noexcept
  *     cpdef GraphNode matmul(self, other, bint reverse=*) noexcept             # <<<<<<<<<<<<<<
  *     cpdef GraphNode transpose(self) noexcept
  *     cpdef GraphNode sum(self, int axis=*) noexcept
@@ -1630,7 +1630,7 @@ struct __pyx_opt_args_4pynn_4core_9GraphNode_matmul {
   int reverse;
 };
 
-/* "core.pxd":49
+/* "core.pxd":42
  *     cpdef GraphNode matmul(self, other, bint reverse=*) noexcept
  *     cpdef GraphNode transpose(self) noexcept
  *     cpdef GraphNode sum(self, int axis=*) noexcept             # <<<<<<<<<<<<<<
@@ -1642,7 +1642,7 @@ struct __pyx_opt_args_4pynn_4core_9GraphNode_sum {
   int axis;
 };
 
-/* "core.pxd":52
+/* "core.pxd":45
  *     cpdef GraphNode relu(self) noexcept
  *     cdef bint _same_shape(self, cnp.ndarray other) noexcept
  *     cdef int _backward(self, cnp.ndarray grad=*) except 1             # <<<<<<<<<<<<<<
@@ -1665,10 +1665,6 @@ struct __pyx_obj_4pynn_4core_GraphNode {
   PyObject_HEAD
   struct __pyx_vtabstruct_4pynn_4core_GraphNode *__pyx_vtab;
   PyArrayObject *_tensor;
-  Py_ssize_t _ndim;
-  Py_ssize_t *_shape;
-  PyArray_Descr *_dtype;
-  Py_ssize_t _size;
   PyArrayObject *_grad;
   int _save_grad;
   PyArrayObject *(*_gradfunc)(PyArrayObject *, struct __pyx_obj_4pynn_4core_GraphNode *, struct __pyx_obj_4pynn_4core_GraphNode *, int);
@@ -1686,7 +1682,8 @@ struct __pyx_obj_4pynn_4core_GraphNode {
 
 struct __pyx_vtabstruct_4pynn_4core_GraphNode {
   struct __pyx_obj_4pynn_4core_GraphNode *(*_simple_value_node)(float);
-  int (*_update_grad)(struct __pyx_obj_4pynn_4core_GraphNode *);
+  PyArrayObject *(*_get_grad)(struct __pyx_obj_4pynn_4core_GraphNode *);
+  int (*_reset_grad)(struct __pyx_obj_4pynn_4core_GraphNode *);
   struct __pyx_obj_4pynn_4core_GraphNode *(*matmul)(struct __pyx_obj_4pynn_4core_GraphNode *, PyObject *, int __pyx_skip_dispatch, struct __pyx_opt_args_4pynn_4core_9GraphNode_matmul *__pyx_optional_args);
   struct __pyx_obj_4pynn_4core_GraphNode *(*transpose)(struct __pyx_obj_4pynn_4core_GraphNode *, int __pyx_skip_dispatch);
   struct __pyx_obj_4pynn_4core_GraphNode *(*sum)(struct __pyx_obj_4pynn_4core_GraphNode *, int __pyx_skip_dispatch, struct __pyx_opt_args_4pynn_4core_9GraphNode_sum *__pyx_optional_args);
@@ -2445,6 +2442,7 @@ static const char __pyx_k__3[] = "*";
 static const char __pyx_k__7[] = "?";
 static const char __pyx_k_np[] = "np";
 static const char __pyx_k_exp[] = "exp";
+static const char __pyx_k_max[] = "max";
 static const char __pyx_k_sum[] = "sum";
 static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
@@ -2559,6 +2557,7 @@ typedef struct {
   PyObject *__pyx_n_s_is_coroutine;
   PyObject *__pyx_n_s_main;
   PyObject *__pyx_n_s_matmul;
+  PyObject *__pyx_n_s_max;
   PyObject *__pyx_n_s_mseloss;
   PyObject *__pyx_n_s_name;
   PyObject *__pyx_n_s_np;
@@ -2656,6 +2655,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_is_coroutine);
   Py_CLEAR(clear_module_state->__pyx_n_s_main);
   Py_CLEAR(clear_module_state->__pyx_n_s_matmul);
+  Py_CLEAR(clear_module_state->__pyx_n_s_max);
   Py_CLEAR(clear_module_state->__pyx_n_s_mseloss);
   Py_CLEAR(clear_module_state->__pyx_n_s_name);
   Py_CLEAR(clear_module_state->__pyx_n_s_np);
@@ -2731,6 +2731,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_is_coroutine);
   Py_VISIT(traverse_module_state->__pyx_n_s_main);
   Py_VISIT(traverse_module_state->__pyx_n_s_matmul);
+  Py_VISIT(traverse_module_state->__pyx_n_s_max);
   Py_VISIT(traverse_module_state->__pyx_n_s_mseloss);
   Py_VISIT(traverse_module_state->__pyx_n_s_name);
   Py_VISIT(traverse_module_state->__pyx_n_s_np);
@@ -2840,6 +2841,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_is_coroutine __pyx_mstate_global->__pyx_n_s_is_coroutine
 #define __pyx_n_s_main __pyx_mstate_global->__pyx_n_s_main
 #define __pyx_n_s_matmul __pyx_mstate_global->__pyx_n_s_matmul
+#define __pyx_n_s_max __pyx_mstate_global->__pyx_n_s_max
 #define __pyx_n_s_mseloss __pyx_mstate_global->__pyx_n_s_mseloss
 #define __pyx_n_s_name __pyx_mstate_global->__pyx_n_s_name
 #define __pyx_n_s_np __pyx_mstate_global->__pyx_n_s_np
@@ -4648,6 +4650,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 ); /*proto*/
 static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4loss_softmaxloss(struct __pyx_obj_4pynn_4core_GraphNode *__pyx_v_X, PyObject *__pyx_v_Y, CYTHON_UNUSED int __pyx_skip_dispatch) {
   PyArrayObject *__pyx_v__Y = 0;
+  PyArrayObject *__pyx_v__X = 0;
   PyArrayObject *__pyx_v_expx = 0;
   PyArrayObject *__pyx_v_softmaxx = 0;
   struct __pyx_obj_4pynn_4core_GraphNode *__pyx_v_new_node = 0;
@@ -4668,8 +4671,8 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4loss_softmaxloss(s
  *     """
  * 
  *     cdef cnp.ndarray _Y = _to_tensor(Y)             # <<<<<<<<<<<<<<
- *     cdef cnp.ndarray expx = np.exp(X._tensor)
- *     cdef cnp.ndarray softmaxx = expx / expx.sum()
+ *     cdef cnp.ndarray _X = X._tensor - X._tensor.max()
+ *     cdef cnp.ndarray expx = np.exp(_X)
  */
   __pyx_t_1 = ((PyObject *)__pyx_f_4pynn_4loss__to_tensor(__pyx_v_Y)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 53, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -4679,160 +4682,196 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4loss_softmaxloss(s
   /* "pynn/loss.pyx":54
  * 
  *     cdef cnp.ndarray _Y = _to_tensor(Y)
- *     cdef cnp.ndarray expx = np.exp(X._tensor)             # <<<<<<<<<<<<<<
+ *     cdef cnp.ndarray _X = X._tensor - X._tensor.max()             # <<<<<<<<<<<<<<
+ *     cdef cnp.ndarray expx = np.exp(_X)
  *     cdef cnp.ndarray softmaxx = expx / expx.sum()
- *     cdef GraphNode new_node = GraphNode(
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 54, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_X->_tensor), __pyx_n_s_max); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_exp); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 54, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = NULL;
-  __pyx_t_4 = 0;
-  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_2)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_2);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
-      __pyx_t_4 = 1;
-    }
-  }
-  {
-    PyObject *__pyx_callargs[2] = {__pyx_t_2, ((PyObject *)__pyx_v_X->_tensor)};
-    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
-    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 54, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  }
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(1, 54, __pyx_L1_error)
-  __pyx_v_expx = ((PyArrayObject *)__pyx_t_1);
-  __pyx_t_1 = 0;
-
-  /* "pynn/loss.pyx":55
- *     cdef cnp.ndarray _Y = _to_tensor(Y)
- *     cdef cnp.ndarray expx = np.exp(X._tensor)
- *     cdef cnp.ndarray softmaxx = expx / expx.sum()             # <<<<<<<<<<<<<<
- *     cdef GraphNode new_node = GraphNode(
- *         _Y.T @ (logf(expx.sum()) - X._tensor),
- */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_expx), __pyx_n_s_sum); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 55, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = NULL;
-  __pyx_t_4 = 0;
-  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
-    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
-    if (likely(__pyx_t_2)) {
-      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-      __Pyx_INCREF(__pyx_t_2);
-      __Pyx_INCREF(function);
-      __Pyx_DECREF_SET(__pyx_t_3, function);
-      __pyx_t_4 = 1;
-    }
-  }
-  {
-    PyObject *__pyx_callargs[1] = {__pyx_t_2, };
-    __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_4, 0+__pyx_t_4);
-    __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 55, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  }
-  __pyx_t_3 = __Pyx_PyNumber_Divide(((PyObject *)__pyx_v_expx), __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 55, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(1, 55, __pyx_L1_error)
-  __pyx_v_softmaxx = ((PyArrayObject *)__pyx_t_3);
-  __pyx_t_3 = 0;
-
-  /* "pynn/loss.pyx":57
- *     cdef cnp.ndarray softmaxx = expx / expx.sum()
- *     cdef GraphNode new_node = GraphNode(
- *         _Y.T @ (logf(expx.sum()) - X._tensor),             # <<<<<<<<<<<<<<
- *         requires_grad=X.requires_grad
- *     )
- */
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v__Y), __pyx_n_s_T); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 57, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_expx), __pyx_n_s_sum); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 57, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_5 = NULL;
+  __pyx_t_3 = NULL;
   __pyx_t_4 = 0;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
-    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_2);
-    if (likely(__pyx_t_5)) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
       PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-      __Pyx_INCREF(__pyx_t_5);
+      __Pyx_INCREF(__pyx_t_3);
       __Pyx_INCREF(function);
       __Pyx_DECREF_SET(__pyx_t_2, function);
       __pyx_t_4 = 1;
     }
   }
   {
-    PyObject *__pyx_callargs[1] = {__pyx_t_5, };
+    PyObject *__pyx_callargs[1] = {__pyx_t_3, };
     __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_4, 0+__pyx_t_4);
-    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 57, __pyx_L1_error)
+    __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 54, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   }
-  __pyx_t_6 = __pyx_PyFloat_AsFloat(__pyx_t_1); if (unlikely((__pyx_t_6 == (float)-1) && PyErr_Occurred())) __PYX_ERR(1, 57, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyFloat_FromDouble(npy_logf(__pyx_t_6)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 57, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_Subtract(__pyx_t_1, ((PyObject *)__pyx_v_X->_tensor)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 57, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Subtract(((PyObject *)__pyx_v_X->_tensor), __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 54, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyNumber_MatrixMultiply(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 57, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(1, 54, __pyx_L1_error)
+  __pyx_v__X = ((PyArrayObject *)__pyx_t_2);
+  __pyx_t_2 = 0;
+
+  /* "pynn/loss.pyx":55
+ *     cdef cnp.ndarray _Y = _to_tensor(Y)
+ *     cdef cnp.ndarray _X = X._tensor - X._tensor.max()
+ *     cdef cnp.ndarray expx = np.exp(_X)             # <<<<<<<<<<<<<<
+ *     cdef cnp.ndarray softmaxx = expx / expx.sum()
+ *     cdef GraphNode new_node = GraphNode(
+ */
+  __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 55, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_exp); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 55, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = NULL;
+  __pyx_t_4 = 0;
+  if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_1)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_1);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
+      __pyx_t_4 = 1;
+    }
+  }
+  {
+    PyObject *__pyx_callargs[2] = {__pyx_t_1, ((PyObject *)__pyx_v__X)};
+    __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_4, 1+__pyx_t_4);
+    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 55, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  }
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(1, 55, __pyx_L1_error)
+  __pyx_v_expx = ((PyArrayObject *)__pyx_t_2);
+  __pyx_t_2 = 0;
 
   /* "pynn/loss.pyx":56
- *     cdef cnp.ndarray expx = np.exp(X._tensor)
- *     cdef cnp.ndarray softmaxx = expx / expx.sum()
- *     cdef GraphNode new_node = GraphNode(             # <<<<<<<<<<<<<<
- *         _Y.T @ (logf(expx.sum()) - X._tensor),
- *         requires_grad=X.requires_grad
+ *     cdef cnp.ndarray _X = X._tensor - X._tensor.max()
+ *     cdef cnp.ndarray expx = np.exp(_X)
+ *     cdef cnp.ndarray softmaxx = expx / expx.sum()             # <<<<<<<<<<<<<<
+ *     cdef GraphNode new_node = GraphNode(
+ *         _Y.T @ (logf(expx.sum()) - _X),
  */
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 56, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
-  __pyx_t_1 = 0;
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_expx), __pyx_n_s_sum); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 56, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_1 = NULL;
+  __pyx_t_4 = 0;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_1)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_1);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
+      __pyx_t_4 = 1;
+    }
+  }
+  {
+    PyObject *__pyx_callargs[1] = {__pyx_t_1, };
+    __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_4, 0+__pyx_t_4);
+    __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 56, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  }
+  __pyx_t_3 = __Pyx_PyNumber_Divide(((PyObject *)__pyx_v_expx), __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 56, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(1, 56, __pyx_L1_error)
+  __pyx_v_softmaxx = ((PyArrayObject *)__pyx_t_3);
+  __pyx_t_3 = 0;
 
   /* "pynn/loss.pyx":58
+ *     cdef cnp.ndarray softmaxx = expx / expx.sum()
  *     cdef GraphNode new_node = GraphNode(
- *         _Y.T @ (logf(expx.sum()) - X._tensor),
+ *         _Y.T @ (logf(expx.sum()) - _X),             # <<<<<<<<<<<<<<
+ *         requires_grad=X.requires_grad
+ *     )
+ */
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v__Y), __pyx_n_s_T); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 58, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_expx), __pyx_n_s_sum); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 58, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_5 = NULL;
+  __pyx_t_4 = 0;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_1))) {
+    __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_1);
+    if (likely(__pyx_t_5)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+      __Pyx_INCREF(__pyx_t_5);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_1, function);
+      __pyx_t_4 = 1;
+    }
+  }
+  {
+    PyObject *__pyx_callargs[1] = {__pyx_t_5, };
+    __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_4, 0+__pyx_t_4);
+    __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+    if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 58, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  }
+  __pyx_t_6 = __pyx_PyFloat_AsFloat(__pyx_t_2); if (unlikely((__pyx_t_6 == (float)-1) && PyErr_Occurred())) __PYX_ERR(1, 58, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PyFloat_FromDouble(npy_logf(__pyx_t_6)); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 58, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_1 = PyNumber_Subtract(__pyx_t_2, ((PyObject *)__pyx_v__X)); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 58, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_PyNumber_MatrixMultiply(__pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 58, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+  /* "pynn/loss.pyx":57
+ *     cdef cnp.ndarray expx = np.exp(_X)
+ *     cdef cnp.ndarray softmaxx = expx / expx.sum()
+ *     cdef GraphNode new_node = GraphNode(             # <<<<<<<<<<<<<<
+ *         _Y.T @ (logf(expx.sum()) - _X),
+ *         requires_grad=X.requires_grad
+ */
+  __pyx_t_1 = PyTuple_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 57, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
+  __pyx_t_2 = 0;
+
+  /* "pynn/loss.pyx":59
+ *     cdef GraphNode new_node = GraphNode(
+ *         _Y.T @ (logf(expx.sum()) - _X),
  *         requires_grad=X.requires_grad             # <<<<<<<<<<<<<<
  *     )
  *     new_node._gradfunc = softmaxlossfunc
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 58, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = __Pyx_PyBool_FromLong(__pyx_v_X->requires_grad); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 58, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 59, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyBool_FromLong(__pyx_v_X->requires_grad); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 59, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_requires_grad, __pyx_t_3) < 0) __PYX_ERR(1, 58, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_requires_grad, __pyx_t_3) < 0) __PYX_ERR(1, 59, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "pynn/loss.pyx":56
- *     cdef cnp.ndarray expx = np.exp(X._tensor)
+  /* "pynn/loss.pyx":57
+ *     cdef cnp.ndarray expx = np.exp(_X)
  *     cdef cnp.ndarray softmaxx = expx / expx.sum()
  *     cdef GraphNode new_node = GraphNode(             # <<<<<<<<<<<<<<
- *         _Y.T @ (logf(expx.sum()) - X._tensor),
+ *         _Y.T @ (logf(expx.sum()) - _X),
  *         requires_grad=X.requires_grad
  */
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4pynn_4core_GraphNode), __pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 56, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4pynn_4core_GraphNode), __pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 57, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_new_node = ((struct __pyx_obj_4pynn_4core_GraphNode *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "pynn/loss.pyx":60
+  /* "pynn/loss.pyx":61
  *         requires_grad=X.requires_grad
  *     )
  *     new_node._gradfunc = softmaxlossfunc             # <<<<<<<<<<<<<<
@@ -4841,7 +4880,7 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4loss_softmaxloss(s
  */
   __pyx_v_new_node->_gradfunc = __pyx_f_4pynn_8gradfunc_softmaxlossfunc;
 
-  /* "pynn/loss.pyx":61
+  /* "pynn/loss.pyx":62
  *     )
  *     new_node._gradfunc = softmaxlossfunc
  *     new_node._is_leaf = 0             # <<<<<<<<<<<<<<
@@ -4850,7 +4889,7 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4loss_softmaxloss(s
  */
   __pyx_v_new_node->_is_leaf = 0;
 
-  /* "pynn/loss.pyx":62
+  /* "pynn/loss.pyx":63
  *     new_node._gradfunc = softmaxlossfunc
  *     new_node._is_leaf = 0
  *     new_node._subnode_l = X             # <<<<<<<<<<<<<<
@@ -4863,39 +4902,39 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4loss_softmaxloss(s
   __Pyx_DECREF((PyObject *)__pyx_v_new_node->_subnode_l);
   __pyx_v_new_node->_subnode_l = __pyx_v_X;
 
-  /* "pynn/loss.pyx":63
+  /* "pynn/loss.pyx":64
  *     new_node._is_leaf = 0
  *     new_node._subnode_l = X
  *     new_node._subnode_r = GraphNode.__new__(GraphNode)             # <<<<<<<<<<<<<<
  *     new_node._subnode_r._tensor = softmaxx - _Y
  *     new_node._opera_type = 'softmax loss'
  */
-  __pyx_t_3 = __Pyx_tp_new(((PyObject *)__pyx_ptype_4pynn_4core_GraphNode), __pyx_empty_tuple); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 63, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_tp_new(((PyObject *)__pyx_ptype_4pynn_4core_GraphNode), __pyx_empty_tuple); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 64, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (!(likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_4pynn_4core_GraphNode)))) __PYX_ERR(1, 63, __pyx_L1_error)
+  if (!(likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_4pynn_4core_GraphNode)))) __PYX_ERR(1, 64, __pyx_L1_error)
   __Pyx_GIVEREF(__pyx_t_3);
   __Pyx_GOTREF((PyObject *)__pyx_v_new_node->_subnode_r);
   __Pyx_DECREF((PyObject *)__pyx_v_new_node->_subnode_r);
   __pyx_v_new_node->_subnode_r = ((struct __pyx_obj_4pynn_4core_GraphNode *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "pynn/loss.pyx":64
+  /* "pynn/loss.pyx":65
  *     new_node._subnode_l = X
  *     new_node._subnode_r = GraphNode.__new__(GraphNode)
  *     new_node._subnode_r._tensor = softmaxx - _Y             # <<<<<<<<<<<<<<
  *     new_node._opera_type = 'softmax loss'
  *     X._parent = new_node
  */
-  __pyx_t_3 = PyNumber_Subtract(((PyObject *)__pyx_v_softmaxx), ((PyObject *)__pyx_v__Y)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 64, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Subtract(((PyObject *)__pyx_v_softmaxx), ((PyObject *)__pyx_v__Y)); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 65, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(1, 64, __pyx_L1_error)
+  if (!(likely(((__pyx_t_3) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_3, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(1, 65, __pyx_L1_error)
   __Pyx_GIVEREF(__pyx_t_3);
   __Pyx_GOTREF((PyObject *)__pyx_v_new_node->_subnode_r->_tensor);
   __Pyx_DECREF((PyObject *)__pyx_v_new_node->_subnode_r->_tensor);
   __pyx_v_new_node->_subnode_r->_tensor = ((PyArrayObject *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "pynn/loss.pyx":65
+  /* "pynn/loss.pyx":66
  *     new_node._subnode_r = GraphNode.__new__(GraphNode)
  *     new_node._subnode_r._tensor = softmaxx - _Y
  *     new_node._opera_type = 'softmax loss'             # <<<<<<<<<<<<<<
@@ -4904,7 +4943,7 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4loss_softmaxloss(s
  */
   __pyx_v_new_node->_opera_type = ((__pyx_t_4pynn_4core_Operation)"softmax loss");
 
-  /* "pynn/loss.pyx":66
+  /* "pynn/loss.pyx":67
  *     new_node._subnode_r._tensor = softmaxx - _Y
  *     new_node._opera_type = 'softmax loss'
  *     X._parent = new_node             # <<<<<<<<<<<<<<
@@ -4916,7 +4955,7 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4loss_softmaxloss(s
   __Pyx_DECREF((PyObject *)__pyx_v_X->_parent);
   __pyx_v_X->_parent = __pyx_v_new_node;
 
-  /* "pynn/loss.pyx":67
+  /* "pynn/loss.pyx":68
  *     new_node._opera_type = 'softmax loss'
  *     X._parent = new_node
  *     return new_node             # <<<<<<<<<<<<<<
@@ -4944,6 +4983,7 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4loss_softmaxloss(s
   __pyx_r = 0;
   __pyx_L0:;
   __Pyx_XDECREF((PyObject *)__pyx_v__Y);
+  __Pyx_XDECREF((PyObject *)__pyx_v__X);
   __Pyx_XDECREF((PyObject *)__pyx_v_expx);
   __Pyx_XDECREF((PyObject *)__pyx_v_softmaxx);
   __Pyx_XDECREF((PyObject *)__pyx_v_new_node);
@@ -5099,6 +5139,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_is_coroutine, __pyx_k_is_coroutine, sizeof(__pyx_k_is_coroutine), 0, 0, 1, 1},
     {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
     {&__pyx_n_s_matmul, __pyx_k_matmul, sizeof(__pyx_k_matmul), 0, 0, 1, 1},
+    {&__pyx_n_s_max, __pyx_k_max, sizeof(__pyx_k_max), 0, 0, 1, 1},
     {&__pyx_n_s_mseloss, __pyx_k_mseloss, sizeof(__pyx_k_mseloss), 0, 0, 1, 1},
     {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
     {&__pyx_n_s_np, __pyx_k_np, sizeof(__pyx_k_np), 0, 0, 1, 1},

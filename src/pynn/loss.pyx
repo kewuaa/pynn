@@ -51,10 +51,11 @@ cpdef GraphNode softmaxloss(GraphNode X, Y):
     """
 
     cdef cnp.ndarray _Y = _to_tensor(Y)
-    cdef cnp.ndarray expx = np.exp(X._tensor)
+    cdef cnp.ndarray _X = X._tensor - X._tensor.max()
+    cdef cnp.ndarray expx = np.exp(_X)
     cdef cnp.ndarray softmaxx = expx / expx.sum()
     cdef GraphNode new_node = GraphNode(
-        _Y.T @ (logf(expx.sum()) - X._tensor),
+        _Y.T @ (logf(expx.sum()) - _X),
         requires_grad=X.requires_grad
     )
     new_node._gradfunc = softmaxlossfunc
