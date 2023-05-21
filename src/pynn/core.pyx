@@ -72,7 +72,10 @@ cdef class GraphNode:
         self._size = 1
         for i in range(self._ndim):
             self._size *= self._shape[i]
-        self._update_grad()
+        self._grad = <cnp.ndarray>cnp.PyArray_ZEROS(
+            self._ndim, self._shape,
+            cnp.NPY_FLOAT64, 0
+        )
         self._save_grad = 0
         self._gradfunc = NULL
         self._as_unique = 0
@@ -84,11 +87,8 @@ cdef class GraphNode:
             raise TypeError(f'{self._ndim} dim array could require grad')
         self.requires_grad = requires_grad
 
-    cdef int _update_grad(self) noexcept:
-        self._grad = <cnp.ndarray>cnp.PyArray_ZEROS(
-            self._ndim, self._shape,
-            cnp.NPY_FLOAT64, 0
-        )
+    cdef int _reset_grad(self) noexcept:
+        self._grad[...] = 0.
         return 0
 
     @staticmethod
