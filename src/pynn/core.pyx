@@ -25,21 +25,19 @@ from .gradfunc cimport (
     relufunc,
 )
 cnp.import_array()
+cdef cnp.ndarray _initial_grad = _initialize_grad()
 
 
 cdef inline GraphNode _to_graph_node(tensor) noexcept:
     return tensor if isinstance(tensor, GraphNode) else GraphNode(tensor)
 
 
-cdef cnp.ndarray _get_init_grad() noexcept:
+cdef cnp.ndarray _initialize_grad() noexcept:
     cdef float* arr = <float*>PyMem_Malloc(sizeof(float))
-    cdef Py_ssize_t shape[2]
-    shape[0] = shape[1] = 1
+    cdef Py_ssize_t[2] shape = [1, 1]
     arr[0] = 1.
     cdef cnp.ndarray grad = <cnp.ndarray>cnp.PyArray_SimpleNewFromData(
-        2, shape,
-        cnp.NPY_FLOAT32,
-        <void*>arr
+        2, shape, cnp.NPY_FLOAT32, <void*>arr
     )
     cnp.PyArray_ENABLEFLAGS(grad, cnp.NPY_ARRAY_OWNDATA)
     return grad
@@ -401,7 +399,7 @@ cdef class GraphNode:
                 return 0
         return 1
 
-    cdef int _backward(self, cnp.ndarray grad=_get_init_grad()) except 1:
+    cdef int _backward(self, cnp.ndarray grad=_initial_grad) except 1:
         """反向传播。
 
         :param grad: 后一级传回的梯度
