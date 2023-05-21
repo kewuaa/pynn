@@ -416,6 +416,11 @@ cdef class GraphNode:
         print(grad)
         if self._as_unique or self._is_leaf:
             if not self._same_shape(grad):
+                raise RuntimeError(
+                    'not same shape: '
+                    f'({self.shape[0]}, {self.shape[1]}) '
+                    f'and ({grad.shape[0]}, {grad.shape[1]})'
+                )
                 return 1
             self._grad += grad
         else:
