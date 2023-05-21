@@ -42,6 +42,11 @@ exts = (
         name='pynn.loss',
         sources=['src\\pynn\\loss.pyx'],
         include_dirs=include_dirs,
+    ),
+    Extension(
+        name='pynn.nn',
+        sources=['src\\pynn\\nn.pyx'],
+        include_dirs=include_dirs,
     )
 )
 setup(
