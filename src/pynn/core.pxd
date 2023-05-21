@@ -10,14 +10,6 @@ cdef class GraphNode:
     cdef:
         # 张量数据
         cnp.ndarray _tensor
-        # 维度
-        Py_ssize_t _ndim
-        # 形状
-        Py_ssize_t* _shape
-        # 类型
-        cnp.dtype _dtype
-        # 大小
-        Py_ssize_t _size
         # 梯度值
         cnp.ndarray _grad
         # 是否保存梯度值
