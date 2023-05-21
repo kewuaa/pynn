@@ -120,12 +120,13 @@ cdef cnp.ndarray sumfunc(
 ) noexcept:
     """求和求导函数。"""
 
-    cdef float* arr = <float*>PyMem_Malloc(sizeof(float) * left._size)
-    cdef float[::1] view = <float[:left._size]>arr
+    cdef Py_ssize_t size = cnp.PyArray_SIZE(left._tensor)
+    cdef float* arr = <float*>PyMem_Malloc(sizeof(float) * size)
+    cdef float[::1] view = <float[:size]>arr
     view[:] = 1.
     cdef cnp.ndarray _grad = <cnp.ndarray>cnp.PyArray_SimpleNewFromData(
-        left._ndim,
-        left._shape,
+        cnp.PyArray_NDIM(left._tensor),
+        cnp.PyArray_DIMS(left._tensor),
         cnp.NPY_FLOAT32,
         <void*>arr
     )
@@ -141,10 +142,11 @@ cdef cnp.ndarray sumfunc0(
 ) noexcept:
     """0轴求和求导函数。"""
 
-    cdef float* arr = <float*>PyMem_Malloc(sizeof(float) * left._shape[0])
-    cdef float[::1] view = <float[:left._shape[0]]>arr
+    cdef Py_ssize_t* left_shape = cnp.PyArray_DIMS(left._tensor)
+    cdef float* arr = <float*>PyMem_Malloc(sizeof(float) * left_shape[0])
+    cdef float[::1] view = <float[:left_shape[0]]>arr
     cdef Py_ssize_t shape[2]
-    shape[0] = left._shape[0]
+    shape[0] = left_shape[0]
     shape[1] = 1
     view[:] = 1.
     cdef cnp.ndarray _grad = <cnp.ndarray>cnp.PyArray_SimpleNewFromData(
@@ -162,12 +164,13 @@ cdef cnp.ndarray sumfunc1(
 ) noexcept:
     """1轴求和求导函数。"""
 
-    cdef float* arr = <float*>PyMem_Malloc(sizeof(float) * left._shape[1])
-    cdef float[::1] view = <float[:left._shape[1]]>arr
+    cdef Py_ssize_t* left_shape = cnp.PyArray_DIMS(left._tensor)
+    cdef float* arr = <float*>PyMem_Malloc(sizeof(float) * left_shape[1])
+    cdef float[::1] view = <float[:left_shape[1]]>arr
     cdef Py_ssize_t shape[2]
     view[:] = 1.
     shape[0] = 1
-    shape[1] = left._shape[1]
+    shape[1] = left_shape[1]
     cdef cnp.ndarray _grad = <cnp.ndarray>cnp.PyArray_SimpleNewFromData(
         2, shape, cnp.NPY_FLOAT32, <void*>arr
     )
@@ -214,8 +217,8 @@ cdef cnp.ndarray relufunc(
     """relu 函数求导函数。"""
 
     cdef cnp.ndarray _grad = cnp.PyArray_ZEROS(
-        left._ndim,
-        left._shape,
+        cnp.PyArray_NDIM(left._tensor),
+        cnp.PyArray_DIMS(left._tensor),
         cnp.NPY_INT8,
         0
     )
