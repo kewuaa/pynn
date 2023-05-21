@@ -66,14 +66,9 @@ cdef class GraphNode:
         else:
             _tensor = np.asarray(tensor)
         self._tensor = _tensor
-        self._ndim = cnp.PyArray_NDIM(_tensor)
-        self._shape = cnp.PyArray_DIMS(_tensor)
-        self._dtype = <cnp.dtype>cnp.PyArray_DTYPE(_tensor)
-        self._size = 1
-        for i in range(self._ndim):
-            self._size *= self._shape[i]
         self._grad = <cnp.ndarray>cnp.PyArray_ZEROS(
-            self._ndim, self._shape,
+            cnp.PyArray_NDIM(_tensor),
+            cnp.PyArray_DIMS(_tensor),
             cnp.NPY_FLOAT64, 0
         )
         self._save_grad = 0
@@ -83,7 +78,7 @@ cdef class GraphNode:
         self._parent = None
         self._subnode_l = self._subnode_r = None
         self._opera_type = NULL
-        if self._ndim > 2 and requires_grad:
+        if cnp.PyArray_NDIM(_tensor) > 2 and requires_grad:
             raise TypeError(f'{self._ndim} dim array could require grad')
         self.requires_grad = requires_grad
 
@@ -127,14 +122,16 @@ cdef class GraphNode:
         :param buffer: 缓冲区对象
         """
 
+        cdef cnp.ndarray tensor = self._tensor
+        cdef cnp.dtype dtype = <cnp.dtype>cnp.PyArray_DTYPE(tensor)
         buffer.obj = self
-        buffer.buf = cnp.PyArray_DATA(self._tensor)
-        buffer.format = self._dtype.char
-        buffer.itemsize = self._dtype.itemsize
-        buffer.len = self._size
-        buffer.ndim = self._ndim
-        buffer.shape = self._shape
-        buffer.strides = cnp.PyArray_STRIDES(self._tensor)
+        buffer.buf = cnp.PyArray_DATA(tensor)
+        buffer.format = dtype.char
+        buffer.itemsize = dtype.itemsize
+        buffer.len = cnp.PyArray_SIZE(tensor)
+        buffer.ndim = cnp.PyArray_NDIM(tensor)
+        buffer.shape = cnp.PyArray_DIMS(tensor)
+        buffer.strides = cnp.PyArray_STRIDES(tensor)
         buffer.readonly = 0
         buffer.suboffsets = NULL
 
@@ -400,10 +397,11 @@ cdef class GraphNode:
         """
 
         cdef unsigned int i
-        cdef Py_ssize_t* other_shape
-        other_shape = cnp.PyArray_DIMS(other)
-        for i in range(self._ndim):
-            if self._shape[i] != other_shape[i]:
+        cdef cnp.ndarray tensor = self._tensor
+        cdef Py_ssize_t* self_shape = cnp.PyArray_DIMS(tensor)
+        cdef Py_ssize_t* other_shape = cnp.PyArray_DIMS(other)
+        for i in range(cnp.PyArray_NDIM(tensor)):
+            if self_shape[i] != other_shape[i]:
                 return 0
         return 1
 
@@ -440,7 +438,7 @@ cdef class GraphNode:
 
         if self._gradfunc is NULL:
             raise RuntimeError('could not backward for gradfunc is NULL')
-        if self._size != 1:
+        if cnp.PyArray_SIZE(self._tensor) != 1:
             raise RuntimeError('only scalar could backward')
         self._backward()
 
