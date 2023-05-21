@@ -1618,9 +1618,9 @@ struct __pyx_opt_args_4pynn_4core_9GraphNode__backward;
  */
 typedef char *__pyx_t_4pynn_4core_Operation;
 
-/* "core.pxd":47
- *     cdef GraphNode _simple_value_node(float value) noexcept
- *     cdef int _update_grad(self) noexcept
+/* "core.pxd":40
+ *     cdef cnp.ndarray _get_grad(self) noexcept
+ *     cdef int _reset_grad(self) noexcept
  *     cpdef GraphNode matmul(self, other, bint reverse=*) noexcept             # <<<<<<<<<<<<<<
  *     cpdef GraphNode transpose(self) noexcept
  *     cpdef GraphNode sum(self, int axis=*) noexcept
@@ -1630,7 +1630,7 @@ struct __pyx_opt_args_4pynn_4core_9GraphNode_matmul {
   int reverse;
 };
 
-/* "core.pxd":49
+/* "core.pxd":42
  *     cpdef GraphNode matmul(self, other, bint reverse=*) noexcept
  *     cpdef GraphNode transpose(self) noexcept
  *     cpdef GraphNode sum(self, int axis=*) noexcept             # <<<<<<<<<<<<<<
@@ -1642,7 +1642,7 @@ struct __pyx_opt_args_4pynn_4core_9GraphNode_sum {
   int axis;
 };
 
-/* "core.pxd":52
+/* "core.pxd":45
  *     cpdef GraphNode relu(self) noexcept
  *     cdef bint _same_shape(self, cnp.ndarray other) noexcept
  *     cdef int _backward(self, cnp.ndarray grad=*) except 1             # <<<<<<<<<<<<<<
@@ -1678,10 +1678,6 @@ struct __pyx_obj_4pynn_4core_GraphNode {
   PyObject_HEAD
   struct __pyx_vtabstruct_4pynn_4core_GraphNode *__pyx_vtab;
   PyArrayObject *_tensor;
-  Py_ssize_t _ndim;
-  Py_ssize_t *_shape;
-  PyArray_Descr *_dtype;
-  Py_ssize_t _size;
   PyArrayObject *_grad;
   int _save_grad;
   PyArrayObject *(*_gradfunc)(PyArrayObject *, struct __pyx_obj_4pynn_4core_GraphNode *, struct __pyx_obj_4pynn_4core_GraphNode *, int);
@@ -1699,7 +1695,8 @@ struct __pyx_obj_4pynn_4core_GraphNode {
 
 struct __pyx_vtabstruct_4pynn_4core_GraphNode {
   struct __pyx_obj_4pynn_4core_GraphNode *(*_simple_value_node)(float);
-  int (*_update_grad)(struct __pyx_obj_4pynn_4core_GraphNode *);
+  PyArrayObject *(*_get_grad)(struct __pyx_obj_4pynn_4core_GraphNode *);
+  int (*_reset_grad)(struct __pyx_obj_4pynn_4core_GraphNode *);
   struct __pyx_obj_4pynn_4core_GraphNode *(*matmul)(struct __pyx_obj_4pynn_4core_GraphNode *, PyObject *, int __pyx_skip_dispatch, struct __pyx_opt_args_4pynn_4core_9GraphNode_matmul *__pyx_optional_args);
   struct __pyx_obj_4pynn_4core_GraphNode *(*transpose)(struct __pyx_obj_4pynn_4core_GraphNode *, int __pyx_skip_dispatch);
   struct __pyx_obj_4pynn_4core_GraphNode *(*sum)(struct __pyx_obj_4pynn_4core_GraphNode *, int __pyx_skip_dispatch, struct __pyx_opt_args_4pynn_4core_9GraphNode_sum *__pyx_optional_args);
