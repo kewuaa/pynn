@@ -11,7 +11,6 @@ class build(build_ext):
         if isinstance(self.compiler, UnixCCompiler):
             if 'zig' in self.compiler.cc:
                 self.compiler.dll_libraries = []
-                self.compiler.set_executables
                 self.compiler.set_executable(
                     'compiler_so',
                     f'{self.compiler.cc} -O3 -Wall'
