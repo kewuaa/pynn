@@ -7,6 +7,7 @@
 from numpy.math cimport logf
 from cpython.mem cimport PyMem_Malloc
 cimport numpy as cnp
+import numpy as np
 
 from .core cimport GraphNode
 
@@ -186,7 +187,7 @@ cdef cnp.ndarray expfunc(
 ) noexcept:
     """指数函数求导函数。"""
 
-    grad = grad * left._tensor
+    grad = grad * np.exp(left._tensor)
     if right._value == 0.:
         return grad
     else:
