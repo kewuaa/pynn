@@ -1917,8 +1917,7 @@ struct __pyx_obj_4pynn_2nn_Optimizer {
  */
 struct __pyx_obj_4pynn_2nn_SGD {
   struct __pyx_obj_4pynn_2nn_Optimizer __pyx_base;
-  float _alpha;
-  float _lambda;
+  double _alpha;
 };
 
 
@@ -3424,7 +3423,7 @@ static const char __pyx_k_unable_to_allocate_shape_and_str[] = "unable to alloca
 static const char __pyx_k_Incompatible_checksums_0x_x_vs_0_2[] = "Incompatible checksums (0x%x vs (0x6ce7ea1, 0x125f91d, 0xea7e7a0) = (_node))";
 static const char __pyx_k_Incompatible_checksums_0x_x_vs_0_3[] = "Incompatible checksums (0x%x vs (0xe3b0c44, 0xda39a3e, 0xd41d8cd) = ())";
 static const char __pyx_k_Incompatible_checksums_0x_x_vs_0_4[] = "Incompatible checksums (0x%x vs (0x0ec8e53, 0x099bad3, 0x0d0f1b8) = (_bias, _weight))";
-static const char __pyx_k_Incompatible_checksums_0x_x_vs_0_5[] = "Incompatible checksums (0x%x vs (0x61ada35, 0xbee901f, 0x825b7a1) = (_alpha, _bias, _lambda, _weights))";
+static const char __pyx_k_Incompatible_checksums_0x_x_vs_0_5[] = "Incompatible checksums (0x%x vs (0x16a43c6, 0xe89d858, 0x5afa1b6) = (_alpha, _bias, _weights))";
 /* #### Code section: decls ### */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array___cinit__(struct __pyx_array_obj *__pyx_v_self, PyObject *__pyx_v_shape, Py_ssize_t __pyx_v_itemsize, PyObject *__pyx_v_format, PyObject *__pyx_v_mode, int __pyx_v_allocate_buffer); /* proto */
 static int __pyx_array___pyx_pf_15View_dot_MemoryView_5array_2__getbuffer__(struct __pyx_array_obj *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
@@ -3481,7 +3480,7 @@ static PyObject *__pyx_pf_4pynn_2nn_11LinearLayer_2__call__(struct __pyx_obj_4py
 static PyObject *__pyx_pf_4pynn_2nn_11LinearLayer_4parameters(struct __pyx_obj_4pynn_2nn_LinearLayer *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_4pynn_2nn_11LinearLayer_6__reduce_cython__(struct __pyx_obj_4pynn_2nn_LinearLayer *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_4pynn_2nn_11LinearLayer_8__setstate_cython__(struct __pyx_obj_4pynn_2nn_LinearLayer *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
-static int __pyx_pf_4pynn_2nn_3SGD___init__(struct __pyx_obj_4pynn_2nn_SGD *__pyx_v_self, float __pyx_v_alpha, PyObject *__pyx_v_parameters); /* proto */
+static int __pyx_pf_4pynn_2nn_3SGD___init__(struct __pyx_obj_4pynn_2nn_SGD *__pyx_v_self, double __pyx_v_alpha, PyObject *__pyx_v_parameters); /* proto */
 static PyObject *__pyx_pf_4pynn_2nn_3SGD_2step(struct __pyx_obj_4pynn_2nn_SGD *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_4pynn_2nn_3SGD_4__reduce_cython__(struct __pyx_obj_4pynn_2nn_SGD *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_4pynn_2nn_3SGD_6__setstate_cython__(struct __pyx_obj_4pynn_2nn_SGD *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
@@ -3778,16 +3777,16 @@ typedef struct {
   PyObject *__pyx_int_13693368;
   PyObject *__pyx_int_15502931;
   PyObject *__pyx_int_19265821;
-  PyObject *__pyx_int_102423093;
+  PyObject *__pyx_int_23741382;
+  PyObject *__pyx_int_95396278;
   PyObject *__pyx_int_112105877;
   PyObject *__pyx_int_114196129;
-  PyObject *__pyx_int_136689569;
   PyObject *__pyx_int_136983863;
   PyObject *__pyx_int_184977713;
-  PyObject *__pyx_int_200183839;
   PyObject *__pyx_int_222419149;
   PyObject *__pyx_int_228825662;
   PyObject *__pyx_int_238750788;
+  PyObject *__pyx_int_243914840;
   PyObject *__pyx_int_245884832;
   PyObject *__pyx_int_neg_1;
   PyObject *__pyx_slice__5;
@@ -4097,16 +4096,16 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_int_13693368);
   Py_CLEAR(clear_module_state->__pyx_int_15502931);
   Py_CLEAR(clear_module_state->__pyx_int_19265821);
-  Py_CLEAR(clear_module_state->__pyx_int_102423093);
+  Py_CLEAR(clear_module_state->__pyx_int_23741382);
+  Py_CLEAR(clear_module_state->__pyx_int_95396278);
   Py_CLEAR(clear_module_state->__pyx_int_112105877);
   Py_CLEAR(clear_module_state->__pyx_int_114196129);
-  Py_CLEAR(clear_module_state->__pyx_int_136689569);
   Py_CLEAR(clear_module_state->__pyx_int_136983863);
   Py_CLEAR(clear_module_state->__pyx_int_184977713);
-  Py_CLEAR(clear_module_state->__pyx_int_200183839);
   Py_CLEAR(clear_module_state->__pyx_int_222419149);
   Py_CLEAR(clear_module_state->__pyx_int_228825662);
   Py_CLEAR(clear_module_state->__pyx_int_238750788);
+  Py_CLEAR(clear_module_state->__pyx_int_243914840);
   Py_CLEAR(clear_module_state->__pyx_int_245884832);
   Py_CLEAR(clear_module_state->__pyx_int_neg_1);
   Py_CLEAR(clear_module_state->__pyx_slice__5);
@@ -4394,16 +4393,16 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_int_13693368);
   Py_VISIT(traverse_module_state->__pyx_int_15502931);
   Py_VISIT(traverse_module_state->__pyx_int_19265821);
-  Py_VISIT(traverse_module_state->__pyx_int_102423093);
+  Py_VISIT(traverse_module_state->__pyx_int_23741382);
+  Py_VISIT(traverse_module_state->__pyx_int_95396278);
   Py_VISIT(traverse_module_state->__pyx_int_112105877);
   Py_VISIT(traverse_module_state->__pyx_int_114196129);
-  Py_VISIT(traverse_module_state->__pyx_int_136689569);
   Py_VISIT(traverse_module_state->__pyx_int_136983863);
   Py_VISIT(traverse_module_state->__pyx_int_184977713);
-  Py_VISIT(traverse_module_state->__pyx_int_200183839);
   Py_VISIT(traverse_module_state->__pyx_int_222419149);
   Py_VISIT(traverse_module_state->__pyx_int_228825662);
   Py_VISIT(traverse_module_state->__pyx_int_238750788);
+  Py_VISIT(traverse_module_state->__pyx_int_243914840);
   Py_VISIT(traverse_module_state->__pyx_int_245884832);
   Py_VISIT(traverse_module_state->__pyx_int_neg_1);
   Py_VISIT(traverse_module_state->__pyx_slice__5);
@@ -4729,16 +4728,16 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_int_13693368 __pyx_mstate_global->__pyx_int_13693368
 #define __pyx_int_15502931 __pyx_mstate_global->__pyx_int_15502931
 #define __pyx_int_19265821 __pyx_mstate_global->__pyx_int_19265821
-#define __pyx_int_102423093 __pyx_mstate_global->__pyx_int_102423093
+#define __pyx_int_23741382 __pyx_mstate_global->__pyx_int_23741382
+#define __pyx_int_95396278 __pyx_mstate_global->__pyx_int_95396278
 #define __pyx_int_112105877 __pyx_mstate_global->__pyx_int_112105877
 #define __pyx_int_114196129 __pyx_mstate_global->__pyx_int_114196129
-#define __pyx_int_136689569 __pyx_mstate_global->__pyx_int_136689569
 #define __pyx_int_136983863 __pyx_mstate_global->__pyx_int_136983863
 #define __pyx_int_184977713 __pyx_mstate_global->__pyx_int_184977713
-#define __pyx_int_200183839 __pyx_mstate_global->__pyx_int_200183839
 #define __pyx_int_222419149 __pyx_mstate_global->__pyx_int_222419149
 #define __pyx_int_228825662 __pyx_mstate_global->__pyx_int_228825662
 #define __pyx_int_238750788 __pyx_mstate_global->__pyx_int_238750788
+#define __pyx_int_243914840 __pyx_mstate_global->__pyx_int_243914840
 #define __pyx_int_245884832 __pyx_mstate_global->__pyx_int_245884832
 #define __pyx_int_neg_1 __pyx_mstate_global->__pyx_int_neg_1
 #define __pyx_slice__5 __pyx_mstate_global->__pyx_slice__5
@@ -22324,7 +22323,7 @@ static PyObject *__pyx_pf_4pynn_2nn_11LinearLayer_8__setstate_cython__(struct __
 /* "pynn/nn.pyx":83
  *     """SGD """
  * 
- *     def __init__(self, *parameters, float alpha=0.001):             # <<<<<<<<<<<<<<
+ *     def __init__(self, *parameters, double alpha=0.001):             # <<<<<<<<<<<<<<
  *         """
  * 
  */
@@ -22336,7 +22335,7 @@ PyDoc_STRVAR(__pyx_doc_4pynn_2nn_3SGD___init__, "\345\210\235\345\247\213\345\21
 struct wrapperbase __pyx_wrapperbase_4pynn_2nn_3SGD___init__;
 #endif
 static int __pyx_pw_4pynn_2nn_3SGD_1__init__(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
-  float __pyx_v_alpha;
+  double __pyx_v_alpha;
   PyObject *__pyx_v_parameters = 0;
   CYTHON_UNUSED const Py_ssize_t __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues = __Pyx_KwValues_VARARGS(__pyx_args, __pyx_nargs);
@@ -22372,9 +22371,9 @@ static int __pyx_pw_4pynn_2nn_3SGD_1__init__(PyObject *__pyx_v_self, PyObject *_
     } else {
     }
     if (values[0]) {
-      __pyx_v_alpha = __pyx_PyFloat_AsFloat(values[0]); if (unlikely((__pyx_v_alpha == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 83, __pyx_L3_error)
+      __pyx_v_alpha = __pyx_PyFloat_AsDouble(values[0]); if (unlikely((__pyx_v_alpha == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 83, __pyx_L3_error)
     } else {
-      __pyx_v_alpha = ((float)0.001);
+      __pyx_v_alpha = ((double)0.001);
     }
   }
   goto __pyx_L4_argument_unpacking_done;
@@ -22394,7 +22393,7 @@ static int __pyx_pw_4pynn_2nn_3SGD_1__init__(PyObject *__pyx_v_self, PyObject *_
   return __pyx_r;
 }
 
-static int __pyx_pf_4pynn_2nn_3SGD___init__(struct __pyx_obj_4pynn_2nn_SGD *__pyx_v_self, float __pyx_v_alpha, PyObject *__pyx_v_parameters) {
+static int __pyx_pf_4pynn_2nn_3SGD___init__(struct __pyx_obj_4pynn_2nn_SGD *__pyx_v_self, double __pyx_v_alpha, PyObject *__pyx_v_parameters) {
   unsigned int __pyx_v_num;
   unsigned int __pyx_v_i;
   int __pyx_r;
@@ -22534,7 +22533,7 @@ static int __pyx_pf_4pynn_2nn_3SGD___init__(struct __pyx_obj_4pynn_2nn_SGD *__py
   /* "pynn/nn.pyx":83
  *     """SGD """
  * 
- *     def __init__(self, *parameters, float alpha=0.001):             # <<<<<<<<<<<<<<
+ *     def __init__(self, *parameters, double alpha=0.001):             # <<<<<<<<<<<<<<
  *         """
  * 
  */
@@ -22605,7 +22604,8 @@ static PyObject *__pyx_pf_4pynn_2nn_3SGD_2step(struct __pyx_obj_4pynn_2nn_SGD *_
   unsigned int __pyx_t_3;
   unsigned int __pyx_t_4;
   unsigned int __pyx_t_5;
-  PyObject *__pyx_t_6 = NULL;
+  struct __pyx_obj_4pynn_4core_GraphNode *__pyx_t_6 = NULL;
+  PyObject *__pyx_t_7 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -22645,7 +22645,7 @@ static PyObject *__pyx_pf_4pynn_2nn_3SGD_2step(struct __pyx_obj_4pynn_2nn_SGD *_
  *         for i in range(num):
  *             param = self._weights[i]             # <<<<<<<<<<<<<<
  *             grad = param._node._get_grad()
- *             param._node._tensor = \
+ *             param._node._tensor -= self._alpha * grad
  */
     if (unlikely(__pyx_v_self->__pyx_base._weights == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
@@ -22661,48 +22661,43 @@ static PyObject *__pyx_pf_4pynn_2nn_3SGD_2step(struct __pyx_obj_4pynn_2nn_SGD *_
  *         for i in range(num):
  *             param = self._weights[i]
  *             grad = param._node._get_grad()             # <<<<<<<<<<<<<<
- *             param._node._tensor = \
- *                 param._node._tensor - self._alpha * grad
+ *             param._node._tensor -= self._alpha * grad
+ *         num = len(self._bias)
  */
     __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_4pynn_4core_GraphNode *)__pyx_v_param->_node->__pyx_vtab)->_get_grad(__pyx_v_param->_node)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_XDECREF_SET(__pyx_v_grad, ((PyArrayObject *)__pyx_t_1));
     __pyx_t_1 = 0;
 
-    /* "pynn/nn.pyx":111
- *             grad = param._node._get_grad()
- *             param._node._tensor = \
- *                 param._node._tensor - self._alpha * grad             # <<<<<<<<<<<<<<
- *         num = len(self._bias)
- *         for i in range(num):
- */
-    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_alpha); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = PyNumber_Multiply(__pyx_t_1, ((PyObject *)__pyx_v_grad)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 111, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Subtract(((PyObject *)__pyx_v_param->_node->_tensor), __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 111, __pyx_L1_error)
-
     /* "pynn/nn.pyx":110
  *             param = self._weights[i]
  *             grad = param._node._get_grad()
- *             param._node._tensor = \             # <<<<<<<<<<<<<<
- *                 param._node._tensor - self._alpha * grad
+ *             param._node._tensor -= self._alpha * grad             # <<<<<<<<<<<<<<
  *         num = len(self._bias)
+ *         for i in range(num):
  */
+    __Pyx_INCREF((PyObject *)__pyx_v_param->_node);
+    __pyx_t_6 = __pyx_v_param->_node;
+    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_alpha); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_7 = PyNumber_Multiply(__pyx_t_1, ((PyObject *)__pyx_v_grad)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 110, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_1 = PyNumber_InPlaceSubtract(((PyObject *)__pyx_t_6->_tensor), __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 110, __pyx_L1_error)
     __Pyx_GIVEREF(__pyx_t_1);
-    __Pyx_GOTREF((PyObject *)__pyx_v_param->_node->_tensor);
-    __Pyx_DECREF((PyObject *)__pyx_v_param->_node->_tensor);
-    __pyx_v_param->_node->_tensor = ((PyArrayObject *)__pyx_t_1);
+    __Pyx_GOTREF((PyObject *)__pyx_t_6->_tensor);
+    __Pyx_DECREF((PyObject *)__pyx_t_6->_tensor);
+    __pyx_t_6->_tensor = ((PyArrayObject *)__pyx_t_1);
     __pyx_t_1 = 0;
+    __Pyx_DECREF((PyObject *)__pyx_t_6); __pyx_t_6 = 0;
   }
 
-  /* "pynn/nn.pyx":112
- *             param._node._tensor = \
- *                 param._node._tensor - self._alpha * grad
+  /* "pynn/nn.pyx":111
+ *             grad = param._node._get_grad()
+ *             param._node._tensor -= self._alpha * grad
  *         num = len(self._bias)             # <<<<<<<<<<<<<<
  *         for i in range(num):
  *             param = self._bias[i]
@@ -22711,14 +22706,14 @@ static PyObject *__pyx_pf_4pynn_2nn_3SGD_2step(struct __pyx_obj_4pynn_2nn_SGD *_
   __Pyx_INCREF(__pyx_t_1);
   if (unlikely(__pyx_t_1 == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 112, __pyx_L1_error)
+    __PYX_ERR(0, 111, __pyx_L1_error)
   }
-  __pyx_t_2 = PyList_GET_SIZE(__pyx_t_1); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = PyList_GET_SIZE(__pyx_t_1); if (unlikely(__pyx_t_2 == ((Py_ssize_t)-1))) __PYX_ERR(0, 111, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_num = __pyx_t_2;
 
-  /* "pynn/nn.pyx":113
- *                 param._node._tensor - self._alpha * grad
+  /* "pynn/nn.pyx":112
+ *             param._node._tensor -= self._alpha * grad
  *         num = len(self._bias)
  *         for i in range(num):             # <<<<<<<<<<<<<<
  *             param = self._bias[i]
@@ -22729,61 +22724,56 @@ static PyObject *__pyx_pf_4pynn_2nn_3SGD_2step(struct __pyx_obj_4pynn_2nn_SGD *_
   for (__pyx_t_5 = 0; __pyx_t_5 < __pyx_t_4; __pyx_t_5+=1) {
     __pyx_v_i = __pyx_t_5;
 
-    /* "pynn/nn.pyx":114
+    /* "pynn/nn.pyx":113
  *         num = len(self._bias)
  *         for i in range(num):
  *             param = self._bias[i]             # <<<<<<<<<<<<<<
  *             grad = param._node._get_grad()
- *             param._node._tensor = \
+ *             param._node._tensor -= self._alpha * grad
  */
     if (unlikely(__pyx_v_self->__pyx_base._bias == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 114, __pyx_L1_error)
+      __PYX_ERR(0, 113, __pyx_L1_error)
     }
-    if (!(likely(((PyList_GET_ITEM(__pyx_v_self->__pyx_base._bias, __pyx_v_i)) == Py_None) || likely(__Pyx_TypeTest(PyList_GET_ITEM(__pyx_v_self->__pyx_base._bias, __pyx_v_i), __pyx_ptype_4pynn_2nn_Parameters))))) __PYX_ERR(0, 114, __pyx_L1_error)
+    if (!(likely(((PyList_GET_ITEM(__pyx_v_self->__pyx_base._bias, __pyx_v_i)) == Py_None) || likely(__Pyx_TypeTest(PyList_GET_ITEM(__pyx_v_self->__pyx_base._bias, __pyx_v_i), __pyx_ptype_4pynn_2nn_Parameters))))) __PYX_ERR(0, 113, __pyx_L1_error)
     __pyx_t_1 = PyList_GET_ITEM(__pyx_v_self->__pyx_base._bias, __pyx_v_i);
     __Pyx_INCREF(__pyx_t_1);
     __Pyx_XDECREF_SET(__pyx_v_param, ((struct __pyx_obj_4pynn_2nn_Parameters *)__pyx_t_1));
     __pyx_t_1 = 0;
 
-    /* "pynn/nn.pyx":115
+    /* "pynn/nn.pyx":114
  *         for i in range(num):
  *             param = self._bias[i]
  *             grad = param._node._get_grad()             # <<<<<<<<<<<<<<
- *             param._node._tensor = \
- *                 param._node._tensor - self._alpha * grad
+ *             param._node._tensor -= self._alpha * grad
  */
-    __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_4pynn_4core_GraphNode *)__pyx_v_param->_node->__pyx_vtab)->_get_grad(__pyx_v_param->_node)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 115, __pyx_L1_error)
+    __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_4pynn_4core_GraphNode *)__pyx_v_param->_node->__pyx_vtab)->_get_grad(__pyx_v_param->_node)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 114, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_XDECREF_SET(__pyx_v_grad, ((PyArrayObject *)__pyx_t_1));
     __pyx_t_1 = 0;
 
-    /* "pynn/nn.pyx":117
- *             grad = param._node._get_grad()
- *             param._node._tensor = \
- *                 param._node._tensor - self._alpha * grad             # <<<<<<<<<<<<<<
- */
-    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_alpha); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = PyNumber_Multiply(__pyx_t_1, ((PyObject *)__pyx_v_grad)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 117, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyNumber_Subtract(((PyObject *)__pyx_v_param->_node->_tensor), __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 117, __pyx_L1_error)
-
-    /* "pynn/nn.pyx":116
+    /* "pynn/nn.pyx":115
  *             param = self._bias[i]
  *             grad = param._node._get_grad()
- *             param._node._tensor = \             # <<<<<<<<<<<<<<
- *                 param._node._tensor - self._alpha * grad
+ *             param._node._tensor -= self._alpha * grad             # <<<<<<<<<<<<<<
  */
+    __Pyx_INCREF((PyObject *)__pyx_v_param->_node);
+    __pyx_t_6 = __pyx_v_param->_node;
+    __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_alpha); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 115, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_7 = PyNumber_Multiply(__pyx_t_1, ((PyObject *)__pyx_v_grad)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 115, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_7);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_1 = PyNumber_InPlaceSubtract(((PyObject *)__pyx_t_6->_tensor), __pyx_t_7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 115, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
+    if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 115, __pyx_L1_error)
     __Pyx_GIVEREF(__pyx_t_1);
-    __Pyx_GOTREF((PyObject *)__pyx_v_param->_node->_tensor);
-    __Pyx_DECREF((PyObject *)__pyx_v_param->_node->_tensor);
-    __pyx_v_param->_node->_tensor = ((PyArrayObject *)__pyx_t_1);
+    __Pyx_GOTREF((PyObject *)__pyx_t_6->_tensor);
+    __Pyx_DECREF((PyObject *)__pyx_t_6->_tensor);
+    __pyx_t_6->_tensor = ((PyArrayObject *)__pyx_t_1);
     __pyx_t_1 = 0;
+    __Pyx_DECREF((PyObject *)__pyx_t_6); __pyx_t_6 = 0;
   }
 
   /* "pynn/nn.pyx":100
@@ -22799,7 +22789,8 @@ static PyObject *__pyx_pf_4pynn_2nn_3SGD_2step(struct __pyx_obj_4pynn_2nn_SGD *_
   goto __pyx_L0;
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF((PyObject *)__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_7);
   __Pyx_AddTraceback("pynn.nn.SGD.step", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -22857,9 +22848,9 @@ static PyObject *__pyx_pf_4pynn_2nn_3SGD_4__reduce_cython__(struct __pyx_obj_4py
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
+  int __pyx_t_3;
   int __pyx_t_4;
-  int __pyx_t_5;
+  PyObject *__pyx_t_5 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -22868,52 +22859,47 @@ static PyObject *__pyx_pf_4pynn_2nn_3SGD_4__reduce_cython__(struct __pyx_obj_4py
   /* "(tree fragment)":5
  *     cdef object _dict
  *     cdef bint use_setstate
- *     state = (self._alpha, self._bias, self._lambda, self._weights)             # <<<<<<<<<<<<<<
+ *     state = (self._alpha, self._bias, self._weights)             # <<<<<<<<<<<<<<
  *     _dict = getattr(self, '__dict__', None)
  *     if _dict is not None:
  */
   __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->_alpha); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_self->_lambda); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 5, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 5, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
-  PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
   __Pyx_INCREF(__pyx_v_self->__pyx_base._bias);
   __Pyx_GIVEREF(__pyx_v_self->__pyx_base._bias);
-  PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_v_self->__pyx_base._bias);
-  __Pyx_GIVEREF(__pyx_t_2);
-  PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_v_self->__pyx_base._bias);
   __Pyx_INCREF(__pyx_v_self->__pyx_base._weights);
   __Pyx_GIVEREF(__pyx_v_self->__pyx_base._weights);
-  PyTuple_SET_ITEM(__pyx_t_3, 3, __pyx_v_self->__pyx_base._weights);
+  PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_v_self->__pyx_base._weights);
   __pyx_t_1 = 0;
+  __pyx_v_state = ((PyObject*)__pyx_t_2);
   __pyx_t_2 = 0;
-  __pyx_v_state = ((PyObject*)__pyx_t_3);
-  __pyx_t_3 = 0;
 
   /* "(tree fragment)":6
  *     cdef bint use_setstate
- *     state = (self._alpha, self._bias, self._lambda, self._weights)
+ *     state = (self._alpha, self._bias, self._weights)
  *     _dict = getattr(self, '__dict__', None)             # <<<<<<<<<<<<<<
  *     if _dict is not None:
  *         state += (_dict,)
  */
-  __pyx_t_3 = __Pyx_GetAttr3(((PyObject *)__pyx_v_self), __pyx_n_s_dict, Py_None); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 6, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __pyx_v__dict = __pyx_t_3;
-  __pyx_t_3 = 0;
+  __pyx_t_2 = __Pyx_GetAttr3(((PyObject *)__pyx_v_self), __pyx_n_s_dict, Py_None); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 6, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_v__dict = __pyx_t_2;
+  __pyx_t_2 = 0;
 
   /* "(tree fragment)":7
- *     state = (self._alpha, self._bias, self._lambda, self._weights)
+ *     state = (self._alpha, self._bias, self._weights)
  *     _dict = getattr(self, '__dict__', None)
  *     if _dict is not None:             # <<<<<<<<<<<<<<
  *         state += (_dict,)
  *         use_setstate = True
  */
-  __pyx_t_4 = (__pyx_v__dict != Py_None);
-  if (__pyx_t_4) {
+  __pyx_t_3 = (__pyx_v__dict != Py_None);
+  if (__pyx_t_3) {
 
     /* "(tree fragment)":8
  *     _dict = getattr(self, '__dict__', None)
@@ -22922,16 +22908,16 @@ static PyObject *__pyx_pf_4pynn_2nn_3SGD_4__reduce_cython__(struct __pyx_obj_4py
  *         use_setstate = True
  *     else:
  */
-    __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 8, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 8, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
     __Pyx_INCREF(__pyx_v__dict);
     __Pyx_GIVEREF(__pyx_v__dict);
-    PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v__dict);
-    __pyx_t_2 = PyNumber_InPlaceAdd(__pyx_v_state, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 8, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF_SET(__pyx_v_state, ((PyObject*)__pyx_t_2));
-    __pyx_t_2 = 0;
+    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v__dict);
+    __pyx_t_1 = PyNumber_InPlaceAdd(__pyx_v_state, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 8, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __Pyx_DECREF_SET(__pyx_v_state, ((PyObject*)__pyx_t_1));
+    __pyx_t_1 = 0;
 
     /* "(tree fragment)":9
  *     if _dict is not None:
@@ -22943,7 +22929,7 @@ static PyObject *__pyx_pf_4pynn_2nn_3SGD_4__reduce_cython__(struct __pyx_obj_4py
     __pyx_v_use_setstate = 1;
 
     /* "(tree fragment)":7
- *     state = (self._alpha, self._bias, self._lambda, self._weights)
+ *     state = (self._alpha, self._bias, self._weights)
  *     _dict = getattr(self, '__dict__', None)
  *     if _dict is not None:             # <<<<<<<<<<<<<<
  *         state += (_dict,)
@@ -22957,19 +22943,19 @@ static PyObject *__pyx_pf_4pynn_2nn_3SGD_4__reduce_cython__(struct __pyx_obj_4py
  *     else:
  *         use_setstate = self._bias is not None or self._weights is not None             # <<<<<<<<<<<<<<
  *     if use_setstate:
- *         return __pyx_unpickle_SGD, (type(self), 0x61ada35, None), state
+ *         return __pyx_unpickle_SGD, (type(self), 0x16a43c6, None), state
  */
   /*else*/ {
-    __pyx_t_5 = (__pyx_v_self->__pyx_base._bias != ((PyObject*)Py_None));
-    if (!__pyx_t_5) {
+    __pyx_t_4 = (__pyx_v_self->__pyx_base._bias != ((PyObject*)Py_None));
+    if (!__pyx_t_4) {
     } else {
-      __pyx_t_4 = __pyx_t_5;
+      __pyx_t_3 = __pyx_t_4;
       goto __pyx_L4_bool_binop_done;
     }
-    __pyx_t_5 = (__pyx_v_self->__pyx_base._weights != ((PyObject*)Py_None));
-    __pyx_t_4 = __pyx_t_5;
+    __pyx_t_4 = (__pyx_v_self->__pyx_base._weights != ((PyObject*)Py_None));
+    __pyx_t_3 = __pyx_t_4;
     __pyx_L4_bool_binop_done:;
-    __pyx_v_use_setstate = __pyx_t_4;
+    __pyx_v_use_setstate = __pyx_t_3;
   }
   __pyx_L3:;
 
@@ -22977,7 +22963,7 @@ static PyObject *__pyx_pf_4pynn_2nn_3SGD_4__reduce_cython__(struct __pyx_obj_4py
  *     else:
  *         use_setstate = self._bias is not None or self._weights is not None
  *     if use_setstate:             # <<<<<<<<<<<<<<
- *         return __pyx_unpickle_SGD, (type(self), 0x61ada35, None), state
+ *         return __pyx_unpickle_SGD, (type(self), 0x16a43c6, None), state
  *     else:
  */
   if (__pyx_v_use_setstate) {
@@ -22985,80 +22971,80 @@ static PyObject *__pyx_pf_4pynn_2nn_3SGD_4__reduce_cython__(struct __pyx_obj_4py
     /* "(tree fragment)":13
  *         use_setstate = self._bias is not None or self._weights is not None
  *     if use_setstate:
- *         return __pyx_unpickle_SGD, (type(self), 0x61ada35, None), state             # <<<<<<<<<<<<<<
+ *         return __pyx_unpickle_SGD, (type(self), 0x16a43c6, None), state             # <<<<<<<<<<<<<<
  *     else:
- *         return __pyx_unpickle_SGD, (type(self), 0x61ada35, state)
+ *         return __pyx_unpickle_SGD, (type(self), 0x16a43c6, state)
  */
     __Pyx_XDECREF(__pyx_r);
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_pyx_unpickle_SGD); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 13, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_pyx_unpickle_SGD); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 13, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 13, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 13, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
     __Pyx_INCREF(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
     __Pyx_GIVEREF(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
-    PyTuple_SET_ITEM(__pyx_t_3, 0, ((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
-    __Pyx_INCREF(__pyx_int_102423093);
-    __Pyx_GIVEREF(__pyx_int_102423093);
-    PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_int_102423093);
+    PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
+    __Pyx_INCREF(__pyx_int_23741382);
+    __Pyx_GIVEREF(__pyx_int_23741382);
+    PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_int_23741382);
     __Pyx_INCREF(Py_None);
     __Pyx_GIVEREF(Py_None);
-    PyTuple_SET_ITEM(__pyx_t_3, 2, Py_None);
-    __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 13, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
+    PyTuple_SET_ITEM(__pyx_t_2, 2, Py_None);
+    __pyx_t_5 = PyTuple_New(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 13, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_GIVEREF(__pyx_t_1);
+    PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_1);
     __Pyx_GIVEREF(__pyx_t_2);
-    PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
-    __Pyx_GIVEREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_3);
+    PyTuple_SET_ITEM(__pyx_t_5, 1, __pyx_t_2);
     __Pyx_INCREF(__pyx_v_state);
     __Pyx_GIVEREF(__pyx_v_state);
-    PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_v_state);
-    __pyx_t_2 = 0;
-    __pyx_t_3 = 0;
-    __pyx_r = __pyx_t_1;
+    PyTuple_SET_ITEM(__pyx_t_5, 2, __pyx_v_state);
     __pyx_t_1 = 0;
+    __pyx_t_2 = 0;
+    __pyx_r = __pyx_t_5;
+    __pyx_t_5 = 0;
     goto __pyx_L0;
 
     /* "(tree fragment)":12
  *     else:
  *         use_setstate = self._bias is not None or self._weights is not None
  *     if use_setstate:             # <<<<<<<<<<<<<<
- *         return __pyx_unpickle_SGD, (type(self), 0x61ada35, None), state
+ *         return __pyx_unpickle_SGD, (type(self), 0x16a43c6, None), state
  *     else:
  */
   }
 
   /* "(tree fragment)":15
- *         return __pyx_unpickle_SGD, (type(self), 0x61ada35, None), state
+ *         return __pyx_unpickle_SGD, (type(self), 0x16a43c6, None), state
  *     else:
- *         return __pyx_unpickle_SGD, (type(self), 0x61ada35, state)             # <<<<<<<<<<<<<<
+ *         return __pyx_unpickle_SGD, (type(self), 0x16a43c6, state)             # <<<<<<<<<<<<<<
  * def __setstate_cython__(self, __pyx_state):
  *     __pyx_unpickle_SGD__set_state(self, __pyx_state)
  */
   /*else*/ {
     __Pyx_XDECREF(__pyx_r);
-    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_pyx_unpickle_SGD); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 15, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(1, 15, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_pyx_unpickle_SGD); if (unlikely(!__pyx_t_5)) __PYX_ERR(1, 15, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 15, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
     __Pyx_INCREF(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
     __Pyx_GIVEREF(((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
-    PyTuple_SET_ITEM(__pyx_t_3, 0, ((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
-    __Pyx_INCREF(__pyx_int_102423093);
-    __Pyx_GIVEREF(__pyx_int_102423093);
-    PyTuple_SET_ITEM(__pyx_t_3, 1, __pyx_int_102423093);
+    PyTuple_SET_ITEM(__pyx_t_2, 0, ((PyObject *)Py_TYPE(((PyObject *)__pyx_v_self))));
+    __Pyx_INCREF(__pyx_int_23741382);
+    __Pyx_GIVEREF(__pyx_int_23741382);
+    PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_int_23741382);
     __Pyx_INCREF(__pyx_v_state);
     __Pyx_GIVEREF(__pyx_v_state);
-    PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_v_state);
-    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 15, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_GIVEREF(__pyx_t_1);
-    PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_1);
-    __Pyx_GIVEREF(__pyx_t_3);
-    PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_t_3);
-    __pyx_t_1 = 0;
-    __pyx_t_3 = 0;
-    __pyx_r = __pyx_t_2;
+    PyTuple_SET_ITEM(__pyx_t_2, 2, __pyx_v_state);
+    __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 15, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_GIVEREF(__pyx_t_5);
+    PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_5);
+    __Pyx_GIVEREF(__pyx_t_2);
+    PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_2);
+    __pyx_t_5 = 0;
     __pyx_t_2 = 0;
+    __pyx_r = __pyx_t_1;
+    __pyx_t_1 = 0;
     goto __pyx_L0;
   }
 
@@ -23072,7 +23058,7 @@ static PyObject *__pyx_pf_4pynn_2nn_3SGD_4__reduce_cython__(struct __pyx_obj_4py
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_5);
   __Pyx_AddTraceback("pynn.nn.SGD.__reduce_cython__", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -23085,7 +23071,7 @@ static PyObject *__pyx_pf_4pynn_2nn_3SGD_4__reduce_cython__(struct __pyx_obj_4py
 
 /* "(tree fragment)":16
  *     else:
- *         return __pyx_unpickle_SGD, (type(self), 0x61ada35, state)
+ *         return __pyx_unpickle_SGD, (type(self), 0x16a43c6, state)
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_SGD__set_state(self, __pyx_state)
  */
@@ -23171,7 +23157,7 @@ static PyObject *__pyx_pf_4pynn_2nn_3SGD_6__setstate_cython__(struct __pyx_obj_4
   __Pyx_RefNannySetupContext("__setstate_cython__", 0);
 
   /* "(tree fragment)":17
- *         return __pyx_unpickle_SGD, (type(self), 0x61ada35, state)
+ *         return __pyx_unpickle_SGD, (type(self), 0x16a43c6, state)
  * def __setstate_cython__(self, __pyx_state):
  *     __pyx_unpickle_SGD__set_state(self, __pyx_state)             # <<<<<<<<<<<<<<
  */
@@ -23182,7 +23168,7 @@ static PyObject *__pyx_pf_4pynn_2nn_3SGD_6__setstate_cython__(struct __pyx_obj_4
 
   /* "(tree fragment)":16
  *     else:
- *         return __pyx_unpickle_SGD, (type(self), 0x61ada35, state)
+ *         return __pyx_unpickle_SGD, (type(self), 0x16a43c6, state)
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_SGD__set_state(self, __pyx_state)
  */
@@ -24927,9 +24913,9 @@ static PyObject *__pyx_pf_4pynn_2nn_8__pyx_unpickle_SGD(CYTHON_UNUSED PyObject *
   /* "(tree fragment)":4
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
- *     if __pyx_checksum not in (0x61ada35, 0xbee901f, 0x825b7a1):             # <<<<<<<<<<<<<<
+ *     if __pyx_checksum not in (0x16a43c6, 0xe89d858, 0x5afa1b6):             # <<<<<<<<<<<<<<
  *         from pickle import PickleError as __pyx_PickleError
- *         raise __pyx_PickleError, "Incompatible checksums (0x%x vs (0x61ada35, 0xbee901f, 0x825b7a1) = (_alpha, _bias, _lambda, _weights))" % __pyx_checksum
+ *         raise __pyx_PickleError, "Incompatible checksums (0x%x vs (0x16a43c6, 0xe89d858, 0x5afa1b6) = (_alpha, _bias, _weights))" % __pyx_checksum
  */
   __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v___pyx_checksum); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -24939,9 +24925,9 @@ static PyObject *__pyx_pf_4pynn_2nn_8__pyx_unpickle_SGD(CYTHON_UNUSED PyObject *
 
     /* "(tree fragment)":5
  *     cdef object __pyx_result
- *     if __pyx_checksum not in (0x61ada35, 0xbee901f, 0x825b7a1):
+ *     if __pyx_checksum not in (0x16a43c6, 0xe89d858, 0x5afa1b6):
  *         from pickle import PickleError as __pyx_PickleError             # <<<<<<<<<<<<<<
- *         raise __pyx_PickleError, "Incompatible checksums (0x%x vs (0x61ada35, 0xbee901f, 0x825b7a1) = (_alpha, _bias, _lambda, _weights))" % __pyx_checksum
+ *         raise __pyx_PickleError, "Incompatible checksums (0x%x vs (0x16a43c6, 0xe89d858, 0x5afa1b6) = (_alpha, _bias, _weights))" % __pyx_checksum
  *     __pyx_result = SGD.__new__(__pyx_type)
  */
     __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 5, __pyx_L1_error)
@@ -24960,9 +24946,9 @@ static PyObject *__pyx_pf_4pynn_2nn_8__pyx_unpickle_SGD(CYTHON_UNUSED PyObject *
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
     /* "(tree fragment)":6
- *     if __pyx_checksum not in (0x61ada35, 0xbee901f, 0x825b7a1):
+ *     if __pyx_checksum not in (0x16a43c6, 0xe89d858, 0x5afa1b6):
  *         from pickle import PickleError as __pyx_PickleError
- *         raise __pyx_PickleError, "Incompatible checksums (0x%x vs (0x61ada35, 0xbee901f, 0x825b7a1) = (_alpha, _bias, _lambda, _weights))" % __pyx_checksum             # <<<<<<<<<<<<<<
+ *         raise __pyx_PickleError, "Incompatible checksums (0x%x vs (0x16a43c6, 0xe89d858, 0x5afa1b6) = (_alpha, _bias, _weights))" % __pyx_checksum             # <<<<<<<<<<<<<<
  *     __pyx_result = SGD.__new__(__pyx_type)
  *     if __pyx_state is not None:
  */
@@ -24978,15 +24964,15 @@ static PyObject *__pyx_pf_4pynn_2nn_8__pyx_unpickle_SGD(CYTHON_UNUSED PyObject *
     /* "(tree fragment)":4
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
- *     if __pyx_checksum not in (0x61ada35, 0xbee901f, 0x825b7a1):             # <<<<<<<<<<<<<<
+ *     if __pyx_checksum not in (0x16a43c6, 0xe89d858, 0x5afa1b6):             # <<<<<<<<<<<<<<
  *         from pickle import PickleError as __pyx_PickleError
- *         raise __pyx_PickleError, "Incompatible checksums (0x%x vs (0x61ada35, 0xbee901f, 0x825b7a1) = (_alpha, _bias, _lambda, _weights))" % __pyx_checksum
+ *         raise __pyx_PickleError, "Incompatible checksums (0x%x vs (0x16a43c6, 0xe89d858, 0x5afa1b6) = (_alpha, _bias, _weights))" % __pyx_checksum
  */
   }
 
   /* "(tree fragment)":7
  *         from pickle import PickleError as __pyx_PickleError
- *         raise __pyx_PickleError, "Incompatible checksums (0x%x vs (0x61ada35, 0xbee901f, 0x825b7a1) = (_alpha, _bias, _lambda, _weights))" % __pyx_checksum
+ *         raise __pyx_PickleError, "Incompatible checksums (0x%x vs (0x16a43c6, 0xe89d858, 0x5afa1b6) = (_alpha, _bias, _weights))" % __pyx_checksum
  *     __pyx_result = SGD.__new__(__pyx_type)             # <<<<<<<<<<<<<<
  *     if __pyx_state is not None:
  *         __pyx_unpickle_SGD__set_state(<SGD> __pyx_result, __pyx_state)
@@ -25017,7 +25003,7 @@ static PyObject *__pyx_pf_4pynn_2nn_8__pyx_unpickle_SGD(CYTHON_UNUSED PyObject *
   __pyx_t_1 = 0;
 
   /* "(tree fragment)":8
- *         raise __pyx_PickleError, "Incompatible checksums (0x%x vs (0x61ada35, 0xbee901f, 0x825b7a1) = (_alpha, _bias, _lambda, _weights))" % __pyx_checksum
+ *         raise __pyx_PickleError, "Incompatible checksums (0x%x vs (0x16a43c6, 0xe89d858, 0x5afa1b6) = (_alpha, _bias, _weights))" % __pyx_checksum
  *     __pyx_result = SGD.__new__(__pyx_type)
  *     if __pyx_state is not None:             # <<<<<<<<<<<<<<
  *         __pyx_unpickle_SGD__set_state(<SGD> __pyx_result, __pyx_state)
@@ -25039,7 +25025,7 @@ static PyObject *__pyx_pf_4pynn_2nn_8__pyx_unpickle_SGD(CYTHON_UNUSED PyObject *
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
     /* "(tree fragment)":8
- *         raise __pyx_PickleError, "Incompatible checksums (0x%x vs (0x61ada35, 0xbee901f, 0x825b7a1) = (_alpha, _bias, _lambda, _weights))" % __pyx_checksum
+ *         raise __pyx_PickleError, "Incompatible checksums (0x%x vs (0x16a43c6, 0xe89d858, 0x5afa1b6) = (_alpha, _bias, _weights))" % __pyx_checksum
  *     __pyx_result = SGD.__new__(__pyx_type)
  *     if __pyx_state is not None:             # <<<<<<<<<<<<<<
  *         __pyx_unpickle_SGD__set_state(<SGD> __pyx_result, __pyx_state)
@@ -25052,7 +25038,7 @@ static PyObject *__pyx_pf_4pynn_2nn_8__pyx_unpickle_SGD(CYTHON_UNUSED PyObject *
  *         __pyx_unpickle_SGD__set_state(<SGD> __pyx_result, __pyx_state)
  *     return __pyx_result             # <<<<<<<<<<<<<<
  * cdef __pyx_unpickle_SGD__set_state(SGD __pyx_result, tuple __pyx_state):
- *     __pyx_result._alpha = __pyx_state[0]; __pyx_result._bias = __pyx_state[1]; __pyx_result._lambda = __pyx_state[2]; __pyx_result._weights = __pyx_state[3]
+ *     __pyx_result._alpha = __pyx_state[0]; __pyx_result._bias = __pyx_state[1]; __pyx_result._weights = __pyx_state[2]
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v___pyx_result);
@@ -25084,14 +25070,14 @@ static PyObject *__pyx_pf_4pynn_2nn_8__pyx_unpickle_SGD(CYTHON_UNUSED PyObject *
  *         __pyx_unpickle_SGD__set_state(<SGD> __pyx_result, __pyx_state)
  *     return __pyx_result
  * cdef __pyx_unpickle_SGD__set_state(SGD __pyx_result, tuple __pyx_state):             # <<<<<<<<<<<<<<
- *     __pyx_result._alpha = __pyx_state[0]; __pyx_result._bias = __pyx_state[1]; __pyx_result._lambda = __pyx_state[2]; __pyx_result._weights = __pyx_state[3]
- *     if len(__pyx_state) > 4 and hasattr(__pyx_result, '__dict__'):
+ *     __pyx_result._alpha = __pyx_state[0]; __pyx_result._bias = __pyx_state[1]; __pyx_result._weights = __pyx_state[2]
+ *     if len(__pyx_state) > 3 and hasattr(__pyx_result, '__dict__'):
  */
 
 static PyObject *__pyx_f_4pynn_2nn___pyx_unpickle_SGD__set_state(struct __pyx_obj_4pynn_2nn_SGD *__pyx_v___pyx_result, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  float __pyx_t_1;
+  double __pyx_t_1;
   PyObject *__pyx_t_2 = NULL;
   int __pyx_t_3;
   Py_ssize_t __pyx_t_4;
@@ -25107,15 +25093,15 @@ static PyObject *__pyx_f_4pynn_2nn___pyx_unpickle_SGD__set_state(struct __pyx_ob
   /* "(tree fragment)":12
  *     return __pyx_result
  * cdef __pyx_unpickle_SGD__set_state(SGD __pyx_result, tuple __pyx_state):
- *     __pyx_result._alpha = __pyx_state[0]; __pyx_result._bias = __pyx_state[1]; __pyx_result._lambda = __pyx_state[2]; __pyx_result._weights = __pyx_state[3]             # <<<<<<<<<<<<<<
- *     if len(__pyx_state) > 4 and hasattr(__pyx_result, '__dict__'):
- *         __pyx_result.__dict__.update(__pyx_state[4])
+ *     __pyx_result._alpha = __pyx_state[0]; __pyx_result._bias = __pyx_state[1]; __pyx_result._weights = __pyx_state[2]             # <<<<<<<<<<<<<<
+ *     if len(__pyx_state) > 3 and hasattr(__pyx_result, '__dict__'):
+ *         __pyx_result.__dict__.update(__pyx_state[3])
  */
   if (unlikely(__pyx_v___pyx_state == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
     __PYX_ERR(1, 12, __pyx_L1_error)
   }
-  __pyx_t_1 = __pyx_PyFloat_AsFloat(PyTuple_GET_ITEM(__pyx_v___pyx_state, 0)); if (unlikely((__pyx_t_1 == (float)-1) && PyErr_Occurred())) __PYX_ERR(1, 12, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(PyTuple_GET_ITEM(__pyx_v___pyx_state, 0)); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(1, 12, __pyx_L1_error)
   __pyx_v___pyx_result->_alpha = __pyx_t_1;
   if (unlikely(__pyx_v___pyx_state == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
@@ -25133,14 +25119,8 @@ static PyObject *__pyx_f_4pynn_2nn___pyx_unpickle_SGD__set_state(struct __pyx_ob
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
     __PYX_ERR(1, 12, __pyx_L1_error)
   }
-  __pyx_t_1 = __pyx_PyFloat_AsFloat(PyTuple_GET_ITEM(__pyx_v___pyx_state, 2)); if (unlikely((__pyx_t_1 == (float)-1) && PyErr_Occurred())) __PYX_ERR(1, 12, __pyx_L1_error)
-  __pyx_v___pyx_result->_lambda = __pyx_t_1;
-  if (unlikely(__pyx_v___pyx_state == Py_None)) {
-    PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-    __PYX_ERR(1, 12, __pyx_L1_error)
-  }
-  if (!(likely(PyList_CheckExact(PyTuple_GET_ITEM(__pyx_v___pyx_state, 3)))||((PyTuple_GET_ITEM(__pyx_v___pyx_state, 3)) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", PyTuple_GET_ITEM(__pyx_v___pyx_state, 3)))) __PYX_ERR(1, 12, __pyx_L1_error)
-  __pyx_t_2 = PyTuple_GET_ITEM(__pyx_v___pyx_state, 3);
+  if (!(likely(PyList_CheckExact(PyTuple_GET_ITEM(__pyx_v___pyx_state, 2)))||((PyTuple_GET_ITEM(__pyx_v___pyx_state, 2)) == Py_None) || __Pyx_RaiseUnexpectedTypeError("list", PyTuple_GET_ITEM(__pyx_v___pyx_state, 2)))) __PYX_ERR(1, 12, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_GET_ITEM(__pyx_v___pyx_state, 2);
   __Pyx_INCREF(__pyx_t_2);
   __Pyx_GIVEREF(__pyx_t_2);
   __Pyx_GOTREF(__pyx_v___pyx_result->__pyx_base._weights);
@@ -25150,16 +25130,16 @@ static PyObject *__pyx_f_4pynn_2nn___pyx_unpickle_SGD__set_state(struct __pyx_ob
 
   /* "(tree fragment)":13
  * cdef __pyx_unpickle_SGD__set_state(SGD __pyx_result, tuple __pyx_state):
- *     __pyx_result._alpha = __pyx_state[0]; __pyx_result._bias = __pyx_state[1]; __pyx_result._lambda = __pyx_state[2]; __pyx_result._weights = __pyx_state[3]
- *     if len(__pyx_state) > 4 and hasattr(__pyx_result, '__dict__'):             # <<<<<<<<<<<<<<
- *         __pyx_result.__dict__.update(__pyx_state[4])
+ *     __pyx_result._alpha = __pyx_state[0]; __pyx_result._bias = __pyx_state[1]; __pyx_result._weights = __pyx_state[2]
+ *     if len(__pyx_state) > 3 and hasattr(__pyx_result, '__dict__'):             # <<<<<<<<<<<<<<
+ *         __pyx_result.__dict__.update(__pyx_state[3])
  */
   if (unlikely(__pyx_v___pyx_state == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
     __PYX_ERR(1, 13, __pyx_L1_error)
   }
   __pyx_t_4 = PyTuple_GET_SIZE(__pyx_v___pyx_state); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(1, 13, __pyx_L1_error)
-  __pyx_t_5 = (__pyx_t_4 > 4);
+  __pyx_t_5 = (__pyx_t_4 > 3);
   if (__pyx_t_5) {
   } else {
     __pyx_t_3 = __pyx_t_5;
@@ -25171,9 +25151,9 @@ static PyObject *__pyx_f_4pynn_2nn___pyx_unpickle_SGD__set_state(struct __pyx_ob
   if (__pyx_t_3) {
 
     /* "(tree fragment)":14
- *     __pyx_result._alpha = __pyx_state[0]; __pyx_result._bias = __pyx_state[1]; __pyx_result._lambda = __pyx_state[2]; __pyx_result._weights = __pyx_state[3]
- *     if len(__pyx_state) > 4 and hasattr(__pyx_result, '__dict__'):
- *         __pyx_result.__dict__.update(__pyx_state[4])             # <<<<<<<<<<<<<<
+ *     __pyx_result._alpha = __pyx_state[0]; __pyx_result._bias = __pyx_state[1]; __pyx_result._weights = __pyx_state[2]
+ *     if len(__pyx_state) > 3 and hasattr(__pyx_result, '__dict__'):
+ *         __pyx_result.__dict__.update(__pyx_state[3])             # <<<<<<<<<<<<<<
  */
     __pyx_t_6 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v___pyx_result), __pyx_n_s_dict); if (unlikely(!__pyx_t_6)) __PYX_ERR(1, 14, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
@@ -25197,7 +25177,7 @@ static PyObject *__pyx_f_4pynn_2nn___pyx_unpickle_SGD__set_state(struct __pyx_ob
       }
     }
     {
-      PyObject *__pyx_callargs[2] = {__pyx_t_6, PyTuple_GET_ITEM(__pyx_v___pyx_state, 4)};
+      PyObject *__pyx_callargs[2] = {__pyx_t_6, PyTuple_GET_ITEM(__pyx_v___pyx_state, 3)};
       __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_7, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
       if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 14, __pyx_L1_error)
@@ -25208,9 +25188,9 @@ static PyObject *__pyx_f_4pynn_2nn___pyx_unpickle_SGD__set_state(struct __pyx_ob
 
     /* "(tree fragment)":13
  * cdef __pyx_unpickle_SGD__set_state(SGD __pyx_result, tuple __pyx_state):
- *     __pyx_result._alpha = __pyx_state[0]; __pyx_result._bias = __pyx_state[1]; __pyx_result._lambda = __pyx_state[2]; __pyx_result._weights = __pyx_state[3]
- *     if len(__pyx_state) > 4 and hasattr(__pyx_result, '__dict__'):             # <<<<<<<<<<<<<<
- *         __pyx_result.__dict__.update(__pyx_state[4])
+ *     __pyx_result._alpha = __pyx_state[0]; __pyx_result._bias = __pyx_state[1]; __pyx_result._weights = __pyx_state[2]
+ *     if len(__pyx_state) > 3 and hasattr(__pyx_result, '__dict__'):             # <<<<<<<<<<<<<<
+ *         __pyx_result.__dict__.update(__pyx_state[3])
  */
   }
 
@@ -25218,8 +25198,8 @@ static PyObject *__pyx_f_4pynn_2nn___pyx_unpickle_SGD__set_state(struct __pyx_ob
  *         __pyx_unpickle_SGD__set_state(<SGD> __pyx_result, __pyx_state)
  *     return __pyx_result
  * cdef __pyx_unpickle_SGD__set_state(SGD __pyx_result, tuple __pyx_state):             # <<<<<<<<<<<<<<
- *     __pyx_result._alpha = __pyx_state[0]; __pyx_result._bias = __pyx_state[1]; __pyx_result._lambda = __pyx_state[2]; __pyx_result._weights = __pyx_state[3]
- *     if len(__pyx_state) > 4 and hasattr(__pyx_result, '__dict__'):
+ *     __pyx_result._alpha = __pyx_state[0]; __pyx_result._bias = __pyx_state[1]; __pyx_result._weights = __pyx_state[2]
+ *     if len(__pyx_state) > 3 and hasattr(__pyx_result, '__dict__'):
  */
 
   /* function exit code */
@@ -27377,7 +27357,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__19 = PyTuple_Pack(3, __pyx_int_15502931, __pyx_int_10074835, __pyx_int_13693368); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(1, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__19);
   __Pyx_GIVEREF(__pyx_tuple__19);
-  __pyx_tuple__20 = PyTuple_Pack(3, __pyx_int_102423093, __pyx_int_200183839, __pyx_int_136689569); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(1, 4, __pyx_L1_error)
+  __pyx_tuple__20 = PyTuple_Pack(3, __pyx_int_23741382, __pyx_int_243914840, __pyx_int_95396278); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(1, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__20);
   __Pyx_GIVEREF(__pyx_tuple__20);
 
@@ -27584,7 +27564,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 
   /* "(tree fragment)":16
  *     else:
- *         return __pyx_unpickle_SGD, (type(self), 0x61ada35, state)
+ *         return __pyx_unpickle_SGD, (type(self), 0x16a43c6, state)
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_SGD__set_state(self, __pyx_state)
  */
@@ -27617,16 +27597,16 @@ static CYTHON_SMALL_CODE int __Pyx_InitConstants(void) {
   __pyx_int_13693368 = PyInt_FromLong(13693368L); if (unlikely(!__pyx_int_13693368)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_15502931 = PyInt_FromLong(15502931L); if (unlikely(!__pyx_int_15502931)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_19265821 = PyInt_FromLong(19265821L); if (unlikely(!__pyx_int_19265821)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_int_102423093 = PyInt_FromLong(102423093L); if (unlikely(!__pyx_int_102423093)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_int_23741382 = PyInt_FromLong(23741382L); if (unlikely(!__pyx_int_23741382)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_int_95396278 = PyInt_FromLong(95396278L); if (unlikely(!__pyx_int_95396278)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_112105877 = PyInt_FromLong(112105877L); if (unlikely(!__pyx_int_112105877)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_114196129 = PyInt_FromLong(114196129L); if (unlikely(!__pyx_int_114196129)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_int_136689569 = PyInt_FromLong(136689569L); if (unlikely(!__pyx_int_136689569)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_136983863 = PyInt_FromLong(136983863L); if (unlikely(!__pyx_int_136983863)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_184977713 = PyInt_FromLong(184977713L); if (unlikely(!__pyx_int_184977713)) __PYX_ERR(0, 1, __pyx_L1_error)
-  __pyx_int_200183839 = PyInt_FromLong(200183839L); if (unlikely(!__pyx_int_200183839)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_222419149 = PyInt_FromLong(222419149L); if (unlikely(!__pyx_int_222419149)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_228825662 = PyInt_FromLong(228825662L); if (unlikely(!__pyx_int_228825662)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_238750788 = PyInt_FromLong(238750788L); if (unlikely(!__pyx_int_238750788)) __PYX_ERR(0, 1, __pyx_L1_error)
+  __pyx_int_243914840 = PyInt_FromLong(243914840L); if (unlikely(!__pyx_int_243914840)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_245884832 = PyInt_FromLong(245884832L); if (unlikely(!__pyx_int_245884832)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_neg_1 = PyInt_FromLong(-1); if (unlikely(!__pyx_int_neg_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   return 0;
@@ -29119,7 +29099,7 @@ if (!__Pyx_RefNanny) {
 
   /* "(tree fragment)":16
  *     else:
- *         return __pyx_unpickle_SGD, (type(self), 0x61ada35, state)
+ *         return __pyx_unpickle_SGD, (type(self), 0x16a43c6, state)
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_SGD__set_state(self, __pyx_state)
  */

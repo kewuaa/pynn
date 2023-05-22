@@ -20812,7 +20812,7 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_4__repr__(struct __pyx_obj_4pyn
 /* "pynn/core.pyx":119
  *         ))
  * 
- *     def __getbuffer__(GraphNode self, Py_buffer* buffer, int flags):             # <<<<<<<<<<<<<<
+ *     def __getbuffer__(self, Py_buffer* buffer, int flags):             # <<<<<<<<<<<<<<
  *         """
  * 
  */
@@ -20981,7 +20981,7 @@ static int __pyx_pf_4pynn_4core_9GraphNode_6__getbuffer__(struct __pyx_obj_4pynn
   /* "pynn/core.pyx":119
  *         ))
  * 
- *     def __getbuffer__(GraphNode self, Py_buffer* buffer, int flags):             # <<<<<<<<<<<<<<
+ *     def __getbuffer__(self, Py_buffer* buffer, int flags):             # <<<<<<<<<<<<<<
  *         """
  * 
  */
@@ -25389,7 +25389,7 @@ static int __pyx_f_4pynn_4core_9GraphNode__backward(struct __pyx_obj_4pynn_4core
  *                     f'({self.shape[0]}, {self.shape[1]}) '
  *                     f'and ({grad.shape[0]}, {grad.shape[1]})'             # <<<<<<<<<<<<<<
  *                 )
- *                 return 1
+ *             self._grad += grad
  */
       __pyx_t_7 = __pyx_f_5numpy_7ndarray_5shape_shape(__pyx_v_grad); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 421, __pyx_L1_error)
       __pyx_t_5 = PyInt_FromSsize_t((__pyx_t_7[0])); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 421, __pyx_L1_error)
@@ -25456,16 +25456,16 @@ static int __pyx_f_4pynn_4core_9GraphNode__backward(struct __pyx_obj_4pynn_4core
  */
     }
 
-    /* "pynn/core.pyx":424
+    /* "pynn/core.pyx":423
+ *                     f'and ({grad.shape[0]}, {grad.shape[1]})'
  *                 )
- *                 return 1
  *             self._grad += grad             # <<<<<<<<<<<<<<
  *         else:
  *             if self._subnode_l.requires_grad:
  */
-    __pyx_t_2 = PyNumber_InPlaceAdd(((PyObject *)__pyx_v_self->_grad), ((PyObject *)__pyx_v_grad)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 424, __pyx_L1_error)
+    __pyx_t_2 = PyNumber_InPlaceAdd(((PyObject *)__pyx_v_self->_grad), ((PyObject *)__pyx_v_grad)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 423, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 424, __pyx_L1_error)
+    if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 423, __pyx_L1_error)
     __Pyx_GIVEREF(__pyx_t_2);
     __Pyx_GOTREF((PyObject *)__pyx_v_self->_grad);
     __Pyx_DECREF((PyObject *)__pyx_v_self->_grad);
@@ -25482,7 +25482,7 @@ static int __pyx_f_4pynn_4core_9GraphNode__backward(struct __pyx_obj_4pynn_4core
     goto __pyx_L3;
   }
 
-  /* "pynn/core.pyx":426
+  /* "pynn/core.pyx":425
  *             self._grad += grad
  *         else:
  *             if self._subnode_l.requires_grad:             # <<<<<<<<<<<<<<
@@ -25492,7 +25492,7 @@ static int __pyx_f_4pynn_4core_9GraphNode__backward(struct __pyx_obj_4pynn_4core
   /*else*/ {
     if (__pyx_v_self->_subnode_l->requires_grad) {
 
-      /* "pynn/core.pyx":428
+      /* "pynn/core.pyx":427
  *             if self._subnode_l.requires_grad:
  *                 _grad = self._gradfunc(
  *                     grad, self._subnode_l,             # <<<<<<<<<<<<<<
@@ -25502,7 +25502,7 @@ static int __pyx_f_4pynn_4core_9GraphNode__backward(struct __pyx_obj_4pynn_4core
       __pyx_t_2 = ((PyObject *)__pyx_v_self->_subnode_l);
       __Pyx_INCREF(__pyx_t_2);
 
-      /* "pynn/core.pyx":429
+      /* "pynn/core.pyx":428
  *                 _grad = self._gradfunc(
  *                     grad, self._subnode_l,
  *                     self._subnode_r, 0             # <<<<<<<<<<<<<<
@@ -25512,21 +25512,21 @@ static int __pyx_f_4pynn_4core_9GraphNode__backward(struct __pyx_obj_4pynn_4core
       __pyx_t_5 = ((PyObject *)__pyx_v_self->_subnode_r);
       __Pyx_INCREF(__pyx_t_5);
 
-      /* "pynn/core.pyx":427
+      /* "pynn/core.pyx":426
  *         else:
  *             if self._subnode_l.requires_grad:
  *                 _grad = self._gradfunc(             # <<<<<<<<<<<<<<
  *                     grad, self._subnode_l,
  *                     self._subnode_r, 0
  */
-      __pyx_t_6 = ((PyObject *)__pyx_v_self->_gradfunc(__pyx_v_grad, ((struct __pyx_obj_4pynn_4core_GraphNode *)__pyx_t_2), ((struct __pyx_obj_4pynn_4core_GraphNode *)__pyx_t_5), 0)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 427, __pyx_L1_error)
+      __pyx_t_6 = ((PyObject *)__pyx_v_self->_gradfunc(__pyx_v_grad, ((struct __pyx_obj_4pynn_4core_GraphNode *)__pyx_t_2), ((struct __pyx_obj_4pynn_4core_GraphNode *)__pyx_t_5), 0)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 426, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __pyx_v__grad = ((PyArrayObject *)__pyx_t_6);
       __pyx_t_6 = 0;
 
-      /* "pynn/core.pyx":431
+      /* "pynn/core.pyx":430
  *                     self._subnode_r, 0
  *                 )
  *                 self._subnode_l._backward(_grad)             # <<<<<<<<<<<<<<
@@ -25535,9 +25535,9 @@ static int __pyx_f_4pynn_4core_9GraphNode__backward(struct __pyx_obj_4pynn_4core
  */
       __pyx_t_9.__pyx_n = 1;
       __pyx_t_9.grad = __pyx_v__grad;
-      __pyx_t_8 = ((struct __pyx_vtabstruct_4pynn_4core_GraphNode *)__pyx_v_self->_subnode_l->__pyx_vtab)->_backward(__pyx_v_self->_subnode_l, &__pyx_t_9); if (unlikely(__pyx_t_8 == ((int)1))) __PYX_ERR(0, 431, __pyx_L1_error)
+      __pyx_t_8 = ((struct __pyx_vtabstruct_4pynn_4core_GraphNode *)__pyx_v_self->_subnode_l->__pyx_vtab)->_backward(__pyx_v_self->_subnode_l, &__pyx_t_9); if (unlikely(__pyx_t_8 == ((int)1))) __PYX_ERR(0, 430, __pyx_L1_error)
 
-      /* "pynn/core.pyx":426
+      /* "pynn/core.pyx":425
  *             self._grad += grad
  *         else:
  *             if self._subnode_l.requires_grad:             # <<<<<<<<<<<<<<
@@ -25546,7 +25546,7 @@ static int __pyx_f_4pynn_4core_9GraphNode__backward(struct __pyx_obj_4pynn_4core
  */
     }
 
-    /* "pynn/core.pyx":432
+    /* "pynn/core.pyx":431
  *                 )
  *                 self._subnode_l._backward(_grad)
  *             if self._subnode_r is not None and self._subnode_r.requires_grad:             # <<<<<<<<<<<<<<
@@ -25563,7 +25563,7 @@ static int __pyx_f_4pynn_4core_9GraphNode__backward(struct __pyx_obj_4pynn_4core
     __pyx_L9_bool_binop_done:;
     if (__pyx_t_1) {
 
-      /* "pynn/core.pyx":434
+      /* "pynn/core.pyx":433
  *             if self._subnode_r is not None and self._subnode_r.requires_grad:
  *                 _grad = self._gradfunc(
  *                     grad, self._subnode_l,             # <<<<<<<<<<<<<<
@@ -25573,7 +25573,7 @@ static int __pyx_f_4pynn_4core_9GraphNode__backward(struct __pyx_obj_4pynn_4core
       __pyx_t_6 = ((PyObject *)__pyx_v_self->_subnode_l);
       __Pyx_INCREF(__pyx_t_6);
 
-      /* "pynn/core.pyx":435
+      /* "pynn/core.pyx":434
  *                 _grad = self._gradfunc(
  *                     grad, self._subnode_l,
  *                     self._subnode_r, 1             # <<<<<<<<<<<<<<
@@ -25583,21 +25583,21 @@ static int __pyx_f_4pynn_4core_9GraphNode__backward(struct __pyx_obj_4pynn_4core
       __pyx_t_5 = ((PyObject *)__pyx_v_self->_subnode_r);
       __Pyx_INCREF(__pyx_t_5);
 
-      /* "pynn/core.pyx":433
+      /* "pynn/core.pyx":432
  *                 self._subnode_l._backward(_grad)
  *             if self._subnode_r is not None and self._subnode_r.requires_grad:
  *                 _grad = self._gradfunc(             # <<<<<<<<<<<<<<
  *                     grad, self._subnode_l,
  *                     self._subnode_r, 1
  */
-      __pyx_t_2 = ((PyObject *)__pyx_v_self->_gradfunc(__pyx_v_grad, ((struct __pyx_obj_4pynn_4core_GraphNode *)__pyx_t_6), ((struct __pyx_obj_4pynn_4core_GraphNode *)__pyx_t_5), 1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 433, __pyx_L1_error)
+      __pyx_t_2 = ((PyObject *)__pyx_v_self->_gradfunc(__pyx_v_grad, ((struct __pyx_obj_4pynn_4core_GraphNode *)__pyx_t_6), ((struct __pyx_obj_4pynn_4core_GraphNode *)__pyx_t_5), 1)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 432, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
       __Pyx_XDECREF_SET(__pyx_v__grad, ((PyArrayObject *)__pyx_t_2));
       __pyx_t_2 = 0;
 
-      /* "pynn/core.pyx":437
+      /* "pynn/core.pyx":436
  *                     self._subnode_r, 1
  *                 )
  *                 self._subnode_r._backward(_grad)             # <<<<<<<<<<<<<<
@@ -25606,9 +25606,9 @@ static int __pyx_f_4pynn_4core_9GraphNode__backward(struct __pyx_obj_4pynn_4core
  */
       __pyx_t_9.__pyx_n = 1;
       __pyx_t_9.grad = __pyx_v__grad;
-      __pyx_t_8 = ((struct __pyx_vtabstruct_4pynn_4core_GraphNode *)__pyx_v_self->_subnode_r->__pyx_vtab)->_backward(__pyx_v_self->_subnode_r, &__pyx_t_9); if (unlikely(__pyx_t_8 == ((int)1))) __PYX_ERR(0, 437, __pyx_L1_error)
+      __pyx_t_8 = ((struct __pyx_vtabstruct_4pynn_4core_GraphNode *)__pyx_v_self->_subnode_r->__pyx_vtab)->_backward(__pyx_v_self->_subnode_r, &__pyx_t_9); if (unlikely(__pyx_t_8 == ((int)1))) __PYX_ERR(0, 436, __pyx_L1_error)
 
-      /* "pynn/core.pyx":432
+      /* "pynn/core.pyx":431
  *                 )
  *                 self._subnode_l._backward(_grad)
  *             if self._subnode_r is not None and self._subnode_r.requires_grad:             # <<<<<<<<<<<<<<
@@ -25619,7 +25619,7 @@ static int __pyx_f_4pynn_4core_9GraphNode__backward(struct __pyx_obj_4pynn_4core
   }
   __pyx_L3:;
 
-  /* "pynn/core.pyx":438
+  /* "pynn/core.pyx":437
  *                 )
  *                 self._subnode_r._backward(_grad)
  *         return 0             # <<<<<<<<<<<<<<
@@ -25650,7 +25650,7 @@ static int __pyx_f_4pynn_4core_9GraphNode__backward(struct __pyx_obj_4pynn_4core
   return __pyx_r;
 }
 
-/* "pynn/core.pyx":440
+/* "pynn/core.pyx":439
  *         return 0
  * 
  *     def backward(self) -> None:             # <<<<<<<<<<<<<<
@@ -25703,7 +25703,7 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_44backward(struct __pyx_obj_4py
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("backward", 0);
 
-  /* "pynn/core.pyx":443
+  /* "pynn/core.pyx":442
  *         """"""
  * 
  *         if self._gradfunc is NULL:             # <<<<<<<<<<<<<<
@@ -25713,20 +25713,20 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_44backward(struct __pyx_obj_4py
   __pyx_t_1 = (__pyx_v_self->_gradfunc == NULL);
   if (unlikely(__pyx_t_1)) {
 
-    /* "pynn/core.pyx":444
+    /* "pynn/core.pyx":443
  * 
  *         if self._gradfunc is NULL:
  *             raise RuntimeError('could not backward for gradfunc is NULL')             # <<<<<<<<<<<<<<
  *         if cnp.PyArray_SIZE(self._tensor) != 1:
  *             raise RuntimeError('only scalar could backward')
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__21, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 444, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__21, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 443, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 444, __pyx_L1_error)
+    __PYX_ERR(0, 443, __pyx_L1_error)
 
-    /* "pynn/core.pyx":443
+    /* "pynn/core.pyx":442
  *         """"""
  * 
  *         if self._gradfunc is NULL:             # <<<<<<<<<<<<<<
@@ -25735,7 +25735,7 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_44backward(struct __pyx_obj_4py
  */
   }
 
-  /* "pynn/core.pyx":445
+  /* "pynn/core.pyx":444
  *         if self._gradfunc is NULL:
  *             raise RuntimeError('could not backward for gradfunc is NULL')
  *         if cnp.PyArray_SIZE(self._tensor) != 1:             # <<<<<<<<<<<<<<
@@ -25748,20 +25748,20 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_44backward(struct __pyx_obj_4py
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (unlikely(__pyx_t_1)) {
 
-    /* "pynn/core.pyx":446
+    /* "pynn/core.pyx":445
  *             raise RuntimeError('could not backward for gradfunc is NULL')
  *         if cnp.PyArray_SIZE(self._tensor) != 1:
  *             raise RuntimeError('only scalar could backward')             # <<<<<<<<<<<<<<
  *         self._backward()
  * 
  */
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__22, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 446, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple__22, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 445, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_Raise(__pyx_t_2, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __PYX_ERR(0, 446, __pyx_L1_error)
+    __PYX_ERR(0, 445, __pyx_L1_error)
 
-    /* "pynn/core.pyx":445
+    /* "pynn/core.pyx":444
  *         if self._gradfunc is NULL:
  *             raise RuntimeError('could not backward for gradfunc is NULL')
  *         if cnp.PyArray_SIZE(self._tensor) != 1:             # <<<<<<<<<<<<<<
@@ -25770,16 +25770,16 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_44backward(struct __pyx_obj_4py
  */
   }
 
-  /* "pynn/core.pyx":447
+  /* "pynn/core.pyx":446
  *         if cnp.PyArray_SIZE(self._tensor) != 1:
  *             raise RuntimeError('only scalar could backward')
  *         self._backward()             # <<<<<<<<<<<<<<
  * 
  *     @property
  */
-  __pyx_t_3 = ((struct __pyx_vtabstruct_4pynn_4core_GraphNode *)__pyx_v_self->__pyx_vtab)->_backward(__pyx_v_self, NULL); if (unlikely(__pyx_t_3 == ((int)1))) __PYX_ERR(0, 447, __pyx_L1_error)
+  __pyx_t_3 = ((struct __pyx_vtabstruct_4pynn_4core_GraphNode *)__pyx_v_self->__pyx_vtab)->_backward(__pyx_v_self, NULL); if (unlikely(__pyx_t_3 == ((int)1))) __PYX_ERR(0, 446, __pyx_L1_error)
 
-  /* "pynn/core.pyx":440
+  /* "pynn/core.pyx":439
  *         return 0
  * 
  *     def backward(self) -> None:             # <<<<<<<<<<<<<<
@@ -25800,7 +25800,7 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_44backward(struct __pyx_obj_4py
   return __pyx_r;
 }
 
-/* "pynn/core.pyx":449
+/* "pynn/core.pyx":448
  *         self._backward()
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -25834,7 +25834,7 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_10opera_type___get__(struct __p
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "pynn/core.pyx":451
+  /* "pynn/core.pyx":450
  *     @property
  *     def opera_type(self) -> str:
  *         if self._opera_type is NULL:             # <<<<<<<<<<<<<<
@@ -25844,7 +25844,7 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_10opera_type___get__(struct __p
   __pyx_t_1 = (__pyx_v_self->_opera_type == NULL);
   if (__pyx_t_1) {
 
-    /* "pynn/core.pyx":452
+    /* "pynn/core.pyx":451
  *     def opera_type(self) -> str:
  *         if self._opera_type is NULL:
  *             return 'NULL'             # <<<<<<<<<<<<<<
@@ -25856,7 +25856,7 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_10opera_type___get__(struct __p
     __pyx_r = __pyx_n_u_NULL;
     goto __pyx_L0;
 
-    /* "pynn/core.pyx":451
+    /* "pynn/core.pyx":450
  *     @property
  *     def opera_type(self) -> str:
  *         if self._opera_type is NULL:             # <<<<<<<<<<<<<<
@@ -25865,26 +25865,26 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_10opera_type___get__(struct __p
  */
   }
 
-  /* "pynn/core.pyx":453
+  /* "pynn/core.pyx":452
  *         if self._opera_type is NULL:
  *             return 'NULL'
  *         cdef str opera_type = (<bytes>self._opera_type).decode()             # <<<<<<<<<<<<<<
  *         return opera_type
  * 
  */
-  __pyx_t_2 = __Pyx_PyBytes_FromString(__pyx_v_self->_opera_type); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 453, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyBytes_FromString(__pyx_v_self->_opera_type); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 452, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (unlikely(__pyx_t_2 == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "decode");
-    __PYX_ERR(0, 453, __pyx_L1_error)
+    __PYX_ERR(0, 452, __pyx_L1_error)
   }
-  __pyx_t_3 = __Pyx_decode_bytes(((PyObject*)__pyx_t_2), 0, PY_SSIZE_T_MAX, NULL, NULL, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 453, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_decode_bytes(((PyObject*)__pyx_t_2), 0, PY_SSIZE_T_MAX, NULL, NULL, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 452, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_opera_type = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "pynn/core.pyx":454
+  /* "pynn/core.pyx":453
  *             return 'NULL'
  *         cdef str opera_type = (<bytes>self._opera_type).decode()
  *         return opera_type             # <<<<<<<<<<<<<<
@@ -25896,7 +25896,7 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_10opera_type___get__(struct __p
   __pyx_r = __pyx_v_opera_type;
   goto __pyx_L0;
 
-  /* "pynn/core.pyx":449
+  /* "pynn/core.pyx":448
  *         self._backward()
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -25917,7 +25917,7 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_10opera_type___get__(struct __p
   return __pyx_r;
 }
 
-/* "pynn/core.pyx":456
+/* "pynn/core.pyx":455
  *         return opera_type
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -25948,7 +25948,7 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_4grad___get__(struct __pyx_obj_
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
 
-  /* "pynn/core.pyx":460
+  /* "pynn/core.pyx":459
  *         """"""
  * 
  *         return self._get_grad()             # <<<<<<<<<<<<<<
@@ -25956,13 +25956,13 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_4grad___get__(struct __pyx_obj_
  *     def enable_grad(self) -> None:
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_4pynn_4core_GraphNode *)__pyx_v_self->__pyx_vtab)->_get_grad(__pyx_v_self)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 460, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_4pynn_4core_GraphNode *)__pyx_v_self->__pyx_vtab)->_get_grad(__pyx_v_self)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 459, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "pynn/core.pyx":456
+  /* "pynn/core.pyx":455
  *         return opera_type
  * 
  *     @property             # <<<<<<<<<<<<<<
@@ -25981,7 +25981,7 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_4grad___get__(struct __pyx_obj_
   return __pyx_r;
 }
 
-/* "pynn/core.pyx":462
+/* "pynn/core.pyx":461
  *         return self._get_grad()
  * 
  *     def enable_grad(self) -> None:             # <<<<<<<<<<<<<<
@@ -26028,7 +26028,7 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_46enable_grad(struct __pyx_obj_
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("enable_grad", 0);
 
-  /* "pynn/core.pyx":465
+  /* "pynn/core.pyx":464
  *         """"""
  * 
  *         self.requires_grad = 1             # <<<<<<<<<<<<<<
@@ -26037,7 +26037,7 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_46enable_grad(struct __pyx_obj_
  */
   __pyx_v_self->requires_grad = 1;
 
-  /* "pynn/core.pyx":462
+  /* "pynn/core.pyx":461
  *         return self._get_grad()
  * 
  *     def enable_grad(self) -> None:             # <<<<<<<<<<<<<<
@@ -26052,7 +26052,7 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_46enable_grad(struct __pyx_obj_
   return __pyx_r;
 }
 
-/* "pynn/core.pyx":467
+/* "pynn/core.pyx":466
  *         self.requires_grad = 1
  * 
  *     def detach(self) -> None:             # <<<<<<<<<<<<<<
@@ -26099,7 +26099,7 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_48detach(struct __pyx_obj_4pynn
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("detach", 0);
 
-  /* "pynn/core.pyx":470
+  /* "pynn/core.pyx":469
  *         """"""
  * 
  *         self._as_unique = 1             # <<<<<<<<<<<<<<
@@ -26108,7 +26108,7 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_48detach(struct __pyx_obj_4pynn
  */
   __pyx_v_self->_as_unique = 1;
 
-  /* "pynn/core.pyx":467
+  /* "pynn/core.pyx":466
  *         self.requires_grad = 1
  * 
  *     def detach(self) -> None:             # <<<<<<<<<<<<<<
@@ -26123,7 +26123,7 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_48detach(struct __pyx_obj_4pynn
   return __pyx_r;
 }
 
-/* "pynn/core.pyx":472
+/* "pynn/core.pyx":471
  *         self._as_unique = 1
  * 
  *     def reshape(self, *shape):             # <<<<<<<<<<<<<<
@@ -26163,23 +26163,23 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_50reshape(struct __pyx_obj_4pyn
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("reshape", 0);
 
-  /* "pynn/core.pyx":473
+  /* "pynn/core.pyx":472
  * 
  *     def reshape(self, *shape):
  *         cdef cnp.ndarray tensor = self._tensor.reshape(*shape)             # <<<<<<<<<<<<<<
  *         return GraphNode(tensor)
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self->_tensor), __pyx_n_s_reshape); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 473, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self->_tensor), __pyx_n_s_reshape); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 472, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_v_shape, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 473, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_v_shape, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 472, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 473, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 472, __pyx_L1_error)
   __pyx_v_tensor = ((PyArrayObject *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "pynn/core.pyx":474
+  /* "pynn/core.pyx":473
  *     def reshape(self, *shape):
  *         cdef cnp.ndarray tensor = self._tensor.reshape(*shape)
  *         return GraphNode(tensor)             # <<<<<<<<<<<<<<
@@ -26187,13 +26187,13 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_50reshape(struct __pyx_obj_4pyn
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_4pynn_4core_GraphNode), ((PyObject *)__pyx_v_tensor)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 474, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_4pynn_4core_GraphNode), ((PyObject *)__pyx_v_tensor)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 473, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_r = __pyx_t_2;
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "pynn/core.pyx":472
+  /* "pynn/core.pyx":471
  *         self._as_unique = 1
  * 
  *     def reshape(self, *shape):             # <<<<<<<<<<<<<<
@@ -26443,7 +26443,7 @@ static PyObject *__pyx_pf_4pynn_4core_9GraphNode_54__setstate_cython__(CYTHON_UN
   return __pyx_r;
 }
 
-/* "pynn/core.pyx":477
+/* "pynn/core.pyx":476
  * 
  * 
  * cpdef GraphNode zeros(shape):             # <<<<<<<<<<<<<<
@@ -26476,17 +26476,17 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_zeros(PyObjec
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("zeros", 0);
 
-  /* "pynn/core.pyx":478
+  /* "pynn/core.pyx":477
  * 
  * cpdef GraphNode zeros(shape):
  *     cdef Py_ssize_t ndim = len(shape)             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t* _shape = <Py_ssize_t*>PyMem_Malloc(sizeof(Py_ssize_t) * ndim)
  *     cdef unsigned int i
  */
-  __pyx_t_1 = PyObject_Length(__pyx_v_shape); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 478, __pyx_L1_error)
+  __pyx_t_1 = PyObject_Length(__pyx_v_shape); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 477, __pyx_L1_error)
   __pyx_v_ndim = __pyx_t_1;
 
-  /* "pynn/core.pyx":479
+  /* "pynn/core.pyx":478
  * cpdef GraphNode zeros(shape):
  *     cdef Py_ssize_t ndim = len(shape)
  *     cdef Py_ssize_t* _shape = <Py_ssize_t*>PyMem_Malloc(sizeof(Py_ssize_t) * ndim)             # <<<<<<<<<<<<<<
@@ -26495,7 +26495,7 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_zeros(PyObjec
  */
   __pyx_v__shape = ((Py_ssize_t *)PyMem_Malloc(((sizeof(Py_ssize_t)) * __pyx_v_ndim)));
 
-  /* "pynn/core.pyx":481
+  /* "pynn/core.pyx":480
  *     cdef Py_ssize_t* _shape = <Py_ssize_t*>PyMem_Malloc(sizeof(Py_ssize_t) * ndim)
  *     cdef unsigned int i
  *     for i in range(ndim):             # <<<<<<<<<<<<<<
@@ -26507,28 +26507,28 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_zeros(PyObjec
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "pynn/core.pyx":482
+    /* "pynn/core.pyx":481
  *     cdef unsigned int i
  *     for i in range(ndim):
  *         _shape[i] = shape[i]             # <<<<<<<<<<<<<<
  *     cdef cnp.ndarray tensor = <cnp.ndarray>cnp.PyArray_ZEROS(
  *         ndim, _shape,
  */
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_shape, __pyx_v_i, unsigned int, 0, __Pyx_PyInt_From_unsigned_int, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 482, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_shape, __pyx_v_i, unsigned int, 0, __Pyx_PyInt_From_unsigned_int, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 481, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyIndex_AsSsize_t(__pyx_t_4); if (unlikely((__pyx_t_5 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 482, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyIndex_AsSsize_t(__pyx_t_4); if (unlikely((__pyx_t_5 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 481, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     (__pyx_v__shape[__pyx_v_i]) = __pyx_t_5;
   }
 
-  /* "pynn/core.pyx":483
+  /* "pynn/core.pyx":482
  *     for i in range(ndim):
  *         _shape[i] = shape[i]
  *     cdef cnp.ndarray tensor = <cnp.ndarray>cnp.PyArray_ZEROS(             # <<<<<<<<<<<<<<
  *         ndim, _shape,
  *         cnp.NPY_INT8, 0
  */
-  __pyx_t_4 = PyArray_ZEROS(__pyx_v_ndim, __pyx_v__shape, NPY_INT8, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 483, __pyx_L1_error)
+  __pyx_t_4 = PyArray_ZEROS(__pyx_v_ndim, __pyx_v__shape, NPY_INT8, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 482, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_6 = __pyx_t_4;
   __Pyx_INCREF(__pyx_t_6);
@@ -26536,7 +26536,7 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_zeros(PyObjec
   __pyx_v_tensor = ((PyArrayObject *)__pyx_t_6);
   __pyx_t_6 = 0;
 
-  /* "pynn/core.pyx":487
+  /* "pynn/core.pyx":486
  *         cnp.NPY_INT8, 0
  *     )
  *     PyMem_Free(_shape)             # <<<<<<<<<<<<<<
@@ -26545,7 +26545,7 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_zeros(PyObjec
  */
   PyMem_Free(__pyx_v__shape);
 
-  /* "pynn/core.pyx":488
+  /* "pynn/core.pyx":487
  *     )
  *     PyMem_Free(_shape)
  *     return GraphNode(tensor)             # <<<<<<<<<<<<<<
@@ -26553,13 +26553,13 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_zeros(PyObjec
  * 
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_6 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_4pynn_4core_GraphNode), ((PyObject *)__pyx_v_tensor)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 488, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_4pynn_4core_GraphNode), ((PyObject *)__pyx_v_tensor)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 487, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_r = ((struct __pyx_obj_4pynn_4core_GraphNode *)__pyx_t_6);
   __pyx_t_6 = 0;
   goto __pyx_L0;
 
-  /* "pynn/core.pyx":477
+  /* "pynn/core.pyx":476
  * 
  * 
  * cpdef GraphNode zeros(shape):             # <<<<<<<<<<<<<<
@@ -26622,12 +26622,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       switch (__pyx_nargs) {
         case  0:
         if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_shape)) != 0)) kw_args--;
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 477, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 476, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "zeros") < 0)) __PYX_ERR(0, 477, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "zeros") < 0)) __PYX_ERR(0, 476, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -26638,7 +26638,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("zeros", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 477, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("zeros", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 476, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pynn.core.zeros", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -26660,7 +26660,7 @@ static PyObject *__pyx_pf_4pynn_4core_zeros(CYTHON_UNUSED PyObject *__pyx_self, 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("zeros", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_4pynn_4core_zeros(__pyx_v_shape, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 477, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_4pynn_4core_zeros(__pyx_v_shape, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 476, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -26677,7 +26677,7 @@ static PyObject *__pyx_pf_4pynn_4core_zeros(CYTHON_UNUSED PyObject *__pyx_self, 
   return __pyx_r;
 }
 
-/* "pynn/core.pyx":491
+/* "pynn/core.pyx":490
  * 
  * 
  * cpdef GraphNode ones(shape):             # <<<<<<<<<<<<<<
@@ -26715,17 +26715,17 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_ones(PyObject
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("ones", 0);
 
-  /* "pynn/core.pyx":492
+  /* "pynn/core.pyx":491
  * 
  * cpdef GraphNode ones(shape):
  *     cdef Py_ssize_t ndim = len(shape)             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t* _shape = <Py_ssize_t*>PyMem_Malloc(sizeof(Py_ssize_t) * ndim)
  *     cdef Py_ssize_t size = 1
  */
-  __pyx_t_1 = PyObject_Length(__pyx_v_shape); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 492, __pyx_L1_error)
+  __pyx_t_1 = PyObject_Length(__pyx_v_shape); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 491, __pyx_L1_error)
   __pyx_v_ndim = __pyx_t_1;
 
-  /* "pynn/core.pyx":493
+  /* "pynn/core.pyx":492
  * cpdef GraphNode ones(shape):
  *     cdef Py_ssize_t ndim = len(shape)
  *     cdef Py_ssize_t* _shape = <Py_ssize_t*>PyMem_Malloc(sizeof(Py_ssize_t) * ndim)             # <<<<<<<<<<<<<<
@@ -26734,7 +26734,7 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_ones(PyObject
  */
   __pyx_v__shape = ((Py_ssize_t *)PyMem_Malloc(((sizeof(Py_ssize_t)) * __pyx_v_ndim)));
 
-  /* "pynn/core.pyx":494
+  /* "pynn/core.pyx":493
  *     cdef Py_ssize_t ndim = len(shape)
  *     cdef Py_ssize_t* _shape = <Py_ssize_t*>PyMem_Malloc(sizeof(Py_ssize_t) * ndim)
  *     cdef Py_ssize_t size = 1             # <<<<<<<<<<<<<<
@@ -26743,7 +26743,7 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_ones(PyObject
  */
   __pyx_v_size = 1;
 
-  /* "pynn/core.pyx":496
+  /* "pynn/core.pyx":495
  *     cdef Py_ssize_t size = 1
  *     cdef unsigned int i
  *     for i in range(ndim):             # <<<<<<<<<<<<<<
@@ -26755,20 +26755,20 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_ones(PyObject
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "pynn/core.pyx":497
+    /* "pynn/core.pyx":496
  *     cdef unsigned int i
  *     for i in range(ndim):
  *         _shape[i] = shape[i]             # <<<<<<<<<<<<<<
  *         size *= _shape[i]
  *     cdef int* data = <int*>PyMem_Malloc(sizeof(int) * size)
  */
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_shape, __pyx_v_i, unsigned int, 0, __Pyx_PyInt_From_unsigned_int, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 497, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_shape, __pyx_v_i, unsigned int, 0, __Pyx_PyInt_From_unsigned_int, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 496, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyIndex_AsSsize_t(__pyx_t_4); if (unlikely((__pyx_t_5 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 497, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyIndex_AsSsize_t(__pyx_t_4); if (unlikely((__pyx_t_5 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 496, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     (__pyx_v__shape[__pyx_v_i]) = __pyx_t_5;
 
-    /* "pynn/core.pyx":498
+    /* "pynn/core.pyx":497
  *     for i in range(ndim):
  *         _shape[i] = shape[i]
  *         size *= _shape[i]             # <<<<<<<<<<<<<<
@@ -26778,7 +26778,7 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_ones(PyObject
     __pyx_v_size = (__pyx_v_size * (__pyx_v__shape[__pyx_v_i]));
   }
 
-  /* "pynn/core.pyx":499
+  /* "pynn/core.pyx":498
  *         _shape[i] = shape[i]
  *         size *= _shape[i]
  *     cdef int* data = <int*>PyMem_Malloc(sizeof(int) * size)             # <<<<<<<<<<<<<<
@@ -26787,7 +26787,7 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_ones(PyObject
  */
   __pyx_v_data = ((int *)PyMem_Malloc(((sizeof(int)) * __pyx_v_size)));
 
-  /* "pynn/core.pyx":500
+  /* "pynn/core.pyx":499
  *         size *= _shape[i]
  *     cdef int* data = <int*>PyMem_Malloc(sizeof(int) * size)
  *     cdef int[::1] view = <int[:size]>data             # <<<<<<<<<<<<<<
@@ -26796,23 +26796,23 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_ones(PyObject
  */
   if (!__pyx_v_data) {
     PyErr_SetString(PyExc_ValueError,"Cannot create cython.array from NULL pointer");
-    __PYX_ERR(0, 500, __pyx_L1_error)
+    __PYX_ERR(0, 499, __pyx_L1_error)
   }
-  __pyx_t_7 = __pyx_format_from_typeinfo(&__Pyx_TypeInfo_int); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 500, __pyx_L1_error)
+  __pyx_t_7 = __pyx_format_from_typeinfo(&__Pyx_TypeInfo_int); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 499, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  __pyx_t_4 = Py_BuildValue((char*) "("  __PYX_BUILD_PY_SSIZE_T  ")", ((Py_ssize_t)__pyx_v_size)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 500, __pyx_L1_error)
+  __pyx_t_4 = Py_BuildValue((char*) "("  __PYX_BUILD_PY_SSIZE_T  ")", ((Py_ssize_t)__pyx_v_size)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 499, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __pyx_array_new(__pyx_t_4, sizeof(int), PyBytes_AS_STRING(__pyx_t_7), (char *) "c", (char *) __pyx_v_data); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 500, __pyx_L1_error)
+  __pyx_t_6 = __pyx_array_new(__pyx_t_4, sizeof(int), PyBytes_AS_STRING(__pyx_t_7), (char *) "c", (char *) __pyx_v_data); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 499, __pyx_L1_error)
   __Pyx_GOTREF((PyObject *)__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  __pyx_t_8 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(((PyObject *)__pyx_t_6), PyBUF_WRITABLE); if (unlikely(!__pyx_t_8.memview)) __PYX_ERR(0, 500, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_to_MemoryviewSlice_dc_int(((PyObject *)__pyx_t_6), PyBUF_WRITABLE); if (unlikely(!__pyx_t_8.memview)) __PYX_ERR(0, 499, __pyx_L1_error)
   __Pyx_DECREF((PyObject *)__pyx_t_6); __pyx_t_6 = 0;
   __pyx_v_view = __pyx_t_8;
   __pyx_t_8.memview = NULL;
   __pyx_t_8.data = NULL;
 
-  /* "pynn/core.pyx":501
+  /* "pynn/core.pyx":500
  *     cdef int* data = <int*>PyMem_Malloc(sizeof(int) * size)
  *     cdef int[::1] view = <int[:size]>data
  *     view[:] = 1             # <<<<<<<<<<<<<<
@@ -26832,14 +26832,14 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_ones(PyObject
       }
   }
 
-  /* "pynn/core.pyx":502
+  /* "pynn/core.pyx":501
  *     cdef int[::1] view = <int[:size]>data
  *     view[:] = 1
  *     cdef cnp.ndarray tensor = <cnp.ndarray>cnp.PyArray_SimpleNewFromData(             # <<<<<<<<<<<<<<
  *         ndim, _shape,
  *         cnp.NPY_INT32, <void*>data
  */
-  __pyx_t_7 = PyArray_SimpleNewFromData(__pyx_v_ndim, __pyx_v__shape, NPY_INT32, ((void *)__pyx_v_data)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 502, __pyx_L1_error)
+  __pyx_t_7 = PyArray_SimpleNewFromData(__pyx_v_ndim, __pyx_v__shape, NPY_INT32, ((void *)__pyx_v_data)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 501, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __pyx_t_4 = __pyx_t_7;
   __Pyx_INCREF(__pyx_t_4);
@@ -26847,7 +26847,7 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_ones(PyObject
   __pyx_v_tensor = ((PyArrayObject *)__pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "pynn/core.pyx":506
+  /* "pynn/core.pyx":505
  *         cnp.NPY_INT32, <void*>data
  *     )
  *     cnp.PyArray_ENABLEFLAGS(tensor, cnp.NPY_ARRAY_OWNDATA)             # <<<<<<<<<<<<<<
@@ -26856,7 +26856,7 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_ones(PyObject
  */
   PyArray_ENABLEFLAGS(__pyx_v_tensor, NPY_ARRAY_OWNDATA);
 
-  /* "pynn/core.pyx":507
+  /* "pynn/core.pyx":506
  *     )
  *     cnp.PyArray_ENABLEFLAGS(tensor, cnp.NPY_ARRAY_OWNDATA)
  *     PyMem_Free(_shape)             # <<<<<<<<<<<<<<
@@ -26865,7 +26865,7 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_ones(PyObject
  */
   PyMem_Free(__pyx_v__shape);
 
-  /* "pynn/core.pyx":508
+  /* "pynn/core.pyx":507
  *     cnp.PyArray_ENABLEFLAGS(tensor, cnp.NPY_ARRAY_OWNDATA)
  *     PyMem_Free(_shape)
  *     return GraphNode(tensor)             # <<<<<<<<<<<<<<
@@ -26873,13 +26873,13 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_ones(PyObject
  * 
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_4 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_4pynn_4core_GraphNode), ((PyObject *)__pyx_v_tensor)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 508, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_4pynn_4core_GraphNode), ((PyObject *)__pyx_v_tensor)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 507, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_r = ((struct __pyx_obj_4pynn_4core_GraphNode *)__pyx_t_4);
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "pynn/core.pyx":491
+  /* "pynn/core.pyx":490
  * 
  * 
  * cpdef GraphNode ones(shape):             # <<<<<<<<<<<<<<
@@ -26945,12 +26945,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       switch (__pyx_nargs) {
         case  0:
         if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_shape)) != 0)) kw_args--;
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 491, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 490, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "ones") < 0)) __PYX_ERR(0, 491, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "ones") < 0)) __PYX_ERR(0, 490, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -26961,7 +26961,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("ones", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 491, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("ones", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 490, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pynn.core.ones", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -26983,7 +26983,7 @@ static PyObject *__pyx_pf_4pynn_4core_2ones(CYTHON_UNUSED PyObject *__pyx_self, 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("ones", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_4pynn_4core_ones(__pyx_v_shape, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 491, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_4pynn_4core_ones(__pyx_v_shape, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 490, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -27000,7 +27000,7 @@ static PyObject *__pyx_pf_4pynn_4core_2ones(CYTHON_UNUSED PyObject *__pyx_self, 
   return __pyx_r;
 }
 
-/* "pynn/core.pyx":511
+/* "pynn/core.pyx":510
  * 
  * 
  * cpdef GraphNode empty(shape):             # <<<<<<<<<<<<<<
@@ -27033,17 +27033,17 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_empty(PyObjec
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("empty", 0);
 
-  /* "pynn/core.pyx":512
+  /* "pynn/core.pyx":511
  * 
  * cpdef GraphNode empty(shape):
  *     cdef Py_ssize_t ndim = len(shape)             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t* _shape = <Py_ssize_t*>PyMem_Malloc(sizeof(Py_ssize_t) * ndim)
  *     cdef unsigned int i
  */
-  __pyx_t_1 = PyObject_Length(__pyx_v_shape); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 512, __pyx_L1_error)
+  __pyx_t_1 = PyObject_Length(__pyx_v_shape); if (unlikely(__pyx_t_1 == ((Py_ssize_t)-1))) __PYX_ERR(0, 511, __pyx_L1_error)
   __pyx_v_ndim = __pyx_t_1;
 
-  /* "pynn/core.pyx":513
+  /* "pynn/core.pyx":512
  * cpdef GraphNode empty(shape):
  *     cdef Py_ssize_t ndim = len(shape)
  *     cdef Py_ssize_t* _shape = <Py_ssize_t*>PyMem_Malloc(sizeof(Py_ssize_t) * ndim)             # <<<<<<<<<<<<<<
@@ -27052,7 +27052,7 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_empty(PyObjec
  */
   __pyx_v__shape = ((Py_ssize_t *)PyMem_Malloc(((sizeof(Py_ssize_t)) * __pyx_v_ndim)));
 
-  /* "pynn/core.pyx":515
+  /* "pynn/core.pyx":514
  *     cdef Py_ssize_t* _shape = <Py_ssize_t*>PyMem_Malloc(sizeof(Py_ssize_t) * ndim)
  *     cdef unsigned int i
  *     for i in range(ndim):             # <<<<<<<<<<<<<<
@@ -27064,28 +27064,28 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_empty(PyObjec
   for (__pyx_t_3 = 0; __pyx_t_3 < __pyx_t_2; __pyx_t_3+=1) {
     __pyx_v_i = __pyx_t_3;
 
-    /* "pynn/core.pyx":516
+    /* "pynn/core.pyx":515
  *     cdef unsigned int i
  *     for i in range(ndim):
  *         _shape[i] = shape[i]             # <<<<<<<<<<<<<<
  *     cdef cnp.ndarray tensor = <cnp.ndarray>cnp.PyArray_EMPTY(
  *         ndim, _shape,
  */
-    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_shape, __pyx_v_i, unsigned int, 0, __Pyx_PyInt_From_unsigned_int, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 516, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_GetItemInt(__pyx_v_shape, __pyx_v_i, unsigned int, 0, __Pyx_PyInt_From_unsigned_int, 0, 0, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 515, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyIndex_AsSsize_t(__pyx_t_4); if (unlikely((__pyx_t_5 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 516, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyIndex_AsSsize_t(__pyx_t_4); if (unlikely((__pyx_t_5 == (Py_ssize_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 515, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     (__pyx_v__shape[__pyx_v_i]) = __pyx_t_5;
   }
 
-  /* "pynn/core.pyx":517
+  /* "pynn/core.pyx":516
  *     for i in range(ndim):
  *         _shape[i] = shape[i]
  *     cdef cnp.ndarray tensor = <cnp.ndarray>cnp.PyArray_EMPTY(             # <<<<<<<<<<<<<<
  *         ndim, _shape,
  *         cnp.NPY_FLOAT32, 0
  */
-  __pyx_t_4 = PyArray_EMPTY(__pyx_v_ndim, __pyx_v__shape, NPY_FLOAT32, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 517, __pyx_L1_error)
+  __pyx_t_4 = PyArray_EMPTY(__pyx_v_ndim, __pyx_v__shape, NPY_FLOAT32, 0); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 516, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_6 = __pyx_t_4;
   __Pyx_INCREF(__pyx_t_6);
@@ -27093,7 +27093,7 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_empty(PyObjec
   __pyx_v_tensor = ((PyArrayObject *)__pyx_t_6);
   __pyx_t_6 = 0;
 
-  /* "pynn/core.pyx":521
+  /* "pynn/core.pyx":520
  *         cnp.NPY_FLOAT32, 0
  *     )
  *     PyMem_Free(_shape)             # <<<<<<<<<<<<<<
@@ -27101,19 +27101,19 @@ static struct __pyx_obj_4pynn_4core_GraphNode *__pyx_f_4pynn_4core_empty(PyObjec
  */
   PyMem_Free(__pyx_v__shape);
 
-  /* "pynn/core.pyx":522
+  /* "pynn/core.pyx":521
  *     )
  *     PyMem_Free(_shape)
  *     return GraphNode(tensor)             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF((PyObject *)__pyx_r);
-  __pyx_t_6 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_4pynn_4core_GraphNode), ((PyObject *)__pyx_v_tensor)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 522, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_CallOneArg(((PyObject *)__pyx_ptype_4pynn_4core_GraphNode), ((PyObject *)__pyx_v_tensor)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 521, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_r = ((struct __pyx_obj_4pynn_4core_GraphNode *)__pyx_t_6);
   __pyx_t_6 = 0;
   goto __pyx_L0;
 
-  /* "pynn/core.pyx":511
+  /* "pynn/core.pyx":510
  * 
  * 
  * cpdef GraphNode empty(shape):             # <<<<<<<<<<<<<<
@@ -27176,12 +27176,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       switch (__pyx_nargs) {
         case  0:
         if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_shape)) != 0)) kw_args--;
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 511, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 510, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "empty") < 0)) __PYX_ERR(0, 511, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "empty") < 0)) __PYX_ERR(0, 510, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -27192,7 +27192,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("empty", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 511, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("empty", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 510, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("pynn.core.empty", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -27214,7 +27214,7 @@ static PyObject *__pyx_pf_4pynn_4core_4empty(CYTHON_UNUSED PyObject *__pyx_self,
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("empty", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_4pynn_4core_empty(__pyx_v_shape, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 511, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_4pynn_4core_empty(__pyx_v_shape, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 510, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -29071,25 +29071,25 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__16);
   __Pyx_GIVEREF(__pyx_tuple__16);
 
-  /* "pynn/core.pyx":444
+  /* "pynn/core.pyx":443
  * 
  *         if self._gradfunc is NULL:
  *             raise RuntimeError('could not backward for gradfunc is NULL')             # <<<<<<<<<<<<<<
  *         if cnp.PyArray_SIZE(self._tensor) != 1:
  *             raise RuntimeError('only scalar could backward')
  */
-  __pyx_tuple__21 = PyTuple_Pack(1, __pyx_kp_u_could_not_backward_for_gradfunc); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 444, __pyx_L1_error)
+  __pyx_tuple__21 = PyTuple_Pack(1, __pyx_kp_u_could_not_backward_for_gradfunc); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 443, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__21);
   __Pyx_GIVEREF(__pyx_tuple__21);
 
-  /* "pynn/core.pyx":446
+  /* "pynn/core.pyx":445
  *             raise RuntimeError('could not backward for gradfunc is NULL')
  *         if cnp.PyArray_SIZE(self._tensor) != 1:
  *             raise RuntimeError('only scalar could backward')             # <<<<<<<<<<<<<<
  *         self._backward()
  * 
  */
-  __pyx_tuple__22 = PyTuple_Pack(1, __pyx_kp_u_only_scalar_could_backward); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(0, 446, __pyx_L1_error)
+  __pyx_tuple__22 = PyTuple_Pack(1, __pyx_kp_u_only_scalar_could_backward); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(0, 445, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__22);
   __Pyx_GIVEREF(__pyx_tuple__22);
 
@@ -29242,44 +29242,44 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  */
   __pyx_codeobj__41 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__37, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pynn_core_pyx, __pyx_n_s_relu, 377, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__41)) __PYX_ERR(0, 377, __pyx_L1_error)
 
-  /* "pynn/core.pyx":440
+  /* "pynn/core.pyx":439
  *         return 0
  * 
  *     def backward(self) -> None:             # <<<<<<<<<<<<<<
  *         """"""
  * 
  */
-  __pyx_codeobj__42 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__37, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pynn_core_pyx, __pyx_n_s_backward, 440, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__42)) __PYX_ERR(0, 440, __pyx_L1_error)
+  __pyx_codeobj__42 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__37, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pynn_core_pyx, __pyx_n_s_backward, 439, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__42)) __PYX_ERR(0, 439, __pyx_L1_error)
 
-  /* "pynn/core.pyx":462
+  /* "pynn/core.pyx":461
  *         return self._get_grad()
  * 
  *     def enable_grad(self) -> None:             # <<<<<<<<<<<<<<
  *         """"""
  * 
  */
-  __pyx_codeobj__43 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__37, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pynn_core_pyx, __pyx_n_s_enable_grad, 462, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__43)) __PYX_ERR(0, 462, __pyx_L1_error)
+  __pyx_codeobj__43 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__37, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pynn_core_pyx, __pyx_n_s_enable_grad, 461, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__43)) __PYX_ERR(0, 461, __pyx_L1_error)
 
-  /* "pynn/core.pyx":467
+  /* "pynn/core.pyx":466
  *         self.requires_grad = 1
  * 
  *     def detach(self) -> None:             # <<<<<<<<<<<<<<
  *         """"""
  * 
  */
-  __pyx_codeobj__44 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__37, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pynn_core_pyx, __pyx_n_s_detach, 467, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__44)) __PYX_ERR(0, 467, __pyx_L1_error)
+  __pyx_codeobj__44 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__37, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pynn_core_pyx, __pyx_n_s_detach, 466, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__44)) __PYX_ERR(0, 466, __pyx_L1_error)
 
-  /* "pynn/core.pyx":472
+  /* "pynn/core.pyx":471
  *         self._as_unique = 1
  * 
  *     def reshape(self, *shape):             # <<<<<<<<<<<<<<
  *         cdef cnp.ndarray tensor = self._tensor.reshape(*shape)
  *         return GraphNode(tensor)
  */
-  __pyx_tuple__45 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_shape, __pyx_n_s_tensor); if (unlikely(!__pyx_tuple__45)) __PYX_ERR(0, 472, __pyx_L1_error)
+  __pyx_tuple__45 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_shape, __pyx_n_s_tensor); if (unlikely(!__pyx_tuple__45)) __PYX_ERR(0, 471, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__45);
   __Pyx_GIVEREF(__pyx_tuple__45);
-  __pyx_codeobj__46 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__45, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pynn_core_pyx, __pyx_n_s_reshape, 472, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__46)) __PYX_ERR(0, 472, __pyx_L1_error)
+  __pyx_codeobj__46 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS|CO_VARARGS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__45, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pynn_core_pyx, __pyx_n_s_reshape, 471, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__46)) __PYX_ERR(0, 471, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
@@ -29299,35 +29299,35 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__48);
   __pyx_codeobj__49 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__48, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 3, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__49)) __PYX_ERR(1, 3, __pyx_L1_error)
 
-  /* "pynn/core.pyx":477
+  /* "pynn/core.pyx":476
  * 
  * 
  * cpdef GraphNode zeros(shape):             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t ndim = len(shape)
  *     cdef Py_ssize_t* _shape = <Py_ssize_t*>PyMem_Malloc(sizeof(Py_ssize_t) * ndim)
  */
-  __pyx_tuple__50 = PyTuple_Pack(1, __pyx_n_s_shape); if (unlikely(!__pyx_tuple__50)) __PYX_ERR(0, 477, __pyx_L1_error)
+  __pyx_tuple__50 = PyTuple_Pack(1, __pyx_n_s_shape); if (unlikely(!__pyx_tuple__50)) __PYX_ERR(0, 476, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__50);
   __Pyx_GIVEREF(__pyx_tuple__50);
-  __pyx_codeobj__51 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__50, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pynn_core_pyx, __pyx_n_s_zeros, 477, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__51)) __PYX_ERR(0, 477, __pyx_L1_error)
+  __pyx_codeobj__51 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__50, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pynn_core_pyx, __pyx_n_s_zeros, 476, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__51)) __PYX_ERR(0, 476, __pyx_L1_error)
 
-  /* "pynn/core.pyx":491
+  /* "pynn/core.pyx":490
  * 
  * 
  * cpdef GraphNode ones(shape):             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t ndim = len(shape)
  *     cdef Py_ssize_t* _shape = <Py_ssize_t*>PyMem_Malloc(sizeof(Py_ssize_t) * ndim)
  */
-  __pyx_codeobj__52 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__50, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pynn_core_pyx, __pyx_n_s_ones, 491, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__52)) __PYX_ERR(0, 491, __pyx_L1_error)
+  __pyx_codeobj__52 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__50, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pynn_core_pyx, __pyx_n_s_ones, 490, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__52)) __PYX_ERR(0, 490, __pyx_L1_error)
 
-  /* "pynn/core.pyx":511
+  /* "pynn/core.pyx":510
  * 
  * 
  * cpdef GraphNode empty(shape):             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t ndim = len(shape)
  *     cdef Py_ssize_t* _shape = <Py_ssize_t*>PyMem_Malloc(sizeof(Py_ssize_t) * ndim)
  */
-  __pyx_codeobj__53 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__50, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pynn_core_pyx, __pyx_n_s_empty, 511, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__53)) __PYX_ERR(0, 511, __pyx_L1_error)
+  __pyx_codeobj__53 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__50, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_src_pynn_core_pyx, __pyx_n_s_empty, 510, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__53)) __PYX_ERR(0, 510, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -30746,70 +30746,70 @@ if (!__Pyx_RefNanny) {
   __pyx_k__19 = __pyx_v_4pynn_4core__initial_grad;
   __Pyx_GIVEREF((PyObject *)__pyx_v_4pynn_4core__initial_grad);
 
-  /* "pynn/core.pyx":440
+  /* "pynn/core.pyx":439
  *         return 0
  * 
  *     def backward(self) -> None:             # <<<<<<<<<<<<<<
  *         """"""
  * 
  */
-  __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 440, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 439, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_return, __pyx_n_s_None) < 0) __PYX_ERR(0, 440, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_4pynn_4core_9GraphNode_45backward, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_GraphNode_backward, NULL, __pyx_n_s_pynn_core, __pyx_d, ((PyObject *)__pyx_codeobj__42)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 440, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_return, __pyx_n_s_None) < 0) __PYX_ERR(0, 439, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_4pynn_4core_9GraphNode_45backward, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_GraphNode_backward, NULL, __pyx_n_s_pynn_core, __pyx_d, ((PyObject *)__pyx_codeobj__42)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 439, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_4, __pyx_t_7);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_4pynn_4core_GraphNode->tp_dict, __pyx_n_s_backward, __pyx_t_4) < 0) __PYX_ERR(0, 440, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_4pynn_4core_GraphNode->tp_dict, __pyx_n_s_backward, __pyx_t_4) < 0) __PYX_ERR(0, 439, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   PyType_Modified(__pyx_ptype_4pynn_4core_GraphNode);
 
-  /* "pynn/core.pyx":462
+  /* "pynn/core.pyx":461
  *         return self._get_grad()
  * 
  *     def enable_grad(self) -> None:             # <<<<<<<<<<<<<<
  *         """"""
  * 
  */
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 462, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 461, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_return, __pyx_n_s_None) < 0) __PYX_ERR(0, 462, __pyx_L1_error)
-  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_4pynn_4core_9GraphNode_47enable_grad, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_GraphNode_enable_grad, NULL, __pyx_n_s_pynn_core, __pyx_d, ((PyObject *)__pyx_codeobj__43)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 462, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_return, __pyx_n_s_None) < 0) __PYX_ERR(0, 461, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_4pynn_4core_9GraphNode_47enable_grad, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_GraphNode_enable_grad, NULL, __pyx_n_s_pynn_core, __pyx_d, ((PyObject *)__pyx_codeobj__43)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 461, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_7, __pyx_t_4);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_4pynn_4core_GraphNode->tp_dict, __pyx_n_s_enable_grad, __pyx_t_7) < 0) __PYX_ERR(0, 462, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_4pynn_4core_GraphNode->tp_dict, __pyx_n_s_enable_grad, __pyx_t_7) < 0) __PYX_ERR(0, 461, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
   PyType_Modified(__pyx_ptype_4pynn_4core_GraphNode);
 
-  /* "pynn/core.pyx":467
+  /* "pynn/core.pyx":466
  *         self.requires_grad = 1
  * 
  *     def detach(self) -> None:             # <<<<<<<<<<<<<<
  *         """"""
  * 
  */
-  __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 467, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 466, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
-  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_return, __pyx_n_s_None) < 0) __PYX_ERR(0, 467, __pyx_L1_error)
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_4pynn_4core_9GraphNode_49detach, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_GraphNode_detach, NULL, __pyx_n_s_pynn_core, __pyx_d, ((PyObject *)__pyx_codeobj__44)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 467, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_7, __pyx_n_s_return, __pyx_n_s_None) < 0) __PYX_ERR(0, 466, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_4pynn_4core_9GraphNode_49detach, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_GraphNode_detach, NULL, __pyx_n_s_pynn_core, __pyx_d, ((PyObject *)__pyx_codeobj__44)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 466, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_4, __pyx_t_7);
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_4pynn_4core_GraphNode->tp_dict, __pyx_n_s_detach, __pyx_t_4) < 0) __PYX_ERR(0, 467, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_4pynn_4core_GraphNode->tp_dict, __pyx_n_s_detach, __pyx_t_4) < 0) __PYX_ERR(0, 466, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   PyType_Modified(__pyx_ptype_4pynn_4core_GraphNode);
 
-  /* "pynn/core.pyx":472
+  /* "pynn/core.pyx":471
  *         self._as_unique = 1
  * 
  *     def reshape(self, *shape):             # <<<<<<<<<<<<<<
  *         cdef cnp.ndarray tensor = self._tensor.reshape(*shape)
  *         return GraphNode(tensor)
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_4pynn_4core_9GraphNode_51reshape, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_GraphNode_reshape, NULL, __pyx_n_s_pynn_core, __pyx_d, ((PyObject *)__pyx_codeobj__46)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 472, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_4pynn_4core_9GraphNode_51reshape, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_GraphNode_reshape, NULL, __pyx_n_s_pynn_core, __pyx_d, ((PyObject *)__pyx_codeobj__46)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 471, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_4pynn_4core_GraphNode->tp_dict, __pyx_n_s_reshape, __pyx_t_4) < 0) __PYX_ERR(0, 472, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_4pynn_4core_GraphNode->tp_dict, __pyx_n_s_reshape, __pyx_t_4) < 0) __PYX_ERR(0, 471, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   PyType_Modified(__pyx_ptype_4pynn_4core_GraphNode);
 
@@ -30834,40 +30834,40 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_setstate_cython, __pyx_t_4) < 0) __PYX_ERR(1, 3, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pynn/core.pyx":477
+  /* "pynn/core.pyx":476
  * 
  * 
  * cpdef GraphNode zeros(shape):             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t ndim = len(shape)
  *     cdef Py_ssize_t* _shape = <Py_ssize_t*>PyMem_Malloc(sizeof(Py_ssize_t) * ndim)
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_4pynn_4core_1zeros, 0, __pyx_n_s_zeros, NULL, __pyx_n_s_pynn_core, __pyx_d, ((PyObject *)__pyx_codeobj__51)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 477, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_4pynn_4core_1zeros, 0, __pyx_n_s_zeros, NULL, __pyx_n_s_pynn_core, __pyx_d, ((PyObject *)__pyx_codeobj__51)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 476, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_zeros, __pyx_t_4) < 0) __PYX_ERR(0, 477, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_zeros, __pyx_t_4) < 0) __PYX_ERR(0, 476, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pynn/core.pyx":491
+  /* "pynn/core.pyx":490
  * 
  * 
  * cpdef GraphNode ones(shape):             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t ndim = len(shape)
  *     cdef Py_ssize_t* _shape = <Py_ssize_t*>PyMem_Malloc(sizeof(Py_ssize_t) * ndim)
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_4pynn_4core_3ones, 0, __pyx_n_s_ones, NULL, __pyx_n_s_pynn_core, __pyx_d, ((PyObject *)__pyx_codeobj__52)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 491, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_4pynn_4core_3ones, 0, __pyx_n_s_ones, NULL, __pyx_n_s_pynn_core, __pyx_d, ((PyObject *)__pyx_codeobj__52)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 490, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ones, __pyx_t_4) < 0) __PYX_ERR(0, 491, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_ones, __pyx_t_4) < 0) __PYX_ERR(0, 490, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "pynn/core.pyx":511
+  /* "pynn/core.pyx":510
  * 
  * 
  * cpdef GraphNode empty(shape):             # <<<<<<<<<<<<<<
  *     cdef Py_ssize_t ndim = len(shape)
  *     cdef Py_ssize_t* _shape = <Py_ssize_t*>PyMem_Malloc(sizeof(Py_ssize_t) * ndim)
  */
-  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_4pynn_4core_5empty, 0, __pyx_n_s_empty, NULL, __pyx_n_s_pynn_core, __pyx_d, ((PyObject *)__pyx_codeobj__53)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 511, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CyFunction_New(&__pyx_mdef_4pynn_4core_5empty, 0, __pyx_n_s_empty, NULL, __pyx_n_s_pynn_core, __pyx_d, ((PyObject *)__pyx_codeobj__53)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 510, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_empty, __pyx_t_4) < 0) __PYX_ERR(0, 511, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_empty, __pyx_t_4) < 0) __PYX_ERR(0, 510, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
   /* "pynn/core.pyx":1
