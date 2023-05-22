@@ -80,7 +80,7 @@ cdef class LinearLayer(Layer):
 cdef class SGD(Optimizer):
     """SGD 优化器。"""
 
-    def __init__(self, *parameters, float alpha=0.001):
+    def __init__(self, *parameters, double alpha=0.001):
         """初始化。
 
         :param parameters: 所有参数
@@ -107,11 +107,9 @@ cdef class SGD(Optimizer):
         for i in range(num):
             param = self._weights[i]
             grad = param._node._get_grad()
-            param._node._tensor = \
-                param._node._tensor - self._alpha * grad
+            param._node._tensor -= self._alpha * grad
         num = len(self._bias)
         for i in range(num):
             param = self._bias[i]
             grad = param._node._get_grad()
-            param._node._tensor = \
-                param._node._tensor - self._alpha * grad
+            param._node._tensor -= self._alpha * grad

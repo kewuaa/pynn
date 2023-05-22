@@ -35,4 +35,4 @@ cdef class Optimizer:
 cdef class SGD(Optimizer):
     """SGD 优化器。"""
 
-    cdef float _alpha
+    cdef double _alpha
