@@ -1,6 +1,4 @@
 cimport numpy as cnp
-
-
 ctypedef char* Operation
 
 
