@@ -220,8 +220,7 @@ cdef cnp.ndarray relufunc(
     cdef cnp.ndarray _grad = cnp.PyArray_ZEROS(
         cnp.PyArray_NDIM(left._tensor),
         cnp.PyArray_DIMS(left._tensor),
-        cnp.NPY_INT8,
-        0
+        cnp.NPY_INT8, 0
     )
     _grad[left._tensor > 0] = 1
     return grad * _grad
