@@ -420,7 +420,6 @@ cdef class GraphNode:
                     f'({self.shape[0]}, {self.shape[1]}) '
                     f'and ({grad.shape[0]}, {grad.shape[1]})'
                 )
-                return 1
             self._grad += grad
         else:
             if self._subnode_l.requires_grad:
