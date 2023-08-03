@@ -1,2 +1,17 @@
-[tool.jedi]
+[project]
+name = "pynn"
+version = "0.1.0"
+description = "simple nn"
+authors = [
+    {name = "kewuaa"}
+]
+dependencies = ["numpy"]
+readme = "README.md"
+
+[tool.setuptools]
+packages = {find = {where = ["./src"]}}
+package-dir = {"" = "./src"}
+exclude-package-data = {"*" = ["*.c"]}
+
+[tool.pyright]
 venv = 'ai'

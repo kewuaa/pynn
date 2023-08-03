@@ -1,9 +1,9 @@
 from os import environ
 from distutils.unixccompiler import UnixCCompiler
+import sys
 
 from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext
-from Cython.Build import cythonize
 
 
 class build(build_ext):
@@ -19,37 +19,45 @@ class build(build_ext):
                 ext.undef_macros = ['_DEBUG']
         super().build_extensions()
 
-
+if "--use-cython" in sys.argv:
+    sys.argv.remove("--use-cython")
+    use_cython = True
+else:
+    use_cython = False
 include_dirs = environ['INCLUDE'].split(';')
+suffix = "pyx" if use_cython else "c"
 exts = (
     Extension(
         name='pynn.core',
-        sources=['src\\pynn\\core.pyx'],
+        sources=['src\\pynn\\core.' + suffix],
         include_dirs=include_dirs,
     ),
     Extension(
         name='pynn.gradfunc',
-        sources=['src\\pynn\\gradfunc.pyx'],
+        sources=['src\\pynn\\gradfunc.' + suffix],
         include_dirs=include_dirs,
     ),
     Extension(
         name='pynn.math',
-        sources=['src\\pynn\\math.pyx'],
+        sources=['src\\pynn\\math.' + suffix],
         include_dirs=include_dirs,
     ),
     Extension(
         name='pynn.loss',
-        sources=['src\\pynn\\loss.pyx'],
+        sources=['src\\pynn\\loss.' + suffix],
         include_dirs=include_dirs,
     ),
     Extension(
         name='pynn.nn',
-        sources=['src\\pynn\\nn.pyx'],
+        sources=['src\\pynn\\nn.' + suffix],
         include_dirs=include_dirs,
     )
 )
+if use_cython:
+    from Cython.Build import cythonize
+    exts = cythonize(exts)
 setup(
-    ext_modules=cythonize(exts, language_level=3),
+    ext_modules=exts,
     zip_safe=False,
     package_dir={'pynn': 'src\\pynn'},
     cmdclass={'build_ext': build},
