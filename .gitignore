@@ -1,5 +1,7 @@
-**/__pycache__/
-build/
+__pycache__/
 /data/
+build/
+dist/
+*.egg-info/
 *.pyd
 *.html

@@ -26,7 +26,7 @@ else:
     use_cython = False
 include_dirs = environ['INCLUDE'].split(';')
 suffix = "pyx" if use_cython else "c"
-exts = (
+exts = [
     Extension(
         name='pynn.core',
         sources=['src\\pynn\\core.' + suffix],
@@ -52,13 +52,11 @@ exts = (
         sources=['src\\pynn\\nn.' + suffix],
         include_dirs=include_dirs,
     )
-)
+]
 if use_cython:
     from Cython.Build import cythonize
     exts = cythonize(exts)
 setup(
     ext_modules=exts,
-    zip_safe=False,
-    package_dir={'pynn': 'src\\pynn'},
     cmdclass={'build_ext': build},
 )

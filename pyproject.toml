@@ -9,9 +9,19 @@ dependencies = ["numpy"]
 readme = "README.md"
 
 [tool.setuptools]
-packages = {find = {where = ["./src"]}}
-package-dir = {"" = "./src"}
-exclude-package-data = {"*" = ["*.c"]}
+zip-safe = false
+
+[tool.setuptools.packages.find]
+where = ["./src"]
+
+[tool.setuptools.package-dir]
+"" = "./src"
+
+[tool.setuptools.package-data]
+pynn = ["*.c"]
+
+[tool.setuptools.exclude-package-data]
+pynn = ["*.c"]
 
 [tool.pyright]
 venv = 'ai'
